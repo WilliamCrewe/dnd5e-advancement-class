@@ -33,8 +33,8 @@ export default class AdvancementClassData extends ItemDataModel.mixin(
         required: true, nullable: false, integer: true, min: 0, initial: 1,
         label: "ADVANCEMENT_CLASSES.StageLabel"
       }),
-      // Hit die consumed by HitPointsAdvancement. Advancement Class hit dice
-      // are not counted toward the actor's normal hit dice pool.
+      // Hit die pool consumed by HitPointsAdvancement. Dice are granted for
+      // each Stage at which the advancement awards hit points.
       hd: new SchemaField({
         additional: new FormulaField({ deterministic: true, required: true }),
         denomination: new StringField({
@@ -105,7 +105,9 @@ export default class AdvancementClassData extends ItemDataModel.mixin(
     this.hd.additional = this.hd.additional
       ? Roll.create(this.hd.additional, rollData).evaluateSync().total
       : 0;
-    this.hd.max = Math.max(this.levels + this.hd.additional, 0);
+    const hpAdvancement = this.parent.advancement?.byType?.HitPoints?.[0];
+    const grantedStages = hpAdvancement?.levels.filter(l => l <= this.levels).length ?? 0;
+    this.hd.max = Math.max(grantedStages + this.hd.additional, 0);
     this.hd.value = Math.max(this.hd.max - this.hd.spent, 0);
   }
 

@@ -218,6 +218,50 @@ function patchHitPoints() {
     if ( "stagesConfigured" in configuration ) configuration.stagesConfigured = true;
     return configuration;
   };
+
+  // rollClassHitPoints refuses any item that isn't type "class". Proxy the
+  // item so the system's roll logic (formula, hooks, chat card) applies.
+  const actorProto = CONFIG.Actor.documentClass.prototype;
+  const rollClassHitPoints = actorProto.rollClassHitPoints;
+  actorProto.rollClassHitPoints = async function(item, options={}) {
+    if ( item?.type === CLASS_TYPE ) {
+      item = new Proxy(item, { get: (target, key) => key === "type" ? "class" : target[key] });
+    }
+    return rollClassHitPoints.call(this, item, options);
+  };
+
+  // Character hp.max derives only from `actor.classes` HitPoints
+  // advancements; append ours so granted HP actually raises the maximum.
+  const AttributesFields = dnd5e.dataModels.actor.AttributesFields;
+  const prepareHitPoints = AttributesFields.prepareHitPoints;
+  AttributesFields.prepareHitPoints = function(hp, options={}) {
+    if ( (hp.max === null) && this.parent?.items ) {
+      const extra = this.parent.items
+        .filter(i => i.type === CLASS_TYPE)
+        .map(i => i.advancement?.byType?.HitPoints?.[0])
+        .filter(a => a);
+      if ( extra.length ) {
+        options = { ...options, advancement: [...(options.advancement ?? []), ...extra] };
+      }
+    }
+    return prepareHitPoints.call(this, hp, options);
+  };
+
+  // The actor's HitDice tracker pools `actor.classes` only. Add Advancement
+  // Class items so their dice appear, can be rolled, and recover on rests.
+  const CharacterData = CONFIG.Actor.dataModels.character;
+  const prepareBaseData = CharacterData.prototype.prepareBaseData;
+  CharacterData.prototype.prepareBaseData = function() {
+    prepareBaseData.call(this);
+    const hd = this.attributes.hd;
+    if ( !hd?.classes ) return;
+    for ( const item of this.parent.items ) {
+      if ( (item.type !== CLASS_TYPE) || !item.system.hd ) continue;
+      const size = parseInt(item.system.hd.denomination?.slice(1));
+      hd.classes.add(item);
+      if ( !Number.isNaN(size) ) hd.sizes.add(size);
+    }
+  };
 }
 
 /* -------------------------------------------- */

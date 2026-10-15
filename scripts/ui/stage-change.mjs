@@ -25,6 +25,11 @@ function stashStage(item, changed, options, userId) {
 }
 
 async function onStageChanged(item, changed, options, userId) {
+  if ( item.type !== CLASS_TYPE ) return;
+  // Bulk updates share one options object across every item in the batch, so
+  // a stashed previousStage can leak to unrelated documents. Confirm this
+  // update is the one that actually changed levels.
+  if ( !foundry.utils.hasProperty(changed, "system.levels") ) return;
   const previous = options[MODULE_ID]?.previousStage;
   if ( previous === undefined ) return;
   const current = item.system.levels;
