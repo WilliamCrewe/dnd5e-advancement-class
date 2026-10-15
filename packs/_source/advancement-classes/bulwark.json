@@ -1,6 +1,6 @@
 {
-  "_id": "FeatBulwark0000001",
-  "_key": "!items!FeatBulwark0000001",
+  "_id": "8I1HkldP2XTewo7z",
+  "_key": "!items!8I1HkldP2XTewo7z",
   "name": "Bulwark",
   "type": "feat",
   "img": "icons/equipment/shield/heater-wooden-brown-studded.webp",
@@ -10,8 +10,20 @@
       "chat": ""
     },
     "identifier": "bulwark",
-    "type": { "value": "feat", "subtype": "" },
-    "uses": { "max": "1", "spent": 0, "recovery": [{ "period": "sr", "type": "recoverAll" }] },
+    "type": {
+      "value": "feat",
+      "subtype": ""
+    },
+    "uses": {
+      "max": "1",
+      "spent": 0,
+      "recovery": [
+        {
+          "period": "sr",
+          "type": "recoverAll"
+        }
+      ]
+    },
     "source": {}
   },
   "flags": {}

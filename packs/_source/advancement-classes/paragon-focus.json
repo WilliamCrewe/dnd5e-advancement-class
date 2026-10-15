@@ -1,6 +1,6 @@
 {
-  "_id": "FeatFocus000000001",
-  "_key": "!items!FeatFocus000000001",
+  "_id": "QHVbK9CWfzLIESxN",
+  "_key": "!items!QHVbK9CWfzLIESxN",
   "name": "Paragon Focus",
   "type": "feat",
   "img": "icons/magic/light/orb-lightbulb-gray.webp",
@@ -10,11 +10,19 @@
       "chat": ""
     },
     "identifier": "paragon-focus",
-    "type": { "value": "feat", "subtype": "" },
+    "type": {
+      "value": "feat",
+      "subtype": ""
+    },
     "uses": {
       "max": "@scale.exemplar.focus",
       "spent": 0,
-      "recovery": [{ "period": "lr", "type": "recoverAll" }]
+      "recovery": [
+        {
+          "period": "lr",
+          "type": "recoverAll"
+        }
+      ]
     },
     "activities": {
       "actFocusedBolt001": {
@@ -23,20 +31,35 @@
         "name": "Focused Bolt",
         "img": "icons/magic/light/projectiles-beams-salvo-yellow.webp",
         "sort": 0,
-        "activation": { "type": "action", "value": null, "override": false },
+        "activation": {
+          "type": "action",
+          "value": null,
+          "override": false
+        },
         "consumption": {
-          "scaling": { "allowed": false },
+          "scaling": {
+            "allowed": false
+          },
           "spellSlot": true,
-          "targets": [{ "type": "itemUses", "target": "", "value": "2" }]
+          "targets": [
+            {
+              "type": "itemUses",
+              "target": "",
+              "value": "2"
+            }
+          ]
         },
         "description": {},
         "duration": {},
         "effects": [],
         "range": {},
         "target": {},
-        "uses": { "spent": 0, "recovery": [] },
+        "uses": {
+          "spent": 0,
+          "recovery": []
+        },
         "spell": {
-          "uuid": "Compendium.advancement-classes.advancement-classes.Item.SpellFocusedBolt01",
+          "uuid": "Compendium.advancement-classes.advancement-classes.Item.7RHGDL4CmJ2wdQp3",
           "challenge": false,
           "level": 0,
           "spellbook": true
@@ -48,20 +71,35 @@
         "name": "Radiant Burst",
         "img": "icons/magic/light/explosion-star-glow-silhouette.webp",
         "sort": 1,
-        "activation": { "type": "action", "value": null, "override": false },
+        "activation": {
+          "type": "action",
+          "value": null,
+          "override": false
+        },
         "consumption": {
-          "scaling": { "allowed": false },
+          "scaling": {
+            "allowed": false
+          },
           "spellSlot": true,
-          "targets": [{ "type": "itemUses", "target": "", "value": "5" }]
+          "targets": [
+            {
+              "type": "itemUses",
+              "target": "",
+              "value": "5"
+            }
+          ]
         },
         "description": {},
         "duration": {},
         "effects": [],
         "range": {},
         "target": {},
-        "uses": { "spent": 0, "recovery": [] },
+        "uses": {
+          "spent": 0,
+          "recovery": []
+        },
         "spell": {
-          "uuid": "Compendium.advancement-classes.advancement-classes.Item.SpellRadiantBurst1",
+          "uuid": "Compendium.advancement-classes.advancement-classes.Item.Y7l2f1v9CDvgkK1l",
           "challenge": false,
           "level": 0,
           "spellbook": true

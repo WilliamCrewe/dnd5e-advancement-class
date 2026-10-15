@@ -156,7 +156,7 @@ function patchCharacterSheet() {
         const base = name
           ? `${stage} — ${name}`
           : game.i18n.format("ADVANCEMENT_CLASSES.Stage", { stage });
-        const label = value ? `${base} (${foundry.utils.formatNumber(value, { signDisplay: "always" })})` : base;
+        const label = value ? `${base} (${value > 0 ? "+" : ""}${value})` : base;
         return { label, value, disabled: (value > 0) && blocked };
       });
       ctx.stageName = item.system.stageNames?.[String(item.system.levels)] ?? null;

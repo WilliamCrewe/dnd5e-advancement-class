@@ -1,6 +1,6 @@
 {
-  "_id": "SpellRadiantBurst1",
-  "_key": "!items!SpellRadiantBurst1",
+  "_id": "Y7l2f1v9CDvgkK1l",
+  "_key": "!items!Y7l2f1v9CDvgkK1l",
   "name": "Radiant Burst",
   "type": "spell",
   "img": "icons/magic/light/explosion-star-glow-silhouette.webp",
@@ -12,9 +12,19 @@
     "identifier": "radiant-burst",
     "level": 3,
     "school": "evc",
-    "activation": { "type": "action", "value": 1 },
-    "range": { "value": "0", "units": "self" },
-    "target": { "affects": { "type": "creature" } },
+    "activation": {
+      "type": "action",
+      "value": 1
+    },
+    "range": {
+      "value": "0",
+      "units": "self"
+    },
+    "target": {
+      "affects": {
+        "type": "creature"
+      }
+    },
     "source": {}
   },
   "flags": {}

@@ -1,6 +1,6 @@
 {
-  "_id": "FeatTraining00001",
-  "_key": "!items!FeatTraining00001",
+  "_id": "xI1E9Ohc4XDqmRzw",
+  "_key": "!items!xI1E9Ohc4XDqmRzw",
   "name": "Exemplar Training",
   "type": "feat",
   "img": "icons/skills/melee/hand-grip-sword-black.webp",
@@ -10,7 +10,10 @@
       "chat": ""
     },
     "identifier": "exemplar-training",
-    "type": { "value": "feat", "subtype": "" },
+    "type": {
+      "value": "feat",
+      "subtype": ""
+    },
     "source": {}
   },
   "flags": {}

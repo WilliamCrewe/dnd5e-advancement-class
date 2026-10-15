@@ -1,6 +1,6 @@
 {
-  "_id": "FeatTranscend0001",
-  "_key": "!items!FeatTranscend0001",
+  "_id": "1zglolhSfSouiyar",
+  "_key": "!items!1zglolhSfSouiyar",
   "name": "Transcendent",
   "type": "feat",
   "img": "icons/magic/light/beams-rays-explosion-yellow.webp",
@@ -10,8 +10,20 @@
       "chat": ""
     },
     "identifier": "transcendent",
-    "type": { "value": "feat", "subtype": "" },
-    "uses": { "max": "1", "spent": 0, "recovery": [{ "period": "lr", "type": "recoverAll" }] },
+    "type": {
+      "value": "feat",
+      "subtype": ""
+    },
+    "uses": {
+      "max": "1",
+      "spent": 0,
+      "recovery": [
+        {
+          "period": "lr",
+          "type": "recoverAll"
+        }
+      ]
+    },
     "source": {}
   },
   "flags": {}

@@ -1,6 +1,6 @@
 {
-  "_id": "PathValor000000001",
-  "_key": "!items!PathValor000000001",
+  "_id": "6j5JHaFkUbb8tXQn",
+  "_key": "!items!6j5JHaFkUbb8tXQn",
   "name": "Path of Valor",
   "type": "advancement-classes.advancement-path",
   "img": "icons/equipment/shield/heater-crystal-blue.webp",
@@ -12,41 +12,54 @@
     "identifier": "path-of-valor",
     "classIdentifier": "exemplar",
     "advancement": {
-      "igValor": {
-        "_id": "igValor",
+      "URD59Qdq440yuJ0z": {
+        "_id": "URD59Qdq440yuJ0z",
         "type": "ItemGrant",
         "level": 3,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.FeatValorStrike001" }
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.TWotQjyMmhRAKjUb"
+            }
           ],
           "optional": false
         },
         "value": {}
       },
-      "igBulwark": {
-        "_id": "igBulwark",
+      "4V6bDM1MujTUlKy2": {
+        "_id": "4V6bDM1MujTUlKy2",
         "type": "ItemGrant",
         "level": 6,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.FeatBulwark0000001" }
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.8I1HkldP2XTewo7z"
+            }
           ],
           "optional": false
         },
         "value": {}
       },
-      "scaleValor": {
-        "_id": "scaleValor",
+      "J82uyBiwv52ZOsFv": {
+        "_id": "J82uyBiwv52ZOsFv",
         "type": "ScaleValue",
         "level": 0,
         "configuration": {
           "identifier": "valordie",
           "type": "dice",
           "scale": {
-            "3": { "number": 1, "faces": 6 },
-            "7": { "number": 1, "faces": 8 },
-            "10": { "number": 1, "faces": 10 }
+            "3": {
+              "number": 1,
+              "faces": 6
+            },
+            "7": {
+              "number": 1,
+              "faces": 8
+            },
+            "10": {
+              "number": 1,
+              "faces": 10
+            }
           }
         },
         "value": {}

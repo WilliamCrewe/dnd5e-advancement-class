@@ -1,6 +1,6 @@
 {
-  "_id": "SpellFocusedBolt01",
-  "_key": "!items!SpellFocusedBolt01",
+  "_id": "7RHGDL4CmJ2wdQp3",
+  "_key": "!items!7RHGDL4CmJ2wdQp3",
   "name": "Focused Bolt",
   "type": "spell",
   "img": "icons/magic/light/projectiles-beams-salvo-yellow.webp",
@@ -12,9 +12,20 @@
     "identifier": "focused-bolt",
     "level": 1,
     "school": "evc",
-    "activation": { "type": "action", "value": 1 },
-    "range": { "value": "60", "units": "ft" },
-    "target": { "affects": { "type": "creature", "count": "1" } },
+    "activation": {
+      "type": "action",
+      "value": 1
+    },
+    "range": {
+      "value": "60",
+      "units": "ft"
+    },
+    "target": {
+      "affects": {
+        "type": "creature",
+        "count": "1"
+      }
+    },
     "source": {}
   },
   "flags": {}

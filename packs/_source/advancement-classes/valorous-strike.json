@@ -1,6 +1,6 @@
 {
-  "_id": "FeatValorStrike001",
-  "_key": "!items!FeatValorStrike001",
+  "_id": "TWotQjyMmhRAKjUb",
+  "_key": "!items!TWotQjyMmhRAKjUb",
   "name": "Valorous Strike",
   "type": "feat",
   "img": "icons/skills/melee/strike-sword-slashing-red.webp",
@@ -10,8 +10,20 @@
       "chat": ""
     },
     "identifier": "valorous-strike",
-    "type": { "value": "feat", "subtype": "" },
-    "uses": { "max": "1", "spent": 0, "recovery": [{ "period": "sr", "type": "recoverAll" }] },
+    "type": {
+      "value": "feat",
+      "subtype": ""
+    },
+    "uses": {
+      "max": "1",
+      "spent": 0,
+      "recovery": [
+        {
+          "period": "sr",
+          "type": "recoverAll"
+        }
+      ]
+    },
     "source": {}
   },
   "flags": {}

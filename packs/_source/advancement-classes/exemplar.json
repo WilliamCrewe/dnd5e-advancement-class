@@ -1,6 +1,6 @@
 {
-  "_id": "ExemplarCls0000001",
-  "_key": "!items!ExemplarCls0000001",
+  "_id": "seQf3lP6TWJUvcN0",
+  "_key": "!items!seQf3lP6TWJUvcN0",
   "name": "Exemplar",
   "type": "advancement-classes.advancement-class",
   "img": "icons/skills/melee/weapons-crossed-swords-yellow.webp",
@@ -24,115 +24,144 @@
       "10": "Exemplar"
     },
     "advancement": {
-      "igStage1": {
-        "_id": "igStage1",
+      "HSKy54clZY2SwKna": {
+        "_id": "HSKy54clZY2SwKna",
         "type": "ItemGrant",
         "level": 1,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.FeatTraining00001" },
-            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.MileRite000000001" }
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.xI1E9Ohc4XDqmRzw"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.SXaA0iBd47oIQ1ED"
+            }
           ],
           "optional": false
         },
         "value": {}
       },
-      "igStage2": {
-        "_id": "igStage2",
+      "04AnJfvb1lyT3FbG": {
+        "_id": "04AnJfvb1lyT3FbG",
         "type": "ItemGrant",
         "level": 2,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.MileEndurance00001" }
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.hgNHTZ6CRljGU8Y4"
+            }
           ],
           "optional": false
         },
         "value": {}
       },
-      "pathStage3": {
-        "_id": "pathStage3",
+      "mM7JCTQwgdPNLwJe": {
+        "_id": "mM7JCTQwgdPNLwJe",
         "type": "AdvancementPath",
         "level": 3,
         "configuration": {},
         "value": {}
       },
-      "igStage3": {
-        "_id": "igStage3",
+      "oz8ZIsJCBKIUvsme": {
+        "_id": "oz8ZIsJCBKIUvsme",
         "type": "ItemGrant",
         "level": 3,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.MileDedication0001" }
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.slSG8TulHSZdRt55"
+            }
           ],
           "optional": false
         },
         "value": {}
       },
-      "asiStage4": {
-        "_id": "asiStage4",
+      "IxD76zCYUNcU5D8U": {
+        "_id": "IxD76zCYUNcU5D8U",
         "type": "AbilityScoreImprovement",
         "level": 4,
         "configuration": {},
         "value": {}
       },
-      "igStage5": {
-        "_id": "igStage5",
+      "sZDouLzh0vEwD5OO": {
+        "_id": "sZDouLzh0vEwD5OO",
         "type": "ItemGrant",
         "level": 5,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.FeatFocus000000001" }
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.QHVbK9CWfzLIESxN"
+            }
           ],
           "optional": false
         },
         "value": {}
       },
-      "asiStage8": {
-        "_id": "asiStage8",
+      "ZS0IHL9bcGlnPrZX": {
+        "_id": "ZS0IHL9bcGlnPrZX",
         "type": "AbilityScoreImprovement",
         "level": 8,
         "configuration": {},
         "value": {}
       },
-      "igStage10": {
-        "_id": "igStage10",
+      "clYWQXMOQbaAdTTu": {
+        "_id": "clYWQXMOQbaAdTTu",
         "type": "ItemGrant",
         "level": 10,
         "configuration": {
           "items": [
-            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.FeatTranscend0001" }
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.1zglolhSfSouiyar"
+            }
           ],
           "optional": false
         },
         "value": {}
       },
-      "scaleFocus": {
-        "_id": "scaleFocus",
+      "7ZzwgKO38bCbiOBM": {
+        "_id": "7ZzwgKO38bCbiOBM",
         "type": "ScaleValue",
         "level": 0,
         "configuration": {
           "identifier": "focus",
           "type": "number",
           "scale": {
-            "5": { "value": 4 },
-            "7": { "value": 6 },
-            "9": { "value": 8 },
-            "10": { "value": 10 }
+            "5": {
+              "value": 4
+            },
+            "7": {
+              "value": 6
+            },
+            "9": {
+              "value": 8
+            },
+            "10": {
+              "value": 10
+            }
           }
         },
         "value": {}
       },
-      "scaleDie": {
-        "_id": "scaleDie",
+      "wwpknbjM2oUD6RnE": {
+        "_id": "wwpknbjM2oUD6RnE",
         "type": "ScaleValue",
         "level": 0,
         "configuration": {
           "identifier": "exemplardie",
           "type": "dice",
           "scale": {
-            "1": { "number": 1, "faces": 4 },
-            "5": { "number": 1, "faces": 6 },
-            "9": { "number": 1, "faces": 8 }
+            "1": {
+              "number": 1,
+              "faces": 4
+            },
+            "5": {
+              "number": 1,
+              "faces": 6
+            },
+            "9": {
+              "number": 1,
+              "faces": 8
+            }
           }
         },
         "value": {}
