@@ -60,8 +60,6 @@
         },
         "spell": {
           "uuid": "Compendium.advancement-classes.advancement-classes.Item.7RHGDL4CmJ2wdQp3",
-          "challenge": false,
-          "level": 0,
           "spellbook": true
         }
       },
@@ -100,8 +98,6 @@
         },
         "spell": {
           "uuid": "Compendium.advancement-classes.advancement-classes.Item.Y7l2f1v9CDvgkK1l",
-          "challenge": false,
-          "level": 0,
           "spellbook": true
         }
       }

@@ -14,6 +14,12 @@
         </button>
     </div>
     {{else}}
+    <button type="button" class="unbutton item-control" data-action="advancementClassesMilestoneComplete"
+            {{#unless ctx.milestone.canComplete}}disabled{{/unless}}
+            data-tooltip="ADVANCEMENT_CLASSES.Milestone.Complete"
+            aria-label="{{ localize 'ADVANCEMENT_CLASSES.Milestone.Complete' }}">
+        <i class="fa-solid fa-check" inert></i>
+    </button>
     <span class="milestone-type">{{ ctx.milestone.typeLabel }}</span>
     {{/if}}
 </div>

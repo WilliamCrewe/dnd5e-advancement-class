@@ -3,7 +3,7 @@ import { CLASS_TYPE, MODULE_ID, SETTING_MAX_STAGE } from "../constants.mjs";
 const { ItemDataModel } = dnd5e.dataModels.abstract;
 const { AdvancementTemplate, ItemDescriptionTemplate } = dnd5e.dataModels.item;
 
-const { DocumentUUIDField, NumberField, StringField, TypedObjectField } = foundry.data.fields;
+const { DocumentUUIDField, FormulaField, NumberField, SchemaField, StringField, TypedObjectField } = foundry.data.fields;
 
 /**
  * Data definition for Advancement Class items.
@@ -31,6 +31,16 @@ export default class AdvancementClassData extends ItemDataModel.mixin(
       levels: new NumberField({
         required: true, nullable: false, integer: true, min: 0, initial: 1,
         label: "ADVANCEMENT_CLASSES.StageLabel"
+      }),
+      // Hit die consumed by HitPointsAdvancement. Advancement Class hit dice
+      // are not counted toward the actor's normal hit dice pool.
+      hd: new SchemaField({
+        additional: new FormulaField({ deterministic: true, required: true }),
+        denomination: new StringField({
+          required: true, initial: "d6", blank: false,
+          validate: v => /d\d+/.test(v), validationError: "must be a dice value in the format d#"
+        }),
+        spent: new NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 })
       }),
       stageNames: new TypedObjectField(new StringField({ required: true }), {
         required: false, label: "ADVANCEMENT_CLASSES.Class.StageNames", hint: "ADVANCEMENT_CLASSES.Class.StageNamesHint"
@@ -73,6 +83,7 @@ export default class AdvancementClassData extends ItemDataModel.mixin(
   static _resetData(source) {
     super._resetData(source);
     delete source.levels;
+    delete source.hd?.spent;
   }
 
   /* -------------------------------------------- */
@@ -88,11 +99,24 @@ export default class AdvancementClassData extends ItemDataModel.mixin(
   /* -------------------------------------------- */
 
   /** @inheritDoc */
+  prepareFinalData() {
+    const rollData = this.parent.getRollData({ deterministic: true });
+    this.hd.additional = this.hd.additional
+      ? Roll.create(this.hd.additional, rollData).evaluateSync().total
+      : 0;
+    this.hd.max = Math.max(this.levels + this.hd.additional, 0);
+    this.hd.value = Math.max(this.hd.max - this.hd.spent, 0);
+  }
+
+  /* -------------------------------------------- */
+
+  /** @inheritDoc */
   async getSheetData(context) {
     context.subtitles = [{ label: game.i18n.localize(`TYPES.Item.${CLASS_TYPE}`) }];
     context.singleDescription = true;
     context.parts = [`${MODULE_ID}.details-class`];
     context.maxStage = AdvancementClassData.maxStage;
+    context.hitDieOptions = CONFIG.DND5E.hitDieTypes.map(d => ({ value: d, label: d }));
     context.stageNameRows = Array.fromRange(AdvancementClassData.maxStage).map(i => {
       const stage = String(i + 1);
       return { stage, name: this.stageNames?.[stage] ?? "" };

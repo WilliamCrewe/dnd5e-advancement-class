@@ -7,6 +7,16 @@
 
     {{!-- Journal Link --}}
     {{ formField fields.journal value=source.journal localize=true rootId=partId }}
+
+    {{!-- Hit Die (used by Hit Points advancements) --}}
+    <div class="form-group">
+        <label>{{ localize "DND5E.HitDie" }}</label>
+        <div class="form-fields">
+            <select name="system.hd.denomination">
+                {{ selectOptions hitDieOptions selected=source.hd.denomination }}
+            </select>
+        </div>
+    </div>
 </fieldset>
 
 <fieldset>

@@ -30,6 +30,7 @@ Hooks.once("init", () => {
   };
   const validItemTypes = {
     AbilityScoreImprovement: [CLASS_TYPE, PATH_TYPE],
+    HitPoints: [CLASS_TYPE],
     ItemChoice: [CLASS_TYPE, PATH_TYPE],
     ItemGrant: [CLASS_TYPE, PATH_TYPE],
     ModifyItem: [CLASS_TYPE, PATH_TYPE],

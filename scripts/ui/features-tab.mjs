@@ -156,6 +156,11 @@ function registerSheetActions() {
       const value = Math.max(item.system.progress.value - 1, 0);
       await item.update({ "system.progress.value": value });
     },
+    async advancementClassesMilestoneComplete(event, target) {
+      const item = this.actor.items.get(target.closest("[data-item-id]")?.dataset.itemId);
+      if ( item?.type !== MILESTONE_TYPE ) return;
+      await item.deleteDialog({ sheet: this });
+    },
     async advancementClassesOpenJournal(event, target) {
       const doc = await fromUuid(target.dataset.uuid);
       doc?.sheet?.render(true);
