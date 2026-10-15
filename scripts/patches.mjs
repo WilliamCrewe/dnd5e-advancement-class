@@ -1,0 +1,267 @@
+import AdvancementClassManager from "./applications/advancement-class-manager.mjs";
+import { CLASS_TYPE, MILESTONE_TYPE, MODULE_ID, PATH_TYPE } from "./constants.mjs";
+
+/* -------------------------------------------- */
+/*  Item5e Getters                              */
+/* -------------------------------------------- */
+
+/**
+ * Mirror `item.class` for Advancement Path items: the embedded Advancement
+ * Class whose identifier matches `system.classIdentifier`.
+ */
+function getAdvancementClass() {
+  if ( !this.isEmbedded || (this.type !== PATH_TYPE) ) return null;
+  const cid = this.system.classIdentifier;
+  return this._advancementClassLink ??= this.parent.items.find(
+    i => (i.type === CLASS_TYPE) && (i.identifier === cid)
+  );
+}
+
+/**
+ * Mirror `item.subclass` for Advancement Class items.
+ */
+function getAdvancementPath() {
+  if ( !this.isEmbedded || (this.type !== CLASS_TYPE) ) return null;
+  const cid = this.identifier;
+  return this._advancementPathLink ??= this.parent.items.find(
+    i => (i.type === PATH_TYPE) && (i.system.classIdentifier === cid)
+  );
+}
+
+/**
+ * Wrap `item.scaleValues` so ScaleValue advancements evaluate at the owning
+ * Advancement Class's Stage rather than character level.
+ * Mirrors `Item5e#scaleValues` (dnd5e 6.0.5 module/documents/item.mjs).
+ */
+function patchScaleValues() {
+  const proto = CONFIG.Item.documentClass.prototype;
+  const original = Object.getOwnPropertyDescriptor(proto, "scaleValues");
+  if ( !original?.get ) return;
+  Object.defineProperty(proto, "scaleValues", {
+    get: function() {
+      if ( !this.advancement?.byType?.ScaleValue ) return {};
+      const root = this.system.advancementRootItem;
+      if ( ![CLASS_TYPE, PATH_TYPE].includes(root?.type) ) return original.get.call(this);
+      const level = root.type === CLASS_TYPE
+        ? root.system.levels
+        : root.advancementClass?.system.levels ?? this.system.advancementLevel ?? 0;
+      return this.advancement.byType.ScaleValue.reduce((obj, advancement) => {
+        if ( (advancement.classRestriction === "primary") && !this.isOriginalClass ) return obj;
+        if ( (advancement.classRestriction === "secondary") && this.isOriginalClass ) return obj;
+        obj[advancement.identifier] = advancement.valueForLevel(level);
+        return obj;
+      }, {});
+    },
+    configurable: true
+  });
+}
+
+/* -------------------------------------------- */
+/*  AdvancementManager Routing                  */
+/* -------------------------------------------- */
+
+/**
+ * Item ID / data extracted from the arguments of an AdvancementManager
+ * factory method.
+ */
+function managerTargetType(name, args) {
+  const [actor, second] = args;
+  if ( name === "forNewItem" ) return second?.type;
+  return actor?.items?.get(second)?.type;
+}
+
+/**
+ * Route Advancement Class / Path advancement through AdvancementClassManager
+ * whenever system code invokes the base manager factories.
+ */
+function patchManagerFactories() {
+  const Manager = dnd5e.applications.advancement.AdvancementManager;
+  const factories = [
+    "forNewItem", "forDeletedItem", "forLevelChange",
+    "forNewAdvancement", "forDeletedAdvancement", "forModifyChoices"
+  ];
+  for ( const name of factories ) {
+    const original = Manager[name];
+    if ( typeof original !== "function" ) continue;
+    Manager[name] = function(...args) {
+      if ( [CLASS_TYPE, PATH_TYPE].includes(managerTargetType(name, args)) ) {
+        return AdvancementClassManager[name](...args);
+      }
+      return original.apply(this, args);
+    };
+  }
+}
+
+/* -------------------------------------------- */
+/*  Character Sheet                             */
+/* -------------------------------------------- */
+
+function patchCharacterSheet() {
+  const Sheet = dnd5e.applications.actor.CharacterActorSheet.prototype;
+
+  /* ---- Item categories ---- */
+
+  const assignCategories = Sheet._assignItemCategories;
+  Sheet._assignItemCategories = function(item) {
+    switch ( item.type ) {
+      case CLASS_TYPE: return new Set(["advancementClasses"]);
+      case PATH_TYPE: return new Set(["advancementPaths"]);
+      case MILESTONE_TYPE: return new Set(["advancementMilestones"]);
+      default: return assignCategories.call(this, item);
+    }
+  };
+
+  /* ---- Create-dialog types ---- */
+
+  const addDocumentItemTypes = Sheet._addDocumentItemTypes;
+  Sheet._addDocumentItemTypes = function(documentType) {
+    const types = addDocumentItemTypes.call(this, documentType);
+    if ( documentType === "features" ) {
+      for ( const t of [CLASS_TYPE, PATH_TYPE, MILESTONE_TYPE] ) types.push?.(t) ?? types.add?.(t);
+    }
+    return types;
+  };
+
+  /* ---- Per-item context ---- */
+
+  const prepareItemFeature = Sheet._prepareItemFeature;
+  Sheet._prepareItemFeature = async function(item, ctx) {
+    await prepareItemFeature.call(this, item, ctx);
+    ctx.groups ??= {};
+
+    if ( item.type === MILESTONE_TYPE ) {
+      ctx.groups.origin = "advancementMilestone";
+      ctx.groups.activation = "passive";
+      const { milestoneType, progress } = item.system;
+      const typeKeys = { manual: "Manual", counter: "Counter", gmConfirm: "GMConfirm" };
+      ctx.milestone = {
+        type: milestoneType,
+        typeLabel: game.i18n.localize(`ADVANCEMENT_CLASSES.Milestone.Type.${typeKeys[milestoneType] ?? "Manual"}`),
+        value: progress.value,
+        max: progress.max,
+        fulfilled: item.system.fulfilled,
+        canComplete: item.system.canComplete(game.user),
+        stage: item.system.associatedStage
+      };
+      return;
+    }
+
+    if ( item.type === CLASS_TYPE ) {
+      const max = game.settings.get(MODULE_ID, "maxStage");
+      const blocked = item.parent.items.some(i => i.type === MILESTONE_TYPE);
+      ctx.stageBlocked = blocked;
+      ctx.availableStages = Array.fromRange(max, 1).map(stage => {
+        const value = stage - item.system.levels;
+        const name = item.system.stageNames?.[String(stage)];
+        const base = name
+          ? `${stage} — ${name}`
+          : game.i18n.format("ADVANCEMENT_CLASSES.Stage", { stage });
+        const label = value ? `${base} (${foundry.utils.formatNumber(value, { signDisplay: "always" })})` : base;
+        return { label, value, disabled: (value > 0) && blocked };
+      });
+      ctx.stageName = item.system.stageNames?.[String(item.system.levels)] ?? null;
+      ctx.mastered = item.system.levels >= max;
+      // Circular stage pips: dots arranged clockwise starting at 12 o'clock
+      ctx.stagePips = Array.fromRange(max, 1).map(i => {
+        const angle = ((i - 1) / max) * 2 * Math.PI - (Math.PI / 2);
+        return {
+          filled: i <= item.system.levels,
+          x: (12 + 9 * Math.cos(angle)).toFixed(2),
+          y: (12 + 9 * Math.sin(angle)).toFixed(2)
+        };
+      });
+      const journal = item.system.journal;
+      if ( journal ) ctx.journalUuid = journal;
+    }
+
+    // Grouping: features granted by an Advancement Class or Path land under
+    // that class's section; milestones land in their own section.
+    const [originId] = (item.getFlag("dnd5e", "advancementRoot") ?? item.getFlag("dnd5e", "advancementOrigin"))
+      ?.split(".") ?? [];
+    const group = item.parent.items.get(originId);
+    switch ( group?.type ) {
+      case CLASS_TYPE: ctx.groups.origin = group.identifier; break;
+      case PATH_TYPE: ctx.groups.origin = group.advancementClass?.identifier ?? "other"; break;
+    }
+  };
+
+  /* ---- Features tab context ---- */
+
+  const prepareFeaturesContext = Sheet._prepareFeaturesContext;
+  Sheet._prepareFeaturesContext = async function(context, options) {
+    await prepareFeaturesContext.call(this, context, options);
+
+    const enabled = game.settings.get(MODULE_ID, "enabled")
+      && this.actor.getFlag("dnd5e", "advancementClasses");
+
+    context.advancementClasses = (context.itemCategories.advancementClasses ?? [])
+      .sort((lhs, rhs) => rhs.system.levels - lhs.system.levels);
+    context.advancementPaths = context.itemCategories.advancementPaths ?? [];
+
+    const max = game.settings.get(MODULE_ID, "maxStage");
+    for ( const cls of context.advancementClasses ) {
+      const ctx = context.itemContext[cls.id] ??= {};
+      const path = context.advancementPaths.findSplice(
+        p => p.system.classIdentifier === cls.identifier
+      );
+      if ( !path ) {
+        const pathAdvancement = cls.advancement.byType.AdvancementPath?.[0];
+        if ( pathAdvancement && (pathAdvancement.level <= cls.system.levels) ) ctx.needsPath = true;
+      }
+    }
+
+    // Add control: flag on, sheet editable, all current classes mastered.
+    const allMastered = context.advancementClasses.every(c => c.system.levels >= max);
+    context.showAdvancementClassDrop = enabled && this.isEditMode && allMastered;
+    context.advancementEnabled = enabled;
+
+    // Additional sections: "{Class} Features" for each Advancement Class and
+    // an Advancement Milestones section below them.
+    const milestones = context.itemCategories.advancementMilestones ?? [];
+    const Inventory = customElements.get(this.options.elements.inventory);
+    if ( context.advancementClasses.length || milestones.length ) {
+      const columns = [{ id: "uses", order: 200 }, "recovery", "controls"];
+      const extra = [
+        ...context.advancementClasses.map((cls, i) => ({
+          columns, id: `ac-${cls.id}`, order: 500 + (i * 100),
+          groups: { origin: cls.identifier },
+          label: game.i18n.format("ADVANCEMENT_CLASSES.Sheet.Features", { name: cls.name })
+        })),
+        milestones.length ? {
+          columns: [
+            { id: "milestoneProgress", label: "ADVANCEMENT_CLASSES.Sheet.MilestoneProgress",
+              order: 200, width: 120,
+              template: `modules/${MODULE_ID}/templates/columns/milestone-progress.hbs` },
+            "controls"
+          ],
+          id: "advancementMilestones", order: 900,
+          label: "ADVANCEMENT_CLASSES.Sheet.Milestones",
+          groups: { origin: "advancementMilestone" }
+        } : null
+      ].filter(_ => _);
+      context.sections.push(...Inventory.prepareSections(extra));
+      context.sections.sort((a, b) => a.order - b.order);
+      context.sections[0].items.push(...milestones);
+      context.sections[0].items.push(
+        ...context.advancementPaths.filter(p =>
+          !context.advancementClasses.some(c => c.identifier === p.system.classIdentifier)
+        )
+      );
+    }
+
+    return context;
+  };
+}
+
+/* -------------------------------------------- */
+/*  Public API                                  */
+/* -------------------------------------------- */
+
+export function applyPatches() {
+  const proto = CONFIG.Item.documentClass.prototype;
+  Object.defineProperty(proto, "advancementClass", { get: getAdvancementClass, configurable: true });
+  Object.defineProperty(proto, "advancementPath", { get: getAdvancementPath, configurable: true });
+  patchScaleValues();
+  patchManagerFactories();
+  patchCharacterSheet();
+}

@@ -1,0 +1,58 @@
+{
+  "_id": "PathValor000000001",
+  "_key": "!items!PathValor000000001",
+  "name": "Path of Valor",
+  "type": "advancement-classes.advancement-path",
+  "img": "icons/equipment/shield/heater-crystal-blue.webp",
+  "system": {
+    "description": {
+      "value": "<p>The Path of Valor is walked by those who answer every trial with courage. It is available to characters pursuing the Exemplar advancement class.</p>",
+      "chat": ""
+    },
+    "identifier": "path-of-valor",
+    "classIdentifier": "exemplar",
+    "advancement": {
+      "igValor": {
+        "_id": "igValor",
+        "type": "ItemGrant",
+        "level": 3,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.FeatValorStrike001" }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "igBulwark": {
+        "_id": "igBulwark",
+        "type": "ItemGrant",
+        "level": 6,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.FeatBulwark0000001" }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "scaleValor": {
+        "_id": "scaleValor",
+        "type": "ScaleValue",
+        "level": 0,
+        "configuration": {
+          "identifier": "valordie",
+          "type": "dice",
+          "scale": {
+            "3": { "number": 1, "faces": 6 },
+            "7": { "number": 1, "faces": 8 },
+            "10": { "number": 1, "faces": 10 }
+          }
+        },
+        "value": {}
+      }
+    },
+    "source": {}
+  },
+  "flags": {}
+}

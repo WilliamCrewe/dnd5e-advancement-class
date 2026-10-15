@@ -1,0 +1,17 @@
+{
+  "_id": "FeatTraining00001",
+  "_key": "!items!FeatTraining00001",
+  "name": "Exemplar Training",
+  "type": "feat",
+  "img": "icons/skills/melee/hand-grip-sword-black.webp",
+  "system": {
+    "description": {
+      "value": "<p>Your exemplary training sets you apart. You may add your Exemplar die (@scale.exemplar.exemplardie) to initiative rolls.</p>",
+      "chat": ""
+    },
+    "identifier": "exemplar-training",
+    "type": { "value": "feat", "subtype": "" },
+    "source": {}
+  },
+  "flags": {}
+}

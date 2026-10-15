@@ -1,0 +1,17 @@
+{
+  "_id": "MileRite000000001",
+  "_key": "!items!MileRite000000001",
+  "name": "Rite of Initiation",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/skills/trades/academics-merchant-scribe.webp",
+  "system": {
+    "description": {
+      "value": "<p>Perform the rite of initiation under the guidance of a mentor. When complete, mark this milestone done to remove it from your sheet.</p>",
+      "chat": ""
+    },
+    "identifier": "rite-of-initiation",
+    "milestoneType": "manual",
+    "source": {}
+  },
+  "flags": {}
+}

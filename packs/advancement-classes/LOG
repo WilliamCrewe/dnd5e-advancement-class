@@ -1,0 +1,5 @@
+2026/10/15-15:45:45.828057 76825ffff6c0 Delete type=3 #1
+2026/10/15-15:45:45.837677 76825effd6c0 Level-0 table #5: started
+2026/10/15-15:45:45.840423 76825effd6c0 Level-0 table #5: 5294 bytes OK
+2026/10/15-15:45:45.842676 76825effd6c0 Delete type=0 #3
+2026/10/15-15:45:45.842892 76825effd6c0 Manual compaction at level-0 from '!items!ExemplarCls0000001' @ 72057594037927935 : 1 .. '!items!SpellRadiantBurst1' @ 0 : 0; will stop at (end)

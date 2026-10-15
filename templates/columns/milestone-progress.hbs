@@ -1,0 +1,19 @@
+<div class="item-detail item-milestone" data-column-id="milestoneProgress">
+    {{#if (eq ctx.milestone.type "counter")}}
+    <div class="milestone-counter">
+        <button type="button" class="unbutton item-control" data-action="advancementClassesMilestoneDecrement"
+                {{#unless @root.editable}}disabled{{/unless}} aria-label="-">
+            <i class="fa-solid fa-minus" inert></i>
+        </button>
+        <span class="milestone-progress {{#if ctx.milestone.fulfilled}}fulfilled{{/if}}">
+            {{ ctx.milestone.value }} / {{ ctx.milestone.max }}
+        </span>
+        <button type="button" class="unbutton item-control" data-action="advancementClassesMilestoneIncrement"
+                {{#unless @root.editable}}disabled{{/unless}} aria-label="+">
+            <i class="fa-solid fa-plus" inert></i>
+        </button>
+    </div>
+    {{else}}
+    <span class="milestone-type">{{ ctx.milestone.typeLabel }}</span>
+    {{/if}}
+</div>

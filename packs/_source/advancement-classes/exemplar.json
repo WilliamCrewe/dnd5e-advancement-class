@@ -1,0 +1,144 @@
+{
+  "_id": "ExemplarCls0000001",
+  "_key": "!items!ExemplarCls0000001",
+  "name": "Exemplar",
+  "type": "advancement-classes.advancement-class",
+  "img": "icons/skills/melee/weapons-crossed-swords-yellow.webp",
+  "system": {
+    "description": {
+      "value": "<p>An Exemplar is a character who pursues legendary deeds beyond their ordinary training. Advancement Stages are tracked independently of class level and do not increase proficiency bonus or character level.</p>",
+      "chat": ""
+    },
+    "identifier": "exemplar",
+    "levels": 1,
+    "stageNames": {
+      "1": "Initiate",
+      "2": "Aspirant",
+      "3": "Adept",
+      "4": "Disciple",
+      "5": "Veteran",
+      "6": "Master",
+      "7": "Luminary",
+      "8": "Paragon",
+      "9": "Icon",
+      "10": "Exemplar"
+    },
+    "advancement": {
+      "igStage1": {
+        "_id": "igStage1",
+        "type": "ItemGrant",
+        "level": 1,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.FeatTraining00001" },
+            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.MileRite000000001" }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "igStage2": {
+        "_id": "igStage2",
+        "type": "ItemGrant",
+        "level": 2,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.MileEndurance00001" }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "pathStage3": {
+        "_id": "pathStage3",
+        "type": "AdvancementPath",
+        "level": 3,
+        "configuration": {},
+        "value": {}
+      },
+      "igStage3": {
+        "_id": "igStage3",
+        "type": "ItemGrant",
+        "level": 3,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.MileDedication0001" }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "asiStage4": {
+        "_id": "asiStage4",
+        "type": "AbilityScoreImprovement",
+        "level": 4,
+        "configuration": {},
+        "value": {}
+      },
+      "igStage5": {
+        "_id": "igStage5",
+        "type": "ItemGrant",
+        "level": 5,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.FeatFocus000000001" }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "asiStage8": {
+        "_id": "asiStage8",
+        "type": "AbilityScoreImprovement",
+        "level": 8,
+        "configuration": {},
+        "value": {}
+      },
+      "igStage10": {
+        "_id": "igStage10",
+        "type": "ItemGrant",
+        "level": 10,
+        "configuration": {
+          "items": [
+            { "uuid": "Compendium.advancement-classes.advancement-classes.Item.FeatTranscend0001" }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "scaleFocus": {
+        "_id": "scaleFocus",
+        "type": "ScaleValue",
+        "level": 0,
+        "configuration": {
+          "identifier": "focus",
+          "type": "number",
+          "scale": {
+            "5": { "value": 4 },
+            "7": { "value": 6 },
+            "9": { "value": 8 },
+            "10": { "value": 10 }
+          }
+        },
+        "value": {}
+      },
+      "scaleDie": {
+        "_id": "scaleDie",
+        "type": "ScaleValue",
+        "level": 0,
+        "configuration": {
+          "identifier": "exemplardie",
+          "type": "dice",
+          "scale": {
+            "1": { "number": 1, "faces": 4 },
+            "5": { "number": 1, "faces": 6 },
+            "9": { "number": 1, "faces": 8 }
+          }
+        },
+        "value": {}
+      }
+    },
+    "source": {}
+  },
+  "flags": {}
+}

@@ -1,0 +1,18 @@
+{
+  "_id": "FeatTranscend0001",
+  "_key": "!items!FeatTranscend0001",
+  "name": "Transcendent",
+  "type": "feat",
+  "img": "icons/magic/light/beams-rays-explosion-yellow.webp",
+  "system": {
+    "description": {
+      "value": "<p>Your exemplar path is complete. Once per long rest, when you roll for initiative, you may treat the roll as a 20. Your legend is assured.</p>",
+      "chat": ""
+    },
+    "identifier": "transcendent",
+    "type": { "value": "feat", "subtype": "" },
+    "uses": { "max": "1", "spent": 0, "recovery": [{ "period": "lr", "type": "recoverAll" }] },
+    "source": {}
+  },
+  "flags": {}
+}

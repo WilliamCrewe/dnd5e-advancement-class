@@ -1,0 +1,87 @@
+import { CLASS_TYPE, MILESTONE_TYPE, MODULE_ID, SETTING_STAGE_CARD } from "../constants.mjs";
+
+const { renderTemplate } = foundry.applications.handlebars;
+
+/**
+ * Register document-level hooks: Stage-change detection for the
+ * `advancementClasses.stageChanged` hook + chat card, and milestone
+ * completion guards.
+ */
+export function registerDocumentHooks() {
+  Hooks.on("preUpdateItem", stashStage);
+  Hooks.on("updateItem", onStageChanged);
+  Hooks.on("preDeleteItem", guardMilestoneDeletion);
+}
+
+/* -------------------------------------------- */
+/*  Stage Changes                               */
+/* -------------------------------------------- */
+
+function stashStage(item, changed, options, userId) {
+  if ( (item.type !== CLASS_TYPE) || !("levels" in (changed.system ?? {})) ) return;
+  options[MODULE_ID] ??= {};
+  options[MODULE_ID].previousStage = item.system.levels;
+}
+
+async function onStageChanged(item, changed, options, userId) {
+  const previous = options[MODULE_ID]?.previousStage;
+  if ( previous === undefined ) return;
+  const current = item.system.levels;
+  if ( previous === current ) return;
+
+  /**
+   * Fires when an Advancement Class changes Stage.
+   * @param {Actor5e} actor      The owning actor.
+   * @param {Item5e} item        The Advancement Class item.
+   * @param {number} previous    The prior Stage.
+   * @param {number} current     The new Stage.
+   */
+  Hooks.callAll(`${MODULE_ID}.stageChanged`, item.actor, item, previous, current);
+
+  if ( !game.settings.get(MODULE_ID, SETTING_STAGE_CARD) ) return;
+  if ( userId !== game.user.id ) return;
+
+  const stageName = item.system.stageNames?.[String(current)];
+  const key = stageName ? "ADVANCEMENT_CLASSES.Chat.StageUpName" : "ADVANCEMENT_CLASSES.Chat.StageUp";
+  const content = await renderTemplate(`modules/${MODULE_ID}/templates/chat/stage-up.hbs`, {
+    actor: item.actor,
+    item,
+    previous,
+    current,
+    stageName,
+    message: game.i18n.format(key, {
+      actor: item.actor?.name ?? "",
+      class: item.name,
+      stage: game.i18n.format("ADVANCEMENT_CLASSES.Stage", { stage: current }),
+      name: stageName
+    })
+  });
+  await ChatMessage.create({
+    content,
+    speaker: ChatMessage.getSpeaker({ actor: item.actor }),
+    flags: { [MODULE_ID]: { stageChanged: { item: item.id, previous, current } } }
+  });
+}
+
+/* -------------------------------------------- */
+/*  Milestone Guards                            */
+/* -------------------------------------------- */
+
+/**
+ * Completing a milestone means deleting it. Counter milestones must reach
+ * their required progress; GM-confirm milestones may only be removed by a
+ * GM. Advancement-manager reversals and explicit API calls bypass.
+ */
+function guardMilestoneDeletion(item, options, userId) {
+  if ( item.type !== MILESTONE_TYPE ) return;
+  if ( options[MODULE_ID]?.bypass || options.isAdvancement ) return;
+
+  const user = game.users.get(userId);
+  if ( !item.system.canComplete(user) ) {
+    const key = item.system.milestoneType === "gmConfirm"
+      ? "ADVANCEMENT_CLASSES.Milestone.GMOnly"
+      : "ADVANCEMENT_CLASSES.Milestone.IncompleteWarn";
+    ui.notifications.warn(key, { localize: true });
+    return false;
+  }
+}

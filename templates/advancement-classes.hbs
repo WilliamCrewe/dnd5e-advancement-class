@@ -1,0 +1,86 @@
+<section class="classes pills-lg advancement-classes {{#if editable}}editing{{/if}}">
+    {{#each advancementClasses as |cls|}}
+    {{#dnd5e-itemContext cls as |ctx|}}
+    <div class="class pill-lg advancement-class {{#if ctx.mastered}}mastered{{/if}}" data-item-id="{{ cls.id }}">
+        <img class="underlay" src="{{ cls.img }}" alt="" inert>
+        <div class="icons {{#if cls.advancementPath}}subclass{{/if}}">
+            <img class="draggable gold-icon item-tooltip" src="{{ cls.img }}" alt="{{ cls.name }}"
+                 data-action="showDocument" data-uuid="{{ cls.uuid }}" data-item-id="{{ cls.id }}">
+            {{#if cls.advancementPath}}
+            <img class="draggable gold-icon item-tooltip" src="{{ cls.advancementPath.img }}"
+                 alt="{{ cls.advancementPath.name }}" data-action="showDocument"
+                 data-uuid="{{ cls.advancementPath.uuid }}" data-item-id="{{ cls.advancementPath.id }}">
+            {{else if ctx.needsPath}}
+            <a class="gold-icon subclass-icon" data-action="findItem"
+               data-item-type="advancement-classes.advancement-path"
+               data-class-identifier="{{ cls.identifier }}"
+               data-tooltip="ADVANCEMENT_CLASSES.Sheet.PathAdd"
+               aria-label="{{ localize 'ADVANCEMENT_CLASSES.Sheet.PathAdd' }}">
+               <i class="fa-solid fa-circle-plus" inert></i>
+            </a>
+            {{/if}}
+            {{#if @root.editable}}
+            <div class="controls">
+                <a class="deletion-control item-control item-action" data-action="deleteDocument"
+                   data-tooltip="DND5E.ItemDelete" data-uuid="{{ cls.uuid }}" data-item-id="{{ cls.id }}"
+                   aria-label="{{ localize 'DND5E.ItemDelete' }}">
+                    <i class="fas fa-circle-xmark" inert></i>
+                </a>
+                {{#if cls.advancementPath}}
+                <a class="deletion-control item-control item-action" data-action="deleteDocument"
+                   data-tooltip="DND5E.ItemDelete" data-uuid="{{ cls.advancementPath.uuid }}"
+                   data-item-id="{{ cls.advancementPath.id }}"
+                   aria-label="{{ localize 'DND5E.ItemDelete' }}">
+                    <i class="fas fa-circle-xmark" inert></i>
+                </a>
+                {{/if}}
+            </div>
+            {{/if}}
+        </div>
+        <div class="name-stacked">
+            <div class="title">
+                {{ cls.name }}
+                {{#if ctx.journalUuid}}
+                <a class="journal-link" data-action="advancementClassesOpenJournal"
+                   data-uuid="{{ ctx.journalUuid }}"
+                   data-tooltip="{{ localize 'ADVANCEMENT_CLASSES.Class.Journal' }}">
+                    <i class="fa-solid fa-book-open" inert></i>
+                </a>
+                {{/if}}
+            </div>
+            {{#if cls.advancementPath}}
+            <div class="subtitle">{{ cls.advancementPath.name }}</div>
+            {{/if}}
+        </div>
+        <div class="level">
+            <svg class="stage-pips" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                {{#each ctx.stagePips}}
+                <circle cx="{{ x }}" cy="{{ y }}" r="2.4" class="pip {{#if filled}}filled{{/if}}"></circle>
+                {{/each}}
+            </svg>
+            {{#if @root.editable}}
+            <select class="advancement-stage-selector" data-item-id="{{ cls.id }}"
+                    {{#if ctx.stageBlocked}}data-tooltip="ADVANCEMENT_CLASSES.Sheet.CannotAdvance"{{/if}}>
+                {{ selectOptions ctx.availableStages selected=0 }}
+            </select>
+            {{else}}
+            <span class="stage-label">
+                {{ cls.system.levels }}{{#if ctx.stageName}} &mdash; {{ ctx.stageName }}{{/if}}
+            </span>
+            {{/if}}
+            {{#if ctx.mastered}}
+            <span class="mastered-badge" data-tooltip="ADVANCEMENT_CLASSES.Sheet.Mastered">
+                <i class="fa-solid fa-crown" inert></i>
+            </span>
+            {{/if}}
+        </div>
+    </div>
+    {{/dnd5e-itemContext}}
+    {{/each}}
+    {{#if showAdvancementClassDrop}}
+    <div class="pill-lg empty roboto-upper" data-action="findItem"
+         data-item-type="advancement-classes.advancement-class">
+        {{ localize "ADVANCEMENT_CLASSES.Sheet.Add" }}
+    </div>
+    {{/if}}
+</section>
