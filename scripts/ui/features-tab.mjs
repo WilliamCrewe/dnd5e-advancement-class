@@ -1,5 +1,5 @@
 import AdvancementClassManager from "../applications/advancement-class-manager.mjs";
-import { ACTOR_FLAG, MILESTONE_TYPE, MODULE_ID, SETTING_ENABLED } from "../constants.mjs";
+import { ACTOR_FLAG, CLASS_TYPE, MILESTONE_TYPE, MODULE_ID, SETTING_ENABLED, SETTING_MAX_STAGE } from "../constants.mjs";
 
 const { renderTemplate } = foundry.applications.handlebars;
 const PILLS_TEMPLATE = `modules/${MODULE_ID}/templates/advancement-classes.hbs`;
@@ -36,8 +36,21 @@ async function injectPills(app, element, context) {
   const classesSection = featuresTab?.querySelector("section.classes");
   if ( !classesSection || featuresTab.querySelector("section.advancement-classes") ) return;
 
+  // Base render context lacks part-context keys (itemCategories, sections),
+  // so compute the pill data from the actor directly. `itemContext` IS in the
+  // base context, so per-item ctx (stage pips, names) resolves via
+  // dnd5e-itemContext.
+  const actor = app.actor;
+  const max = game.settings.get(MODULE_ID, SETTING_MAX_STAGE);
+  const advancementClasses = actor.items
+    .filter(i => i.type === CLASS_TYPE)
+    .sort((lhs, rhs) => rhs.system.levels - lhs.system.levels);
+  const showDrop = app.isEditMode && advancementClasses.every(c => c.system.levels >= max);
+
   const html = await renderTemplate(PILLS_TEMPLATE, {
     ...context,
+    advancementClasses,
+    showAdvancementClassDrop: showDrop,
     editable: context.editable ?? app.isEditable
   });
   classesSection.insertAdjacentHTML("afterend", html);

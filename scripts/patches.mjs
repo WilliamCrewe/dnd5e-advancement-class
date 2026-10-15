@@ -172,6 +172,12 @@ function patchCharacterSheet() {
       });
       const journal = item.system.journal;
       if ( journal ) ctx.journalUuid = journal;
+
+      // Path picker indicator — mirrors the system's needsSubclass logic.
+      if ( !item.advancementPath ) {
+        const pathAdvancement = item.advancement.byType.AdvancementPath?.[0];
+        if ( pathAdvancement && (pathAdvancement.level <= item.system.levels) ) ctx.needsPath = true;
+      }
     }
 
     // Grouping: features granted by an Advancement Class or Path land under
@@ -199,16 +205,6 @@ function patchCharacterSheet() {
     context.advancementPaths = context.itemCategories.advancementPaths ?? [];
 
     const max = game.settings.get(MODULE_ID, "maxStage");
-    for ( const cls of context.advancementClasses ) {
-      const ctx = context.itemContext[cls.id] ??= {};
-      const path = context.advancementPaths.findSplice(
-        p => p.system.classIdentifier === cls.identifier
-      );
-      if ( !path ) {
-        const pathAdvancement = cls.advancement.byType.AdvancementPath?.[0];
-        if ( pathAdvancement && (pathAdvancement.level <= cls.system.levels) ) ctx.needsPath = true;
-      }
-    }
 
     // Add control: flag on, sheet editable, all current classes mastered.
     const allMastered = context.advancementClasses.every(c => c.system.levels >= max);
