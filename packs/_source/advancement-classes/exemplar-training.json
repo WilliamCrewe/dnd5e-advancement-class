@@ -1,0 +1,20 @@
+{
+  "_id": "xI1E9Ohc4XDqmRzw",
+  "_key": "!items!xI1E9Ohc4XDqmRzw",
+  "name": "Exemplar Training",
+  "type": "feat",
+  "img": "icons/skills/melee/weapons-crossed-swords-yellow.webp",
+  "system": {
+    "description": {
+      "value": "<p>Your exemplary training sets you apart. You may add your Exemplar die (@scale.exemplar.exemplardie) to initiative rolls.</p>",
+      "chat": ""
+    },
+    "identifier": "exemplar-training",
+    "type": {
+      "value": "feat",
+      "subtype": ""
+    },
+    "source": {}
+  },
+  "flags": {}
+}

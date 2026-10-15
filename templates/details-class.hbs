@@ -1,0 +1,33 @@
+<fieldset>
+    <legend>{{ localize "ADVANCEMENT_CLASSES.Details.ClassDetails" }}</legend>
+
+    {{!-- Identifier --}}
+    {{ formField fields.identifier value=source.identifier placeholder=item.identifier
+                 localize=true rootId=partId }}
+
+    {{!-- Journal Link --}}
+    {{ formField fields.journal value=source.journal localize=true rootId=partId }}
+
+    {{!-- Hit Die (used by Hit Points advancements) --}}
+    <div class="form-group">
+        <label>{{ localize "DND5E.HitDie" }}</label>
+        <div class="form-fields">
+            <select name="system.hd.denomination">
+                {{ selectOptions hitDieOptions selected=source.hd.denomination }}
+            </select>
+        </div>
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>{{ localize "ADVANCEMENT_CLASSES.Class.StageNames" }}</legend>
+    <p class="hint">{{ localize "ADVANCEMENT_CLASSES.Class.StageNamesHint" }}</p>
+    {{#each stageNameRows}}
+    <div class="form-group">
+        <label>{{ localize "ADVANCEMENT_CLASSES.Stage" stage=stage }}</label>
+        <div class="form-fields">
+            <input type="text" name="system.stageNames.{{ stage }}" value="{{ name }}">
+        </div>
+    </div>
+    {{/each}}
+</fieldset>

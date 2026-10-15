@@ -1,0 +1,11 @@
+<fieldset>
+    <legend>{{ localize "ADVANCEMENT_CLASSES.Details.PathDetails" }}</legend>
+
+    {{!-- Identifier --}}
+    {{ formField fields.identifier value=source.identifier placeholder=item.identifier
+                 localize=true rootId=partId }}
+
+    {{!-- Advancement Class Identifier --}}
+    {{ formField fields.classIdentifier value=source.classIdentifier
+                 hint="ADVANCEMENT_CLASSES.Path.ClassIdentifierHint" localize=true rootId=partId }}
+</fieldset>

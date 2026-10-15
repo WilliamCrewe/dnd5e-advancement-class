@@ -1,0 +1,21 @@
+{
+  "_id": "hgNHTZ6CRljGU8Y4",
+  "_key": "!items!hgNHTZ6CRljGU8Y4",
+  "name": "Trial of Endurance",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/skills/movement/feet-winged-boots-brown.webp",
+  "system": {
+    "description": {
+      "value": "<p>Endure three arduous trials. Track progress with the counter; the milestone can be completed once all three trials are done.</p>",
+      "chat": ""
+    },
+    "identifier": "trial-of-endurance",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 3
+    },
+    "source": {}
+  },
+  "flags": {}
+}

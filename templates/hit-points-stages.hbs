@@ -1,0 +1,18 @@
+{{#if isAdvancementClass}}
+<fieldset>
+    <legend>{{ localize "ADVANCEMENT_CLASSES.HitPoints.StagesLabel" }}</legend>
+    <input type="hidden" name="configuration.stagesConfigured" value="1" data-dtype="Number">
+    <div class="form-group stacked">
+        <div class="form-fields">
+            {{#each stageOptions}}
+            <label class="checkbox">
+                <input type="checkbox" name="configuration.stages" value="{{ value }}"
+                       {{~#if checked}} checked{{/if}}>
+                {{ label }}
+            </label>
+            {{/each}}
+        </div>
+        <p class="hint">{{ localize "ADVANCEMENT_CLASSES.HitPoints.StagesHint" }}</p>
+    </div>
+</fieldset>
+{{/if}}
