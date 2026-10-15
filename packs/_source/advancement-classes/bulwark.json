@@ -3,7 +3,7 @@
   "_key": "!items!8I1HkldP2XTewo7z",
   "name": "Bulwark",
   "type": "feat",
-  "img": "icons/equipment/shield/heater-wooden-brown-studded.webp",
+  "img": "icons/equipment/shield/heater-crystal-blue.webp",
   "system": {
     "description": {
       "value": "<p>When a creature within 5 feet of you is hit by an attack, you can use your reaction to grant them your Exemplar die (@scale.exemplar.exemplardie) as a bonus to AC against that attack.</p>",

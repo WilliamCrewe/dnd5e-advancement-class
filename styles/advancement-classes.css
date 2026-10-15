@@ -28,10 +28,40 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.advancement-class .stage-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.advancement-class select.advancement-stage-selector {
+  min-width: 0;
+  max-width: 8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.advancement-class .name-stacked {
+  min-width: 0;
+}
+
+.advancement-class .name-stacked .title,
+.advancement-class .name-stacked .subtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .advancement-class .mastered-badge {
   color: var(--dnd5e-color-gold, #c9a227);
+  flex: none;
 }
 
 .advancement-class .journal-link {

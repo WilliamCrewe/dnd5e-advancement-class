@@ -148,6 +148,7 @@ function registerSheetActions() {
       const max = item.system.progress.max;
       const value = Math.min(item.system.progress.value + 1, max);
       await item.update({ "system.progress.value": value });
+      if ( value === max ) await item.deleteDialog({ sheet: this });
     },
     async advancementClassesMilestoneDecrement(event, target) {
       const item = this.actor.items.get(target.closest("[data-item-id]")?.dataset.itemId);
