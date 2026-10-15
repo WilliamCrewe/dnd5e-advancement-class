@@ -2,8 +2,9 @@ import { CLASS_TYPE, MODULE_ID, SETTING_MAX_STAGE } from "../constants.mjs";
 
 const { ItemDataModel } = dnd5e.dataModels.abstract;
 const { AdvancementTemplate, ItemDescriptionTemplate } = dnd5e.dataModels.item;
+const { FormulaField } = dnd5e.dataModels.fields;
 
-const { DocumentUUIDField, FormulaField, NumberField, SchemaField, StringField, TypedObjectField } = foundry.data.fields;
+const { DocumentUUIDField, NumberField, SchemaField, StringField, TypedObjectField } = foundry.data.fields;
 
 /**
  * Data definition for Advancement Class items.
