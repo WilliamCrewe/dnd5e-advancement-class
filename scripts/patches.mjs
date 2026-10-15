@@ -84,8 +84,21 @@ function patchManagerFactories() {
     const original = Manager[name];
     if ( typeof original !== "function" ) continue;
     Manager[name] = function(...args) {
-      if ( [CLASS_TYPE, PATH_TYPE].includes(managerTargetType(name, args)) ) {
-        return AdvancementClassManager[name](...args);
+      const type = managerTargetType(name, args);
+      // forNewItem must not route PATH_TYPE: our override delegates non-class
+      // items to super.forNewItem, which resolves back to this wrapper.
+      const routed = [CLASS_TYPE, PATH_TYPE].includes(type)
+        && !(name === "forNewItem" && type === PATH_TYPE);
+      if ( routed ) {
+        // Dispatch to the subclass's own override where one exists; otherwise
+        // invoke the original implementation with `this` bound to the subclass
+        // so inherited factories still construct AdvancementClassManager. A
+        // blind `AdvancementClassManager[name]` lookup would resolve back to
+        // this patched function through inheritance and recurse forever.
+        const override = Object.hasOwn(AdvancementClassManager, name)
+          ? AdvancementClassManager[name]
+          : original;
+        return override.apply(AdvancementClassManager, args);
       }
       return original.apply(this, args);
     };
