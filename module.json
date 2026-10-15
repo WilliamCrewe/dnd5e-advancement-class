@@ -3,7 +3,11 @@
   "title": "Advancement Classes",
   "description": "Adds Advancement Classes — class-like items with their own 10-stage progression that do not increase character level or proficiency bonus. Includes Advancement Paths (subclass-analogues) and Advancement Milestones (per-stage goals that must be completed to advance).",
   "version": "0.1.0",
-  "authors": ["Will Crewe"],
+  "authors": [
+    {
+      "name": "Will Crewe"
+    }
+  ],
   "url": "https://github.com/WilliamCrewe/dnd5e-advancement-class",
   "manifest": "https://github.com/WilliamCrewe/dnd5e-advancement-class/releases/latest/download/module.json",
   "download": "https://github.com/WilliamCrewe/dnd5e-advancement-class/releases/latest/download/module.zip",
