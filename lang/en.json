@@ -86,6 +86,11 @@
       "JournalHint": "Journal entry page describing this Advancement Class."
     },
 
+    "HitPoints": {
+      "StagesLabel": "Hit Point Stages",
+      "StagesHint": "The Stages at which this advancement grants hit points and a hit die. Defaults to every Stage."
+    },
+
     "Path": {
       "Subtitle": "{class} path",
       "ClassIdentifier": "Advancement Class Identifier",

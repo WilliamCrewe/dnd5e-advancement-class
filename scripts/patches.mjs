@@ -1,5 +1,5 @@
 import AdvancementClassManager from "./applications/advancement-class-manager.mjs";
-import { CLASS_TYPE, MILESTONE_TYPE, MODULE_ID, PATH_TYPE } from "./constants.mjs";
+import { CLASS_TYPE, MILESTONE_TYPE, MODULE_ID, PATH_TYPE, SETTING_MAX_STAGE } from "./constants.mjs";
 
 /* -------------------------------------------- */
 /*  Item5e Getters                              */
@@ -152,6 +152,72 @@ function patchAbilityScoreImprovement() {
     },
     configurable: true
   });
+}
+
+/* -------------------------------------------- */
+/*  Hit Points                                  */
+/* -------------------------------------------- */
+
+/**
+ * HitPointsAdvancement applies at every level because its `levels` getter
+ * returns 1..maxLevel unconditionally. For Advancement Classes, let the
+ * advancement's configuration choose which Stages grant hit points.
+ */
+function patchHitPoints() {
+  const HP = dnd5e.documents.advancement.HitPointsAdvancement;
+  const Config = dnd5e.applications.advancement.HitPointsConfig;
+
+  const levels = Object.getOwnPropertyDescriptor(HP.prototype, "levels");
+  Object.defineProperty(HP.prototype, "levels", {
+    get: function() {
+      if ( this.item?.type !== CLASS_TYPE ) return levels.get.call(this);
+      const max = game.settings.get(MODULE_ID, SETTING_MAX_STAGE) ?? 10;
+      if ( this.configuration?.stagesConfigured ) {
+        return [this.configuration.stages].flat().map(Number)
+          .filter(n => Number.isInteger(n) && (n >= 1) && (n <= max))
+          .sort((a, b) => a - b);
+      }
+      return Array.fromRange(max, 1);
+    },
+    configurable: true
+  });
+
+  Config.PARTS.advancementStages = {
+    template: `modules/${MODULE_ID}/templates/hit-points-stages.hbs`
+  };
+
+  const partContext = Config.prototype._preparePartContext;
+  Config.prototype._preparePartContext = async function(partId, context, options) {
+    context = await partContext.call(this, partId, context, options);
+    if ( partId !== "advancementStages" ) return context;
+    context.isAdvancementClass = this.item?.type === CLASS_TYPE;
+    if ( context.isAdvancementClass ) {
+      const max = game.settings.get(MODULE_ID, SETTING_MAX_STAGE) ?? 10;
+      const configured = !!this.advancement.configuration.stagesConfigured;
+      const selected = new Set([this.advancement.configuration.stages].flat().map(Number));
+      context.stageOptions = Array.fromRange(max, 1).map(n => ({
+        value: n,
+        label: game.i18n.format("ADVANCEMENT_CLASSES.Stage", { stage: n }),
+        checked: configured ? selected.has(n) : true
+      }));
+    }
+    return context;
+  };
+
+  const prepareConfigurationUpdate = Config.prototype.prepareConfigurationUpdate;
+  Config.prototype.prepareConfigurationUpdate = async function(configuration) {
+    configuration = await prepareConfigurationUpdate.call(this, configuration);
+    if ( this.item?.type !== CLASS_TYPE ) return configuration;
+    if ( "stages" in configuration ) {
+      configuration.stages = [configuration.stages].flat().map(Number)
+        .filter(n => Number.isInteger(n) && n >= 1)
+        .sort((a, b) => a - b);
+    } else if ( configuration.stagesConfigured ) {
+      configuration.stages = [];
+    }
+    if ( "stagesConfigured" in configuration ) configuration.stagesConfigured = true;
+    return configuration;
+  };
 }
 
 /* -------------------------------------------- */
@@ -331,5 +397,6 @@ export function applyPatches() {
   patchScaleValues();
   patchManagerFactories();
   patchAbilityScoreImprovement();
+  patchHitPoints();
   patchCharacterSheet();
 }
