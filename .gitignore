@@ -4,3 +4,4 @@ node_modules/
 Thumbs.db
 module.zip
 packs/*/LOCK
+packs/*/LOG.old
