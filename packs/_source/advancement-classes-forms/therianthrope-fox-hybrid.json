@@ -3,7 +3,7 @@
   "_key": "!actors!gxvfEsZ2FPsxEFVZ",
   "name": "Fox Hybrid Form",
   "type": "npc",
-  "img": "icons/creatures/mammals/bear-grizzly-brown.webp",
+  "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
     "identifier": "therianthrope-fox-hybrid",
     "abilities": {
@@ -128,7 +128,7 @@
       "_key": "!actors.items!gxvfEsZ2FPsxEFVZ.rYTb9Nfij4YbEF2S",
       "name": "Claw",
       "type": "weapon",
-      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "img": "systems/dnd5e/icons/svg/items/weapon.svg",
       "system": {
         "identifier": "claw",
         "type": {
@@ -268,7 +268,7 @@
       "_key": "!actors.items!gxvfEsZ2FPsxEFVZ.D02Xekffm5pYVwC4",
       "name": "Bite",
       "type": "weapon",
-      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "img": "systems/dnd5e/icons/svg/items/weapon.svg",
       "system": {
         "identifier": "bite",
         "type": {
@@ -418,7 +418,7 @@
     },
     "disposition": -1,
     "texture": {
-      "src": "icons/creatures/mammals/bear-grizzly-brown.webp"
+      "src": "systems/dnd5e/icons/svg/monster.svg"
     }
   }
 }

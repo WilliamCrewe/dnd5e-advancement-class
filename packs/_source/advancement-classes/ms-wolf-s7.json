@@ -3,7 +3,7 @@
   "_key": "!items!vfAptwwoUZ9fijEx",
   "name": "Wolf: Pack Hunter",
   "type": "advancement-classes.advancement-milestone",
-  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "img": "icons/magic/symbols/star-rising-purple.webp",
   "system": {
     "description": {
       "value": "<p>Hit 15 different enemies with attacks benefiting from Pack Tactics.</p>",

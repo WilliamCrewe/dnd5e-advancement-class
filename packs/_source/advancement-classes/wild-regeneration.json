@@ -3,7 +3,7 @@
   "_key": "!items!tGLGCzImTRKZfs4U",
   "name": "Wild Regeneration",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "icons/magic/life/ankh-shadow-green.webp",
   "system": {
     "description": {
       "value": "<p>While transformed, when you take damage that is not silvered, you can use your Reaction to harden your flesh and regenerate, regaining hit points equal to a roll of @scale.therianthrope.wild-regen.</p>",

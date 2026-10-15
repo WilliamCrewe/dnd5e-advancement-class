@@ -3,7 +3,7 @@
   "_key": "!items!fV7Vyz5VUIiDAzYw",
   "name": "Animal Rage",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>Your maximum number of Control Points is reduced by 1. Choose one natural weapon from your Hybrid Form; you gain access to it while not transformed.</p>",

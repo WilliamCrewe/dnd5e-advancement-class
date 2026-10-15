@@ -3,7 +3,7 @@
   "_key": "!actors!hbWtc6rLGHJjJEik",
   "name": "Shark Animal Form",
   "type": "npc",
-  "img": "icons/creatures/mammals/bear-grizzly-brown.webp",
+  "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
     "identifier": "therianthrope-shark-animal",
     "abilities": {
@@ -129,7 +129,7 @@
       "_key": "!actors.items!hbWtc6rLGHJjJEik.7y3kumnDcRGNlO96",
       "name": "Bite",
       "type": "weapon",
-      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "img": "systems/dnd5e/icons/svg/items/weapon.svg",
       "system": {
         "identifier": "bite",
         "type": {
@@ -344,7 +344,7 @@
           "_id": "G0kkT7L0n4mUorTz",
           "_key": "!actors.items.effects!hbWtc6rLGHJjJEik.7y3kumnDcRGNlO96.G0kkT7L0n4mUorTz",
           "name": "Therianthrope's Curse",
-          "img": "icons/magic/death/skull-energy-light-purple.webp",
+          "img": "systems/dnd5e/icons/svg/statuses/transformed.svg",
           "type": "base",
           "transfer": false,
           "disabled": false,
@@ -377,7 +377,7 @@
     },
     "disposition": -1,
     "texture": {
-      "src": "icons/creatures/mammals/bear-grizzly-brown.webp"
+      "src": "systems/dnd5e/icons/svg/monster.svg"
     }
   }
 }

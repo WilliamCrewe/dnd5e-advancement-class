@@ -3,7 +3,7 @@
   "_key": "!actors!riB1UoRl2nrmA8d1",
   "name": "Fox Animal Form",
   "type": "npc",
-  "img": "icons/creatures/mammals/bear-grizzly-brown.webp",
+  "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
     "identifier": "therianthrope-fox-animal",
     "abilities": {
@@ -128,7 +128,7 @@
       "_key": "!actors.items!riB1UoRl2nrmA8d1.LUDDuF6kF8mRByIs",
       "name": "Bite",
       "type": "weapon",
-      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "img": "systems/dnd5e/icons/svg/items/weapon.svg",
       "system": {
         "identifier": "bite",
         "type": {
@@ -278,7 +278,7 @@
     },
     "disposition": -1,
     "texture": {
-      "src": "icons/creatures/mammals/bear-grizzly-brown.webp"
+      "src": "systems/dnd5e/icons/svg/monster.svg"
     }
   }
 }

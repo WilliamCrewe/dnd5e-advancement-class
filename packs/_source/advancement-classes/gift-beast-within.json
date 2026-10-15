@@ -3,7 +3,7 @@
   "_key": "!items!5nUYpE4VxE7YcxYQ",
   "name": "Beast Within",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>Your maximum number of Control Points is reduced by 1. While not transformed, you gain the benefits of your Key Ability Floor, all of your form's natural weapons, Feral Speed, and all Empowered Transformation bonuses. While transformed and below half your hit point maximum but above 0 hit points, you regain 10 hit points at the start of each of your turns.</p>",

@@ -3,7 +3,7 @@
   "_key": "!items!I8r24qzU2vwY3PL3",
   "name": "Slippery",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>While transformed, opportunity attacks made against you have disadvantage.</p>",

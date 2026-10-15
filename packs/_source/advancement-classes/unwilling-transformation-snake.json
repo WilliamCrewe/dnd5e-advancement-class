@@ -1,0 +1,356 @@
+{
+  "_id": "ojfYdWAlFVzwBFf7",
+  "_key": "!items!ojfYdWAlFVzwBFf7",
+  "name": "Unwilling Transformation — Snake",
+  "type": "feat",
+  "img": "icons/creatures/magical/humanoid-horned-rider.webp",
+  "system": {
+    "description": {
+      "value": "<p>The curse overwhelms your body at times of great stress, or when the moon is fullest, forcing you to transform.</p>\n<p><strong>Triggers.</strong> When your hit points are reduced below half your maximum, or when you see an ally reduced to 0 hit points, you must succeed on a Wisdom saving throw against your Therianthrope DC or transform into your Hybrid Form for up to 10 minutes. During that time you must attack the source of the damage. If you are reduced to 0 hit points, the transformation ends.</p>\n<p><strong>Planar Tear.</strong> For three nights each month the Planar Tear bathes the world in magical light. When it occurs you must make the same saving throw: on a failure you transform into your Hybrid Form, and on a success into your Animal Form, remaining transformed until morning.</p>\n<p>When you revert to your normal form after an Unwilling Transformation, you gain 1 level of Exhaustion. While transformed, you ignore all levels of Exhaustion.</p>\n<p>When one of these triggers occurs, roll the appropriate saving throw using the activities on this feature; on a failure, use the Transform activity to assume your Hybrid Form.</p>\n<p><em>Therianthrope DC = 8 + your proficiency bonus + your Constitution modifier.</em></p>",
+      "chat": ""
+    },
+    "identifier": "unwilling-transformation-snake",
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "source": {},
+    "activities": {
+      "leos66rZFPfIAvYW": {
+        "_id": "leos66rZFPfIAvYW",
+        "type": "save",
+        "name": "Save: Reduced Below Half HP",
+        "img": null,
+        "sort": 0,
+        "activation": {
+          "type": "special",
+          "value": null,
+          "override": false,
+          "condition": ""
+        },
+        "consumption": {
+          "scaling": {
+            "allowed": false
+          },
+          "spellSlot": false,
+          "targets": []
+        },
+        "description": {
+          "chatFlavor": ""
+        },
+        "duration": {
+          "units": "inst",
+          "concentration": false,
+          "override": false
+        },
+        "effects": [],
+        "range": {
+          "units": "self",
+          "override": false
+        },
+        "target": {
+          "template": {
+            "contiguous": false,
+            "units": "ft",
+            "type": ""
+          },
+          "affects": {
+            "choice": false,
+            "type": "creature",
+            "count": "1"
+          },
+          "override": false,
+          "prompt": true
+        },
+        "uses": {
+          "spent": 0,
+          "recovery": [],
+          "max": ""
+        },
+        "flags": {},
+        "visibility": {
+          "level": {},
+          "requireAttunement": false,
+          "requireIdentification": false,
+          "requireMagic": false
+        },
+        "save": {
+          "ability": [
+            "wis"
+          ],
+          "dc": {
+            "calculation": "con",
+            "formula": ""
+          }
+        },
+        "damage": {
+          "onSave": "none",
+          "parts": []
+        }
+      },
+      "ueFQVhk7cFV85gry": {
+        "_id": "ueFQVhk7cFV85gry",
+        "type": "save",
+        "name": "Save: Ally Reduced to 0 HP",
+        "img": null,
+        "sort": 0,
+        "activation": {
+          "type": "special",
+          "value": null,
+          "override": false,
+          "condition": ""
+        },
+        "consumption": {
+          "scaling": {
+            "allowed": false
+          },
+          "spellSlot": false,
+          "targets": []
+        },
+        "description": {
+          "chatFlavor": ""
+        },
+        "duration": {
+          "units": "inst",
+          "concentration": false,
+          "override": false
+        },
+        "effects": [],
+        "range": {
+          "units": "self",
+          "override": false
+        },
+        "target": {
+          "template": {
+            "contiguous": false,
+            "units": "ft",
+            "type": ""
+          },
+          "affects": {
+            "choice": false,
+            "type": "creature",
+            "count": "1"
+          },
+          "override": false,
+          "prompt": true
+        },
+        "uses": {
+          "spent": 0,
+          "recovery": [],
+          "max": ""
+        },
+        "flags": {},
+        "visibility": {
+          "level": {},
+          "requireAttunement": false,
+          "requireIdentification": false,
+          "requireMagic": false
+        },
+        "save": {
+          "ability": [
+            "wis"
+          ],
+          "dc": {
+            "calculation": "con",
+            "formula": ""
+          }
+        },
+        "damage": {
+          "onSave": "none",
+          "parts": []
+        }
+      },
+      "fPsRCfuSBBETsI9F": {
+        "_id": "fPsRCfuSBBETsI9F",
+        "type": "save",
+        "name": "Save: Planar Tear",
+        "img": null,
+        "sort": 0,
+        "activation": {
+          "type": "special",
+          "value": null,
+          "override": false,
+          "condition": ""
+        },
+        "consumption": {
+          "scaling": {
+            "allowed": false
+          },
+          "spellSlot": false,
+          "targets": []
+        },
+        "description": {
+          "chatFlavor": ""
+        },
+        "duration": {
+          "units": "inst",
+          "concentration": false,
+          "override": false
+        },
+        "effects": [],
+        "range": {
+          "units": "self",
+          "override": false
+        },
+        "target": {
+          "template": {
+            "contiguous": false,
+            "units": "ft",
+            "type": ""
+          },
+          "affects": {
+            "choice": false,
+            "type": "creature",
+            "count": "1"
+          },
+          "override": false,
+          "prompt": true
+        },
+        "uses": {
+          "spent": 0,
+          "recovery": [],
+          "max": ""
+        },
+        "flags": {},
+        "visibility": {
+          "level": {},
+          "requireAttunement": false,
+          "requireIdentification": false,
+          "requireMagic": false
+        },
+        "save": {
+          "ability": [
+            "wis"
+          ],
+          "dc": {
+            "calculation": "con",
+            "formula": ""
+          }
+        },
+        "damage": {
+          "onSave": "none",
+          "parts": []
+        }
+      },
+      "AuuOYTCYXl4GUdJs": {
+        "_id": "AuuOYTCYXl4GUdJs",
+        "type": "transform",
+        "name": "Transform",
+        "img": null,
+        "sort": 0,
+        "activation": {
+          "type": "special",
+          "value": null,
+          "override": false,
+          "condition": ""
+        },
+        "consumption": {
+          "scaling": {
+            "allowed": false
+          },
+          "spellSlot": false,
+          "targets": []
+        },
+        "description": {
+          "chatFlavor": ""
+        },
+        "duration": {
+          "units": "inst",
+          "concentration": false,
+          "override": false
+        },
+        "effects": [],
+        "range": {
+          "units": "self",
+          "override": false
+        },
+        "target": {
+          "template": {
+            "contiguous": false,
+            "units": "ft",
+            "type": ""
+          },
+          "affects": {
+            "choice": false,
+            "type": "",
+            "count": ""
+          },
+          "override": false,
+          "prompt": true
+        },
+        "uses": {
+          "spent": 0,
+          "recovery": [],
+          "max": ""
+        },
+        "flags": {},
+        "visibility": {
+          "level": {},
+          "requireAttunement": false,
+          "requireIdentification": false,
+          "requireMagic": false
+        },
+        "transform": {
+          "customize": true,
+          "mode": "",
+          "preset": ""
+        },
+        "profiles": [
+          {
+            "_id": "mH0HAQhW2vqWSkHq",
+            "name": "Snake (Animal Form)",
+            "uuid": "Compendium.advancement-classes.advancement-classes-forms.Actor.bHMlLVjXJo5vCj6j",
+            "cr": "",
+            "level": {
+              "min": null,
+              "max": null
+            },
+            "movement": [],
+            "sizes": [],
+            "types": []
+          },
+          {
+            "_id": "q5mb2XfNI6MGf6xS",
+            "name": "Snake (Hybrid Form)",
+            "uuid": "Compendium.advancement-classes.advancement-classes-forms.Actor.1lZ3qLRHICmCC53A",
+            "cr": "",
+            "level": {
+              "min": null,
+              "max": null
+            },
+            "movement": [],
+            "sizes": [],
+            "types": []
+          }
+        ],
+        "settings": {
+          "effects": [
+            "origin",
+            "otherOrigin",
+            "background",
+            "feat"
+          ],
+          "merge": [
+            "saves",
+            "skills"
+          ],
+          "keep": [
+            "hp",
+            "tempHP",
+            "physical",
+            "mental",
+            "resistances",
+            "vision",
+            "bio"
+          ],
+          "minimumAC": "",
+          "other": [],
+          "spellLists": [],
+          "transformTokens": true,
+          "tempFormula": ""
+        }
+      }
+    }
+  },
+  "flags": {}
+}

@@ -3,7 +3,7 @@
   "_key": "!items!wPbWggJgLHnCfKGE",
   "name": "Press the Hunt",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>Your maximum number of Control Points is reduced by 1. The first time each turn that you deal damage with a natural weapon, you gain temporary hit points equal to half your proficiency bonus (rounded down).</p>",

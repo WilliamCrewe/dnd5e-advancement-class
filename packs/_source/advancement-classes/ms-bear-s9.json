@@ -3,7 +3,7 @@
   "_key": "!items!dwKa2FrbtGCfqTP7",
   "name": "Bear: Bear's Maul",
   "type": "advancement-classes.advancement-milestone",
-  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "img": "icons/magic/symbols/star-rising-purple.webp",
   "system": {
     "description": {
       "value": "<p>Deal an extra 30 damage to enemies with Maul.</p>",

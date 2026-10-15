@@ -3,7 +3,7 @@
   "_key": "!items!2nEB80DweumZ8x00",
   "name": "Virulent Venom",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>While transformed, once per round when a creature fails the saving throw against your Venomous Bite, it takes the venom damage again at the start of its next turn.</p>",

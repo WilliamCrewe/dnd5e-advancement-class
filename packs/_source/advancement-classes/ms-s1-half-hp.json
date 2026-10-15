@@ -3,7 +3,7 @@
   "_key": "!items!1gsHLBlIv5s1LjTl",
   "name": "Transformation: Wounded",
   "type": "advancement-classes.advancement-milestone",
-  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "img": "icons/magic/symbols/star-rising-purple.webp",
   "system": {
     "description": {
       "value": "<p>Transform once after being reduced below half your hit point maximum.</p>",

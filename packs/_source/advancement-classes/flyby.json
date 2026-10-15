@@ -3,7 +3,7 @@
   "_key": "!items!linc1UBGkW0PlEEl",
   "name": "Flyby",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>While transformed, you do not provoke opportunity attacks when you fly out of a creature's reach.</p>",

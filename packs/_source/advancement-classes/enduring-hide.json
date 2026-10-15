@@ -3,7 +3,7 @@
   "_key": "!items!gtrDR6tPCBPsYibZ",
   "name": "Enduring Hide",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>When you transform, you gain temporary hit points equal to your Stage plus your Constitution modifier.</p>",

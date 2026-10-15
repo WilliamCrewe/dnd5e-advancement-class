@@ -3,7 +3,7 @@
   "_key": "!actors!37rFaF2Bq7GP9S2r",
   "name": "Raven Hybrid Form",
   "type": "npc",
-  "img": "icons/creatures/mammals/bear-grizzly-brown.webp",
+  "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
     "identifier": "therianthrope-raven-hybrid",
     "abilities": {
@@ -129,7 +129,7 @@
       "_key": "!actors.items!37rFaF2Bq7GP9S2r.4Jn2IHpEfApzVXgj",
       "name": "Talon",
       "type": "weapon",
-      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "img": "systems/dnd5e/icons/svg/items/weapon.svg",
       "system": {
         "identifier": "talon",
         "type": {
@@ -269,7 +269,7 @@
       "_key": "!actors.items!37rFaF2Bq7GP9S2r.Wn9WhJ74AxMm37of",
       "name": "Beak",
       "type": "weapon",
-      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "img": "systems/dnd5e/icons/svg/items/weapon.svg",
       "system": {
         "identifier": "beak",
         "type": {
@@ -484,7 +484,7 @@
           "_id": "dAJCWT22j0ZhlghX",
           "_key": "!actors.items.effects!37rFaF2Bq7GP9S2r.Wn9WhJ74AxMm37of.dAJCWT22j0ZhlghX",
           "name": "Therianthrope's Curse",
-          "img": "icons/magic/death/skull-energy-light-purple.webp",
+          "img": "systems/dnd5e/icons/svg/statuses/transformed.svg",
           "type": "base",
           "transfer": false,
           "disabled": false,
@@ -517,7 +517,7 @@
     },
     "disposition": -1,
     "texture": {
-      "src": "icons/creatures/mammals/bear-grizzly-brown.webp"
+      "src": "systems/dnd5e/icons/svg/monster.svg"
     }
   }
 }

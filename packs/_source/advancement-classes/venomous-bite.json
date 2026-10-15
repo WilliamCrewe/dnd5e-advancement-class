@@ -3,7 +3,7 @@
   "_key": "!items!aLVlCL9AOTwC4ZsQ",
   "name": "Venomous Bite",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>While transformed, when you hit a creature with your Bite, it must succeed on a Constitution saving throw against your Therianthrope DC or have the Poisoned condition and take an extra 2d4 poison damage. At Stage 7 the extra damage increases to 2d6, and at Stage 9 to 2d8.</p>",

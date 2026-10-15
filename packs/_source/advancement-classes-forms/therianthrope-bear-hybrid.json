@@ -3,7 +3,7 @@
   "_key": "!actors!EruBVzUXm9ZHa1MF",
   "name": "Bear Hybrid Form",
   "type": "npc",
-  "img": "icons/creatures/mammals/bear-grizzly-brown.webp",
+  "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
     "identifier": "therianthrope-bear-hybrid",
     "abilities": {
@@ -128,7 +128,7 @@
       "_key": "!actors.items!EruBVzUXm9ZHa1MF.apAPSVxe5DCP4HO5",
       "name": "Claw",
       "type": "weapon",
-      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "img": "systems/dnd5e/icons/svg/items/weapon.svg",
       "system": {
         "identifier": "claw",
         "type": {
@@ -268,7 +268,7 @@
       "_key": "!actors.items!EruBVzUXm9ZHa1MF.OqpN90oBY5boaHrN",
       "name": "Bite",
       "type": "weapon",
-      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "img": "systems/dnd5e/icons/svg/items/weapon.svg",
       "system": {
         "identifier": "bite",
         "type": {
@@ -418,7 +418,7 @@
     },
     "disposition": -1,
     "texture": {
-      "src": "icons/creatures/mammals/bear-grizzly-brown.webp"
+      "src": "systems/dnd5e/icons/svg/monster.svg"
     }
   }
 }

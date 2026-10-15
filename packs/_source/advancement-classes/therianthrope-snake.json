@@ -3,7 +3,7 @@
   "_key": "!items!lnbp5Qcl7CUpQz9o",
   "name": "Therianthrope: Snake",
   "type": "advancement-classes.advancement-path",
-  "img": "icons/creatures/mammals/wolf-howl-moon.webp",
+  "img": "systems/dnd5e/icons/svg/subclass.svg",
   "system": {
     "description": {
       "value": "<p>The Snake branch of the Therianthrope curse. Your key ability is Dexterity; while transformed your alignment becomes Lawful Evil.</p>",
@@ -70,15 +70,54 @@
         },
         "value": {}
       },
-      "xrUMANTYEAiqrK6W": {
-        "_id": "xrUMANTYEAiqrK6W",
+      "1Wh6NLoYZvjk3hfd": {
+        "_id": "1Wh6NLoYZvjk3hfd",
+        "type": "ItemGrant",
+        "level": 1,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.ojfYdWAlFVzwBFf7"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "3CA39ZNCHoVlXZje": {
+        "_id": "3CA39ZNCHoVlXZje",
+        "type": "ItemGrant",
+        "level": 2,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.ZXv4X7XGcElAPnkC"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "cngOjo9HNZIn2DbX": {
+        "_id": "cngOjo9HNZIn2DbX",
         "type": "ItemGrant",
         "level": 3,
         "configuration": {
           "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.m6PwsafmNUCfrsWV"
-            },
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "iWePTFWjNK8pq7Pt": {
+        "_id": "iWePTFWjNK8pq7Pt",
+        "type": "ItemGrant",
+        "level": 3,
+        "configuration": {
+          "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.Fw9LPl696f14hUZn"
             }
@@ -87,15 +126,26 @@
         },
         "value": {}
       },
-      "PQ3CbcROMUH8X5HH": {
-        "_id": "PQ3CbcROMUH8X5HH",
+      "HK0LMf75Dj1CB7Ad": {
+        "_id": "HK0LMf75Dj1CB7Ad",
         "type": "ItemGrant",
         "level": 5,
         "configuration": {
           "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.aLVlCL9AOTwC4ZsQ"
-            },
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "4GPcEFyiqY7dM1gI": {
+        "_id": "4GPcEFyiqY7dM1gI",
+        "type": "ItemGrant",
+        "level": 5,
+        "configuration": {
+          "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.FZBhKOWit6DLrzrA"
             }
@@ -104,15 +154,26 @@
         },
         "value": {}
       },
-      "NITGygqB010I4RKK": {
-        "_id": "NITGygqB010I4RKK",
+      "3x6L3eUAcXDhJM8H": {
+        "_id": "3x6L3eUAcXDhJM8H",
         "type": "ItemGrant",
         "level": 7,
         "configuration": {
           "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.1yA1kk8dw2AB2tHJ"
-            },
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "EK7xmmee9t7mBCfg": {
+        "_id": "EK7xmmee9t7mBCfg",
+        "type": "ItemGrant",
+        "level": 7,
+        "configuration": {
+          "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.YvqiTnAHKMV1EVp9"
             }
@@ -121,15 +182,26 @@
         },
         "value": {}
       },
-      "yYmol7L8IM8Cmt1N": {
-        "_id": "yYmol7L8IM8Cmt1N",
+      "LOAJz70u2ggdK10d": {
+        "_id": "LOAJz70u2ggdK10d",
         "type": "ItemGrant",
         "level": 9,
         "configuration": {
           "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.2nEB80DweumZ8x00"
-            },
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "O4KogBoX2a7bq2xs": {
+        "_id": "O4KogBoX2a7bq2xs",
+        "type": "ItemGrant",
+        "level": 9,
+        "configuration": {
+          "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.pEp5u9Iblp1cEgJf"
             }

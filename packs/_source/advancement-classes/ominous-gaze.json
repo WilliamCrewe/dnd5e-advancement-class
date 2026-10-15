@@ -3,7 +3,7 @@
   "_key": "!items!PsVIxBVwtgGwFmID",
   "name": "Ominous Gaze",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>When you hit a creature with a natural weapon attack while transformed, you can fix it with an ominous gaze. Until the end of your next turn, that creature has disadvantage on the next saving throw it makes against your Therianthrope DC.</p>",

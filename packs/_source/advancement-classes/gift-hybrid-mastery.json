@@ -3,7 +3,7 @@
   "_key": "!items!BPyG7IqQUAFdozx5",
   "name": "Hybrid Mastery",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>Your Hybrid Form becomes an option for Controlled Transformation. Because the Hybrid Form has the physique for it, you can benefit from attuned magic items and their properties while transformed; you still cannot use any item your current form lacks the physique to use.</p>",

@@ -3,7 +3,7 @@
   "_key": "!actors!MPuJMfqgy8HFfTvC",
   "name": "Wolf Hybrid Form",
   "type": "npc",
-  "img": "icons/creatures/mammals/bear-grizzly-brown.webp",
+  "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
     "identifier": "therianthrope-wolf-hybrid",
     "abilities": {
@@ -128,7 +128,7 @@
       "_key": "!actors.items!MPuJMfqgy8HFfTvC.FohNV0CDR7CWUbF5",
       "name": "Bite",
       "type": "weapon",
-      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "img": "systems/dnd5e/icons/svg/items/weapon.svg",
       "system": {
         "identifier": "bite",
         "type": {
@@ -343,7 +343,7 @@
           "_id": "4KjoH8NHsqMobYZW",
           "_key": "!actors.items.effects!MPuJMfqgy8HFfTvC.FohNV0CDR7CWUbF5.4KjoH8NHsqMobYZW",
           "name": "Therianthrope's Curse",
-          "img": "icons/magic/death/skull-energy-light-purple.webp",
+          "img": "systems/dnd5e/icons/svg/statuses/transformed.svg",
           "type": "base",
           "transfer": false,
           "disabled": false,
@@ -366,7 +366,7 @@
       "_key": "!actors.items!MPuJMfqgy8HFfTvC.VaZ1VIID66WlRXyb",
       "name": "Claw",
       "type": "weapon",
-      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "img": "systems/dnd5e/icons/svg/items/weapon.svg",
       "system": {
         "identifier": "claw",
         "type": {
@@ -516,7 +516,7 @@
     },
     "disposition": -1,
     "texture": {
-      "src": "icons/creatures/mammals/bear-grizzly-brown.webp"
+      "src": "systems/dnd5e/icons/svg/monster.svg"
     }
   }
 }

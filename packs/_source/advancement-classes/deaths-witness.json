@@ -3,7 +3,7 @@
   "_key": "!items!eXjCILCUtDH5JeH3",
   "name": "Death's Witness",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>When you reduce a creature to 0 hit points while transformed, each enemy creature of your choice within 10 feet of it must succeed on a Wisdom saving throw against your Therianthrope DC or have the Frightened condition until the end of your next turn.</p>",

@@ -3,7 +3,7 @@
   "_key": "!items!F8zBepDAwCo1siAz",
   "name": "Careful Control",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>Whenever you finish a Short Rest, you regain 1 spent Control Point.</p>",

@@ -3,7 +3,7 @@
   "_key": "!actors!HoAgfOUQ3rJ8FBfo",
   "name": "Bear Animal Form",
   "type": "npc",
-  "img": "icons/creatures/mammals/bear-grizzly-brown.webp",
+  "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
     "identifier": "therianthrope-bear-animal",
     "abilities": {
@@ -129,7 +129,7 @@
       "_key": "!actors.items!HoAgfOUQ3rJ8FBfo.zl9jqtFIGNUoqel6",
       "name": "Bite",
       "type": "weapon",
-      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "img": "systems/dnd5e/icons/svg/items/weapon.svg",
       "system": {
         "identifier": "bite",
         "type": {
@@ -269,7 +269,7 @@
       "_key": "!actors.items!HoAgfOUQ3rJ8FBfo.CsoD0EvnGdH5iS5A",
       "name": "Claws",
       "type": "weapon",
-      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "img": "systems/dnd5e/icons/svg/items/weapon.svg",
       "system": {
         "identifier": "claws",
         "type": {
@@ -419,7 +419,7 @@
     },
     "disposition": -1,
     "texture": {
-      "src": "icons/creatures/mammals/bear-grizzly-brown.webp"
+      "src": "systems/dnd5e/icons/svg/monster.svg"
     }
   }
 }

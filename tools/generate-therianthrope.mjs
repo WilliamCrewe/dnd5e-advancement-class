@@ -268,7 +268,7 @@ function feat(name, ident, description, extra = {}) {
     _id: docId,
     _key: `!items!${docId}`,
     name, type: "feat",
-    img: extra.img ?? "icons/magic/death/undead-ghost-screaming-teal.webp",
+    img: extra.img ?? "systems/dnd5e/icons/svg/items/feature.svg",
     system: {
       description: { value: description, chat: "" },
       identifier: ident,
@@ -289,7 +289,7 @@ function milestone(name, ident, description, opts = {}) {
     _id: id(`ms:${ident}`),
     _key: `!items!${id(`ms:${ident}`)}`,
     name, type: "advancement-classes.advancement-milestone",
-    img: "icons/sundries/flags/banner-symbol-wolf.webp",
+    img: opts.img ?? "icons/magic/symbols/star-rising-purple.webp",
     system: {
       description: { value: `<p>${description}</p>`, chat: "" },
       identifier: ident,
@@ -313,6 +313,9 @@ function callingMilestone(stage, key) {
   return milestone(`Calling: ${label}`, `calling-${key}-s${stage}`,
     `Commit yourself to the path of ${label} and claim a gift of the curse. Completing this Calling removes the alternative offered alongside it.`, {
       type: "calling",
+      img: key === "control"
+        ? "icons/magic/symbols/rune-sigil-rough-white-teal.webp"
+        : "icons/magic/symbols/rune-sigil-red-orange.webp",
       calling: {
         choiceSet: "therianthrope-calling",
         choiceKey: key,
@@ -384,7 +387,7 @@ function weaponItem(formSlug, atk, actorId) {
     _id: wid,
     _key: `!actors.items!${actorId}.${wid}`,
     name: atk.name, type: "weapon",
-    img: "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+    img: "systems/dnd5e/icons/svg/items/weapon.svg",
     system: {
       identifier: atk.ident,
       type: { value: "natural", baseItem: "" },
@@ -441,7 +444,7 @@ function weaponItem(formSlug, atk, actorId) {
       _id: curseEffId,
       _key: `!actors.items.effects!${actorId}.${wid}.${curseEffId}`,
       name: "Therianthrope's Curse",
-      img: "icons/magic/death/skull-energy-light-purple.webp",
+      img: "systems/dnd5e/icons/svg/statuses/transformed.svg",
       type: "base", transfer: false, disabled: false,
       changes: [], duration: {}, origin: null, tint: "#ffffff",
       description: "The target is cursed. Unless the curse is removed before the next Planar Tear, the target gains Stage 1 of the Therianthrope advancement class.",
@@ -469,7 +472,7 @@ function formNPC(branchKey, kind) {
     _key: `!actors!${nid}`,
     name: `${branch.name} ${label}`,
     type: "npc",
-    img: "icons/creatures/mammals/bear-grizzly-brown.webp",
+    img: "systems/dnd5e/icons/svg/monster.svg",
     system: {
       identifier: `therianthrope-${branchKey}-${kind}`,
       abilities,
@@ -501,7 +504,7 @@ function formNPC(branchKey, kind) {
     flags: { "advancement-classes": { formAC: spec.ac } },
     prototypeToken: {
       name: `${branch.name} ${label}`, actorLink: true, sight: { enabled: true },
-      disposition: -1, texture: { src: "icons/creatures/mammals/bear-grizzly-brown.webp" }
+      disposition: -1, texture: { src: "systems/dnd5e/icons/svg/monster.svg" }
     }
   };
 }
@@ -645,6 +648,20 @@ for ( const branch of Object.keys(BRANCHES) ) {
 
 /* ----- core feats ----- */
 
+const IMG_UNWILLING = "icons/creatures/magical/humanoid-horned-rider.webp";
+const IMG_CONTROLLING = "icons/magic/nature/wolf-paw-glow-large-orange.webp";
+const IMG_CONTROL_POINTS = "icons/creatures/mammals/wolf-howl-moon-forest-blue.webp";
+const IMG_WILD_REGEN = "icons/magic/life/ankh-shadow-green.webp";
+const IMG_FLAW = "icons/creatures/abilities/mouth-teeth-rows-red.webp";
+const IMG_MILESTONE = "icons/magic/symbols/star-rising-purple.webp";
+const IMG_CALLING_CONTROL = "icons/magic/symbols/rune-sigil-rough-white-teal.webp";
+const IMG_CALLING_EMBRACE = "icons/magic/symbols/rune-sigil-red-orange.webp";
+const IMG_FEAT = "systems/dnd5e/icons/svg/items/feature.svg";
+const IMG_CLASS = "systems/dnd5e/icons/svg/items/class.svg";
+const IMG_SUBCLASS = "systems/dnd5e/icons/svg/subclass.svg";
+const IMG_NPC = "systems/dnd5e/icons/svg/monster.svg";
+const IMG_JOURNAL = "icons/svg/book.svg";
+
 const animalProfiles = Object.keys(BRANCHES).map(b => ({
   _id: actId(`profile:${b}:animal`), name: `${BRANCHES[b].name} (Animal Form)`,
   uuid: ACTOR_UUID(id(`form:${b}:animal`)), cr: "", level: { min: null, max: null },
@@ -655,30 +672,44 @@ const hybridProfiles = Object.keys(BRANCHES).map(b => ({
   uuid: ACTOR_UUID(id(`form:${b}:hybrid`)), cr: "", level: { min: null, max: null },
   movement: [], sizes: [], types: []
 }));
+const branchProfiles = b => [
+  animalProfiles.find(p => p.name.startsWith(BRANCHES[b].name)),
+  hybridProfiles.find(p => p.name.startsWith(BRANCHES[b].name))
+];
 
-const unwillingActivities = Object.fromEntries([
-  ["half-hp", saveActivity("Save: Reduced Below Half HP", "wis")],
-  ["ally", saveActivity("Save: Ally Reduced to 0 HP", "wis")],
-  ["tear", saveActivity("Save: Planar Tear", "wis")]
-].map(([k, a]) => [a._id, a]));
-const unwillingTransform = transformActivity("Transform: Hybrid Form", hybridProfiles);
-unwillingTransform.activation.type = "special";
-unwillingTransform.consumption.targets = [];
-unwillingActivities[unwillingTransform._id] = unwillingTransform;
-items.push(feat("Unwilling Transformation", "unwilling-transformation", FEATURE_TEXT.unwilling, {
-  activities: unwillingActivities
-}));
+// Per-branch Unwilling Transformation: each variant carries only that
+// branch's Animal and Hybrid profiles, so the correct forms appear.
+for ( const b of Object.keys(BRANCHES) ) {
+  const acts = {};
+  for ( const [key, name] of [
+    ["half-hp", "Save: Reduced Below Half HP"],
+    ["ally", "Save: Ally Reduced to 0 HP"],
+    ["tear", "Save: Planar Tear"]
+  ] ) {
+    const act = saveActivity(`${b}-${key}`, "wis");
+    act.name = name;
+    acts[act._id] = act;
+  }
+  const tf = transformActivity("Transform", branchProfiles(b));
+  tf.activation.type = "special";
+  tf.consumption.targets = [];
+  acts[tf._id] = tf;
+  items.push(feat(`Unwilling Transformation — ${BRANCHES[b].name}`, `unwilling-transformation-${b}`,
+    FEATURE_TEXT.unwilling, { activities: acts, img: IMG_UNWILLING }));
+}
 
-const controllingActivities = {};
-const ct = transformActivity("Controlled Transformation", animalProfiles);
-controllingActivities[ct._id] = ct;
-items.push(feat("Controlling the Curse", "controlling-the-curse", FEATURE_TEXT.controlling, {
-  activities: controllingActivities
-}));
+// Per-branch Controlling the Curse: the Controlled Transformation only
+// offers that branch's Animal Form.
+for ( const b of Object.keys(BRANCHES) ) {
+  const ct = transformActivity("Controlled Transformation",
+    [animalProfiles.find(p => p.name.startsWith(BRANCHES[b].name))]);
+  items.push(feat(`Controlling the Curse — ${BRANCHES[b].name}`, `controlling-the-curse-${b}`,
+    FEATURE_TEXT.controlling, { activities: { [ct._id]: ct }, img: IMG_CONTROLLING }));
+}
 
 items.push(feat("Control Points", "control-points",
   `<p>Control Points fuel the curse's deliberate gifts. You regain all expended Control Points when you finish a Long Rest. Maximum: @scale.therianthrope.control-points.</p>`,
-  { uses: { max: "@scale.therianthrope.control-points", spent: 0, recovery: [{ period: "lr", type: "recoverAll" }] } }
+  { uses: { max: "@scale.therianthrope.control-points", spent: 0, recovery: [{ period: "lr", type: "recoverAll" }] }, img: IMG_CONTROL_POINTS }
 ));
 
 const wrHeal = baseActivity("heal", "Wild Regeneration", {
@@ -689,7 +720,8 @@ const wrHeal = baseActivity("heal", "Wild Regeneration", {
 });
 items.push(feat("Wild Regeneration", "wild-regeneration", FEATURE_TEXT.wildRegen, {
   activities: { [wrHeal._id]: wrHeal },
-  flags: { "advancement-classes": { transform: { injectSelf: true } } }
+  flags: { "advancement-classes": { transform: { injectSelf: true } } },
+  img: IMG_WILD_REGEN
 }));
 
 items.push(feat("Flaw Mitigation", "flaw-mitigation", FEATURE_TEXT.flawMitigation));
@@ -715,7 +747,7 @@ for ( const [name, text] of FLAWS ) {
   const ident = `flaw-${name.toLowerCase().replace(/[^a-z]+/g, "-").replace(/-$/, "")}`;
   items.push(feat(`Bestial Flaw: ${name}`, ident,
     `<p><strong>${name}.</strong> ${text}</p><p><em>A Bestial Flaw is a roleplaying compulsion granted by the curse; your GM adjudicates its effects.</em></p>`,
-    { featType: "feat" }));
+    { featType: "feat", img: IMG_FLAW }));
 }
 
 /* ----- bestial aspects ----- */
@@ -785,18 +817,18 @@ for ( const g of GIFTS ) {
 }
 
 /* ----- milestones ----- */
-const classMilestoneIds = {}; // stage -> [ids]
+const classMilestoneIds = {}; // stage -> { regular: [ids], calling: [ids] }
 for ( const [stage, list] of Object.entries(CLASS_MILESTONES) ) {
-  classMilestoneIds[stage] = [];
+  classMilestoneIds[stage] = { regular: [], calling: [] };
   for ( const [name, ident, text, opts] of list ) {
     items.push(milestone(name, ident, text, opts));
-    classMilestoneIds[stage].push(id(`ms:${ident}`));
+    classMilestoneIds[stage].regular.push(id(`ms:${ident}`));
   }
   if ( Number(stage) % 2 === 0 ) {
     for ( const key of ["control", "embrace"] ) {
       const ms = callingMilestone(Number(stage), key);
       items.push(ms);
-      classMilestoneIds[stage].push(ms._id);
+      classMilestoneIds[stage].calling.push(ms._id);
     }
   }
 }
@@ -840,16 +872,21 @@ const journalUuid = JOURNAL_UUID(journalId);
 const journalPageUuid = `${journalUuid}.JournalEntryPage.${journalPageId}`;
 
 const classAdv = {};
-const grantAt = (stage, uuids) => {
-  const a = itemGrant(stage, uuids);
-  classAdv[a._id] = a;
+// Each stage emits up to three ItemGrant advancements: gained features,
+// regular milestones, and Calling (Control/Embrace) milestones.
+const grantAt = (stage, { features = [], milestones = [], callings = [] } = {}) => {
+  for ( const [tag, uuids] of [["features", features], ["milestones", milestones], ["callings", callings]] ) {
+    if ( !uuids.length ) continue;
+    const a = itemGrant(stage, uuids);
+    a._id = advId(`grant:${stage}:${tag}:${uuids.join("|")}`);
+    classAdv[a._id] = a;
+  }
 };
+const msUUIDs = stage => classMilestoneIds[stage].regular.map(ITEM_UUID);
+const callingUUIDs = stage => classMilestoneIds[stage].calling.map(ITEM_UUID);
 
-// Stage 1
-grantAt(1, [
-  ITEM_UUID(id("feat:unwilling-transformation")),
-  ...classMilestoneIds[1].map(ITEM_UUID)
-]);
+// Stage 1 — branch-specific Unwilling Transformation is granted by the Path.
+grantAt(1, { milestones: msUUIDs(1) });
 const flawPool = FLAWS.map(([name]) => ITEM_UUID(id(`feat:flaw-${name.toLowerCase().replace(/[^a-z]+/g, "-").replace(/-$/, "")}`)));
 const flawChoice = {
   _id: advId("choice:flaw"), type: "ItemChoice", level: 1,
@@ -866,31 +903,28 @@ classAdv[flawChoice._id] = flawChoice;
 const pathPick = { _id: advId("path:pick"), type: "AdvancementPath", level: 1, configuration: {}, value: {} };
 classAdv[pathPick._id] = pathPick;
 
-// Stage 2+
-grantAt(2, [
-  ITEM_UUID(id("feat:controlling-the-curse")),
-  ITEM_UUID(id("feat:control-points")),
-  ITEM_UUID(id("feat:wild-regeneration")),
-  ...classMilestoneIds[2].map(ITEM_UUID)
-]);
-grantAt(3, [
-  ITEM_UUID(id("feat:flaw-mitigation")),
-  ...classMilestoneIds[3].map(ITEM_UUID)
-]);
-grantAt(4, [
-  ITEM_UUID(id("feat:feral-speed")),
-  ITEM_UUID(id("feat:empowered-transformation")),
-  ...classMilestoneIds[4].map(ITEM_UUID)
-]);
-grantAt(5, [...classMilestoneIds[5].map(ITEM_UUID)]);
-grantAt(6, [...classMilestoneIds[6].map(ITEM_UUID)]);
-grantAt(7, [...classMilestoneIds[7].map(ITEM_UUID)]);
-grantAt(8, [
-  ITEM_UUID(id("feat:predators-resurgence")),
-  ...classMilestoneIds[8].map(ITEM_UUID)
-]);
-grantAt(9, [...classMilestoneIds[9].map(ITEM_UUID)]);
-grantAt(10, [...classMilestoneIds[10].map(ITEM_UUID)]);
+// Stage 2+ — branch-specific Controlling the Curse is granted by the Path.
+grantAt(2, {
+  features: [ITEM_UUID(id("feat:control-points")), ITEM_UUID(id("feat:wild-regeneration"))],
+  milestones: msUUIDs(2), callings: callingUUIDs(2)
+});
+grantAt(3, {
+  features: [ITEM_UUID(id("feat:flaw-mitigation"))],
+  milestones: msUUIDs(3)
+});
+grantAt(4, {
+  features: [ITEM_UUID(id("feat:feral-speed")), ITEM_UUID(id("feat:empowered-transformation"))],
+  milestones: msUUIDs(4), callings: callingUUIDs(4)
+});
+grantAt(5, { milestones: msUUIDs(5) });
+grantAt(6, { milestones: msUUIDs(6), callings: callingUUIDs(6) });
+grantAt(7, { milestones: msUUIDs(7) });
+grantAt(8, {
+  features: [ITEM_UUID(id("feat:predators-resurgence"))],
+  milestones: msUUIDs(8), callings: callingUUIDs(8)
+});
+grantAt(9, { milestones: msUUIDs(9) });
+grantAt(10, { callings: callingUUIDs(10) });
 
 const svCP = scaleValue("control-points", "number", { 2: { value: 1 }, 4: { value: 2 }, 6: { value: 3 }, 8: { value: 4 }, 10: { value: 5 } });
 classAdv[svCP._id] = svCP;
@@ -905,7 +939,7 @@ items.push({
   _key: `!items!${classId}`,
   name: "Therianthrope",
   type: "advancement-classes.advancement-class",
-  img: "icons/creatures/mammals/wolf-howl-moon.webp",
+  img: "systems/dnd5e/icons/svg/items/class.svg",
   system: {
     description: {
       value: `<p>A Therianthrope is a creature cursed to transform into beast and hybrid forms — a werecreature whose condition spreads through its bite during the light of the Planar Tear. Therianthrope Stages are tracked independently of class level and do not increase character level or proficiency bonus.</p><p>See the @UUID[${journalUuid}]{Therianthrope} journal for the full class write-up.</p>`,
@@ -939,21 +973,27 @@ for ( const [key, branch] of Object.entries(BRANCHES) ) {
     const sv = scaleValue("stalker-prowl", "dice", { 7: { number: 2, faces: 8 }, 9: { number: 2, faces: 12 } });
     adv[sv._id] = sv;
   }
-  for ( const [stage, grant] of [
-    [3, [ITEM_UUID(id(`feat:bestial-aspect-${key}`)), ITEM_UUID(branchMilestoneIds[key][3])]],
-    [5, [ITEM_UUID(branchFeatIds[key][5]), ITEM_UUID(branchMilestoneIds[key][5])]],
-    [7, [ITEM_UUID(branchFeatIds[key][7]), ITEM_UUID(branchMilestoneIds[key][7])]],
-    [9, [ITEM_UUID(branchFeatIds[key][9]), ITEM_UUID(branchMilestoneIds[key][9])]]
+  for ( const [stage, featIdents, msIds] of [
+    [1, [`unwilling-transformation-${key}`], []],
+    [2, [`controlling-the-curse-${key}`], []],
+    [3, [`bestial-aspect-${key}`], [branchMilestoneIds[key][3]]],
+    [5, [BRANCH_FEATURES[key].find(f => f.stage === 5).ident], [branchMilestoneIds[key][5]]],
+    [7, [BRANCH_FEATURES[key].find(f => f.stage === 7).ident], [branchMilestoneIds[key][7]]],
+    [9, [BRANCH_FEATURES[key].find(f => f.stage === 9).ident], [branchMilestoneIds[key][9]]]
   ] ) {
-    const a = itemGrant(stage, grant);
-    adv[a._id] = a;
+    for ( const [tag, ids] of [["features", featIdents.map(i => id(`feat:${i}`))], ["milestones", msIds]] ) {
+      if ( !ids.length ) continue;
+      const a = itemGrant(stage, ids.map(ITEM_UUID));
+      a._id = advId(`grant:${key}:${stage}:${tag}`);
+      adv[a._id] = a;
+    }
   }
   items.push({
     _id: pathId,
     _key: `!items!${pathId}`,
     name: `Therianthrope: ${branch.name}`,
     type: "advancement-classes.advancement-path",
-    img: "icons/creatures/mammals/wolf-howl-moon.webp",
+    img: "systems/dnd5e/icons/svg/subclass.svg",
     system: {
       description: { value: `<p>The ${branch.name} branch of the Therianthrope curse. Your key ability is ${branch.keyName}; while transformed your alignment becomes ${branch.alignment}.</p>`, chat: "" },
       identifier: `therianthrope-${key}`,

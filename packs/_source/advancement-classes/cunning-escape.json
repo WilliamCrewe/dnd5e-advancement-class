@@ -3,7 +3,7 @@
   "_key": "!items!9TDYUZaMxRCTOIjS",
   "name": "Cunning Escape",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>While transformed, you can take the Disengage action as a Bonus Action.</p>",

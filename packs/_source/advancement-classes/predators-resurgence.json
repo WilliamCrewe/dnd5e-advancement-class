@@ -3,7 +3,7 @@
   "_key": "!items!hAw9uJ52641C35yY",
   "name": "Predator's Resurgence",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>Once per Long Rest while not transformed, when you are reduced to 0 hit points you can use your Reaction to drop to 1 hit point instead, regain hit points equal to your Stage, and immediately trigger an Unwilling Transformation as though the damage source had reduced you below half your hit point maximum.</p>",

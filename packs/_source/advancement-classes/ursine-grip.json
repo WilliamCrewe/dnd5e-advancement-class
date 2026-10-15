@@ -3,7 +3,7 @@
   "_key": "!items!gx27sRuDApn5zoxH",
   "name": "Ursine Grip",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>When you hit a creature with your Claw attack while transformed, that creature is also grappled (escape DC equals your Therianthrope DC). You can have only one creature grappled in this way at a time.</p>",

@@ -3,7 +3,7 @@
   "_key": "!items!qSNoOqwNzwtbFZf6",
   "name": "Extended Form",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>Your Controlled Transformation lasts a number of hours equal to your Stage instead of half your Stage.</p>",

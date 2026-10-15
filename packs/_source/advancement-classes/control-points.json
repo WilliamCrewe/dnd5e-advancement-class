@@ -3,7 +3,7 @@
   "_key": "!items!Zn9Bp5xsyFmSYj8d",
   "name": "Control Points",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "icons/creatures/mammals/wolf-howl-moon-forest-blue.webp",
   "system": {
     "description": {
       "value": "<p>Control Points fuel the curse's deliberate gifts. You regain all expended Control Points when you finish a Long Rest. Maximum: @scale.therianthrope.control-points.</p>",

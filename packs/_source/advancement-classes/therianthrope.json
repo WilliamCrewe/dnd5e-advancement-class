@@ -3,7 +3,7 @@
   "_key": "!items!YdhHVJCtvpxopGeT",
   "name": "Therianthrope",
   "type": "advancement-classes.advancement-class",
-  "img": "icons/creatures/mammals/wolf-howl-moon.webp",
+  "img": "systems/dnd5e/icons/svg/items/class.svg",
   "system": {
     "description": {
       "value": "<p>A Therianthrope is a creature cursed to transform into beast and hybrid forms — a werecreature whose condition spreads through its bite during the light of the Planar Tear. Therianthrope Stages are tracked independently of class level and do not increase character level or proficiency bonus.</p><p>See the @UUID[Compendium.advancement-classes.advancement-classes-journals.JournalEntry.On3AKlmYmTXKaq8h]{Therianthrope} journal for the full class write-up.</p>",
@@ -30,15 +30,12 @@
     },
     "journal": "Compendium.advancement-classes.advancement-classes-journals.JournalEntry.On3AKlmYmTXKaq8h.JournalEntryPage.Zq5WfCQqrI2bbqAg",
     "advancement": {
-      "tRGcz1dh0LjcTXeQ": {
-        "_id": "tRGcz1dh0LjcTXeQ",
+      "ayiVccA87ecfaaSl": {
+        "_id": "ayiVccA87ecfaaSl",
         "type": "ItemGrant",
         "level": 1,
         "configuration": {
           "items": [
-            {
-              "uuid": "Compendium.advancement-classes.advancement-classes.Item.J9OFWlo5WmbOTluk"
-            },
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.1gsHLBlIv5s1LjTl"
             },
@@ -111,27 +108,46 @@
         "configuration": {},
         "value": {}
       },
-      "T99jyYLvfAPSOvGF": {
-        "_id": "T99jyYLvfAPSOvGF",
+      "VnwY68YR05hg4aCA": {
+        "_id": "VnwY68YR05hg4aCA",
         "type": "ItemGrant",
         "level": 2,
         "configuration": {
           "items": [
             {
-              "uuid": "Compendium.advancement-classes.advancement-classes.Item.puj4EKeCgVkqrzeN"
-            },
-            {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.Zn9Bp5xsyFmSYj8d"
             },
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.tGLGCzImTRKZfs4U"
-            },
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "VMbNzjxaSE3AqW5d": {
+        "_id": "VMbNzjxaSE3AqW5d",
+        "type": "ItemGrant",
+        "level": 2,
+        "configuration": {
+          "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.a8zDBKxkXpeus65C"
             },
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.SDHM28YaxurA4xKr"
-            },
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "z215PnvCUCUTSusX": {
+        "_id": "z215PnvCUCUTSusX",
+        "type": "ItemGrant",
+        "level": 2,
+        "configuration": {
+          "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.EfTdGl4r9WGDBaB5"
             },
@@ -143,15 +159,26 @@
         },
         "value": {}
       },
-      "KAE7sNDYbDVbx42Q": {
-        "_id": "KAE7sNDYbDVbx42Q",
+      "iGizQUDWRInSn1uL": {
+        "_id": "iGizQUDWRInSn1uL",
         "type": "ItemGrant",
         "level": 3,
         "configuration": {
           "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.NriK4aNd6Yh6IWd9"
-            },
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "9S6S2zvjLYI1GbIy": {
+        "_id": "9S6S2zvjLYI1GbIy",
+        "type": "ItemGrant",
+        "level": 3,
+        "configuration": {
+          "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.OREC8O2WHzIqN22A"
             }
@@ -160,8 +187,8 @@
         },
         "value": {}
       },
-      "QyEepZgWqsVz3t6W": {
-        "_id": "QyEepZgWqsVz3t6W",
+      "BqXM9Cd1ecgEwfBy": {
+        "_id": "BqXM9Cd1ecgEwfBy",
         "type": "ItemGrant",
         "level": 4,
         "configuration": {
@@ -171,13 +198,35 @@
             },
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.NAAZCgBsp6FnlSlN"
-            },
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "ea5hH8Qrk0C9rldb": {
+        "_id": "ea5hH8Qrk0C9rldb",
+        "type": "ItemGrant",
+        "level": 4,
+        "configuration": {
+          "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.EWNgkFtUAoFV7izJ"
             },
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.mlXveAdRCkfJfIDh"
-            },
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "aXxzsrsKA7VA3NcY": {
+        "_id": "aXxzsrsKA7VA3NcY",
+        "type": "ItemGrant",
+        "level": 4,
+        "configuration": {
+          "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.DefzhVi8jpX9fb7C"
             },
@@ -189,8 +238,8 @@
         },
         "value": {}
       },
-      "nQSYNmamtVbmaKRr": {
-        "_id": "nQSYNmamtVbmaKRr",
+      "xOO2bqUhnH1czcIF": {
+        "_id": "xOO2bqUhnH1czcIF",
         "type": "ItemGrant",
         "level": 5,
         "configuration": {
@@ -203,8 +252,8 @@
         },
         "value": {}
       },
-      "BPDda4URInK87xII": {
-        "_id": "BPDda4URInK87xII",
+      "0BHEMWeDeRAOSIml": {
+        "_id": "0BHEMWeDeRAOSIml",
         "type": "ItemGrant",
         "level": 6,
         "configuration": {
@@ -214,7 +263,18 @@
             },
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.jekuxkuZ6VE7bCke"
-            },
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "H5PZZiYH6h9TfHh6": {
+        "_id": "H5PZZiYH6h9TfHh6",
+        "type": "ItemGrant",
+        "level": 6,
+        "configuration": {
+          "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.xbbXCkPvuKVVSP0H"
             },
@@ -226,8 +286,8 @@
         },
         "value": {}
       },
-      "XaMcwvdHEMrZyXkL": {
-        "_id": "XaMcwvdHEMrZyXkL",
+      "vHc6pup36EtlYs3c": {
+        "_id": "vHc6pup36EtlYs3c",
         "type": "ItemGrant",
         "level": 7,
         "configuration": {
@@ -240,21 +300,43 @@
         },
         "value": {}
       },
-      "zzzHNoSPcEZa0kj5": {
-        "_id": "zzzHNoSPcEZa0kj5",
+      "xkEhD11hSYyCEenK": {
+        "_id": "xkEhD11hSYyCEenK",
         "type": "ItemGrant",
         "level": 8,
         "configuration": {
           "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.hAw9uJ52641C35yY"
-            },
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "zZ29200f9Cky1JJc": {
+        "_id": "zZ29200f9Cky1JJc",
+        "type": "ItemGrant",
+        "level": 8,
+        "configuration": {
+          "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.k0dBSPm554qNtCni"
             },
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.yyoelnt3K9NqBz2e"
-            },
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "15kbgPoBZrONMQkr": {
+        "_id": "15kbgPoBZrONMQkr",
+        "type": "ItemGrant",
+        "level": 8,
+        "configuration": {
+          "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.0QGEfhJpPA84xnc6"
             },
@@ -266,8 +348,8 @@
         },
         "value": {}
       },
-      "yBtzyRylrIpGpX58": {
-        "_id": "yBtzyRylrIpGpX58",
+      "KO3DkHtKXNN6ufwe": {
+        "_id": "KO3DkHtKXNN6ufwe",
         "type": "ItemGrant",
         "level": 9,
         "configuration": {
@@ -280,8 +362,8 @@
         },
         "value": {}
       },
-      "foiULHhCEE1CilBT": {
-        "_id": "foiULHhCEE1CilBT",
+      "HECAXkPEt8WpIxxp": {
+        "_id": "HECAXkPEt8WpIxxp",
         "type": "ItemGrant",
         "level": 10,
         "configuration": {

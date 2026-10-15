@@ -3,7 +3,7 @@
   "_key": "!items!1xmeGIMHrzjFI66d",
   "name": "Savage Hunger",
   "type": "feat",
-  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "img": "systems/dnd5e/icons/svg/items/feature.svg",
   "system": {
     "description": {
       "value": "<p>Your maximum number of Control Points is reduced by 1. Once per turn while transformed, when you hit with a natural weapon attack, the attack deals an extra 1d6 damage.</p>",
