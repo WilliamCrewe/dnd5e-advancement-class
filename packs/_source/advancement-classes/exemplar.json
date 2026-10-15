@@ -80,7 +80,9 @@
         "_id": "IxD76zCYUNcU5D8U",
         "type": "AbilityScoreImprovement",
         "level": 4,
-        "configuration": {},
+        "configuration": {
+          "points": 2
+        },
         "value": {}
       },
       "sZDouLzh0vEwD5OO": {
@@ -101,7 +103,9 @@
         "_id": "ZS0IHL9bcGlnPrZX",
         "type": "AbilityScoreImprovement",
         "level": 8,
-        "configuration": {},
+        "configuration": {
+          "points": 2
+        },
         "value": {}
       },
       "clYWQXMOQbaAdTTu": {

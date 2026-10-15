@@ -76,6 +76,24 @@ function managerTargetType(name, args) {
  */
 function patchManagerFactories() {
   const Manager = dnd5e.applications.advancement.AdvancementManager;
+
+  // Prevent our item types' stage-mapped advancements (and flows of items
+  // granted by them) from leaking into normal class level-ups. The base
+  // createLevelChangeSteps evaluates every non-class item's flows at
+  // character level. AdvancementClassManager keeps the unfiltered original
+  // so its own flow building is unaffected.
+  const originalFlowsForLevel = Manager.flowsForLevel;
+  Manager.flowsForLevel = function(item, level, options) {
+    const type = item?.type;
+    if ( [CLASS_TYPE, PATH_TYPE, MILESTONE_TYPE].includes(type) ) return [];
+    const rootType = item?.system?.advancementRootItem?.type;
+    if ( [CLASS_TYPE, PATH_TYPE].includes(rootType) ) return [];
+    return originalFlowsForLevel.call(this, item, level, options);
+  };
+  Object.defineProperty(AdvancementClassManager, "flowsForLevel", {
+    value: originalFlowsForLevel, configurable: true, writable: true
+  });
+
   const factories = [
     "forNewItem", "forDeletedItem", "forLevelChange",
     "forNewAdvancement", "forDeletedAdvancement", "forModifyChoices"
@@ -103,6 +121,37 @@ function patchManagerFactories() {
       return original.apply(this, args);
     };
   }
+}
+
+/* -------------------------------------------- */
+/*  Ability Score Improvement                   */
+/* -------------------------------------------- */
+
+/**
+ * AbilityScoreImprovementAdvancement gates its two class features on
+ * `item.type === "class"`: the default 2-point budget applied at creation
+ * and the feat-selection UI. Extend both to Advancement Classes.
+ */
+function patchAbilityScoreImprovement() {
+  const ASI = dnd5e.documents.advancement.AbilityScoreImprovementAdvancement;
+  const proto = ASI.prototype;
+
+  const preCreate = proto._preCreate;
+  proto._preCreate = function(data) {
+    if ( preCreate.call(this, data) === false ) return false;
+    if ( (this.item.type === CLASS_TYPE) && !foundry.utils.hasProperty(data, "configuration.points") ) {
+      this.updateSource({ "configuration.points": 2 });
+    }
+  };
+
+  const allowFeat = Object.getOwnPropertyDescriptor(proto, "allowFeat");
+  Object.defineProperty(proto, "allowFeat", {
+    get: function() {
+      if ( this.item.type !== CLASS_TYPE ) return allowFeat.get.call(this);
+      return game.settings.get("dnd5e", "allowFeats") || (dnd5e.settings.rulesVersion === "modern");
+    },
+    configurable: true
+  });
 }
 
 /* -------------------------------------------- */
@@ -281,5 +330,6 @@ export function applyPatches() {
   Object.defineProperty(proto, "advancementPath", { get: getAdvancementPath, configurable: true });
   patchScaleValues();
   patchManagerFactories();
+  patchAbilityScoreImprovement();
   patchCharacterSheet();
 }
