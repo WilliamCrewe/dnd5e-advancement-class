@@ -61,20 +61,54 @@
         "Counter": "Counter",
         "CounterHint": "Requires progress to reach its maximum before it can be completed.",
         "GMConfirm": "GM Confirmation",
-        "GMConfirmHint": "Only the GM may mark this milestone complete."
+        "GMConfirmHint": "Only the GM may mark this milestone complete.",
+        "Calling": "Calling",
+        "CallingHint": "Completing this milestone commits to its choice, removes all alternatives in its choice set, and grants a reward."
       },
       "Progress": "Progress",
       "ProgressMax": "Required",
       "IncompleteWarn": "This milestone's progress has not reached its required value.",
       "Complete": "Complete Milestone",
-      "GMOnly": "This milestone requires GM confirmation to complete."
+      "GMOnly": "This milestone requires GM confirmation to complete.",
+      "Tracking": {
+        "Event": "Tracked Event",
+        "EventHint": "Event key that advances this counter (e.g. \"use:control-points\", \"heal:wild-regeneration\", \"transform\", \"saveSuccess:wis\"). See module documentation for the event vocabulary.",
+        "Unique": "Unique Targets",
+        "UniqueHint": "Only count each distinct target once."
+      },
+      "Calling": {
+        "ChoiceSet": "Choice Set",
+        "ChoiceSetHint": "Key grouping the mutually exclusive alternatives (e.g. \"therianthrope-focus\").",
+        "ChoiceKey": "Choice Key",
+        "ChoiceKeyHint": "This alternative's identity (e.g. \"control\", \"embrace\"). Matched against gift flags.",
+        "GiftSource": "Gift Source",
+        "GiftSourceHint": "Compendium pack ID containing gift items, or \"world\" for world items. Blank searches everything.",
+        "GiftTiers": "Gift Tiers",
+        "Tier": {
+          "Minor": "Minor",
+          "Major": "Major",
+          "Grand": "Grand"
+        }
+      }
+    },
+    "Calling": {
+      "ConfirmTitle": "Commit to {choice}?",
+      "ConfirmText": "Completing this Calling commits you to <strong>{choice}</strong>. The {count} alternative milestone(s) will be removed and you will choose a reward.",
+      "GiftTitle": "{choice} Reward",
+      "GiftText": "Choose the gift you receive:",
+      "GiftConfirm": "Claim Gift",
+      "NoGifts": "No eligible gifts were found for this calling."
+    },
+    "Transform": {
+      "AbilityFloor": "{ability} Floor"
     },
     "MILESTONE": {
       "milestoneType": {
         "choices": {
           "manual": "Manual",
           "counter": "Counter",
-          "gmConfirm": "GM Confirmation"
+          "gmConfirm": "GM Confirmation",
+          "calling": "Calling"
         }
       }
     },

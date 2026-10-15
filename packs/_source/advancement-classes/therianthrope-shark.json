@@ -1,0 +1,133 @@
+{
+  "_id": "84EpED6DGaJrB6Pd",
+  "_key": "!items!84EpED6DGaJrB6Pd",
+  "name": "Therianthrope: Shark",
+  "type": "advancement-classes.advancement-path",
+  "img": "icons/creatures/mammals/wolf-howl-moon.webp",
+  "system": {
+    "description": {
+      "value": "<p>The Shark branch of the Therianthrope curse. Your key ability is Strength; while transformed your alignment becomes Neutral Evil.</p>",
+      "chat": ""
+    },
+    "identifier": "therianthrope-shark",
+    "classIdentifier": "therianthrope",
+    "advancement": {
+      "UNcFI9eOSGScNL7p": {
+        "_id": "UNcFI9eOSGScNL7p",
+        "type": "ScaleValue",
+        "level": 0,
+        "configuration": {
+          "identifier": "key-ability-floor",
+          "type": "number",
+          "scale": {
+            "1": {
+              "value": 14
+            },
+            "4": {
+              "value": 16
+            },
+            "7": {
+              "value": 18
+            },
+            "10": {
+              "value": 20
+            }
+          },
+          "distance": {
+            "units": ""
+          }
+        },
+        "value": {}
+      },
+      "RAnoUC3QA8reSDRM": {
+        "_id": "RAnoUC3QA8reSDRM",
+        "type": "ItemGrant",
+        "level": 3,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.m92PASwEFDnspPn1"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.B57Rf3d3doUsFMmz"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "q0VNK1qeO7XJIPYY": {
+        "_id": "q0VNK1qeO7XJIPYY",
+        "type": "ItemGrant",
+        "level": 5,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.cQfRPdTQ0N0EbdB2"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.gNkAqrFIVfOpoNjo"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "SKAhWn9eEOCNdjQR": {
+        "_id": "SKAhWn9eEOCNdjQR",
+        "type": "ItemGrant",
+        "level": 7,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.WGqyiHqZzjfRhGB2"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.ZV9Gfui0pu76C96e"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "0rgjn9lNu8Us6XQG": {
+        "_id": "0rgjn9lNu8Us6XQG",
+        "type": "ItemGrant",
+        "level": 9,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.uMKuemTX9cVAYmHj"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.Gos6iBjSGWFJinrF"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      }
+    },
+    "source": {}
+  },
+  "flags": {
+    "advancement-classes": {
+      "transform": {
+        "abilityFloor": {
+          "ability": "str",
+          "scale": "key-ability-floor"
+        },
+        "inject": [
+          {
+            "uuid": "Compendium.advancement-classes.advancement-classes.Item.tGLGCzImTRKZfs4U",
+            "minStage": 2
+          },
+          {
+            "uuid": "Compendium.advancement-classes.advancement-classes.Item.m92PASwEFDnspPn1",
+            "minStage": 3
+          }
+        ]
+      }
+    }
+  }
+}

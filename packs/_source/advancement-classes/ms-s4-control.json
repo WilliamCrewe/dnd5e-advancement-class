@@ -1,0 +1,27 @@
+{
+  "_id": "EWNgkFtUAoFV7izJ",
+  "_key": "!items!EWNgkFtUAoFV7izJ",
+  "name": "Seized Reins II",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Take control of an Unwilling Transformation 5 times.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-s4-control",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 5
+    },
+    "calling": {},
+    "tracking": {
+      "event": "",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

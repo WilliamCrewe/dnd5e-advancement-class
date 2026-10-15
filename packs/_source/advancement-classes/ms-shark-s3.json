@@ -1,0 +1,27 @@
+{
+  "_id": "B57Rf3d3doUsFMmz",
+  "_key": "!items!B57Rf3d3doUsFMmz",
+  "name": "Shark: Hunter's Eye",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Succeed on 10 Perception checks.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-shark-s3",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 10
+    },
+    "calling": {},
+    "tracking": {
+      "event": "skillSuccess:prc",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

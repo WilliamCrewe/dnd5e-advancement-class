@@ -1,0 +1,20 @@
+{
+  "_id": "QYEJu3A51FGu22vk",
+  "_key": "!items!QYEJu3A51FGu22vk",
+  "name": "Bestial Flaw: Paranoia",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Paranoia.</strong> I fear that those around me will learn what I am and make me their prey.</p><p><em>A Bestial Flaw is a roleplaying compulsion granted by the curse; your GM adjudicates its effects.</em></p>",
+      "chat": ""
+    },
+    "identifier": "flaw-paranoia",
+    "type": {
+      "value": "feat",
+      "subtype": ""
+    },
+    "source": {}
+  },
+  "flags": {}
+}

@@ -53,6 +53,18 @@
           ]
         }
       }
+    },
+    {
+      "name": "advancement-classes-forms",
+      "label": "Advancement Classes — Forms",
+      "type": "Actor",
+      "path": "packs/advancement-classes-forms"
+    },
+    {
+      "name": "advancement-classes-journals",
+      "label": "Advancement Classes — Journals",
+      "type": "JournalEntry",
+      "path": "packs/advancement-classes-journals"
     }
   ],
   "relationships": {

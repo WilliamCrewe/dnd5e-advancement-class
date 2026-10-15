@@ -21,7 +21,11 @@ jobs:
         uses: actions/setup-node@v4
 
       - name: Compile compendium packs
-        run: npx -y @foundryvtt/foundryvtt-cli package pack ${{ env.MODULE_ID }} --in packs/_source/${{ env.MODULE_ID }} --out packs
+        run: |
+          for dir in packs/_source/*/; do
+            name="$(basename "$dir")"
+            npx -y @foundryvtt/foundryvtt-cli package pack "$name" --in "$dir" --out packs
+          done
 
       - name: Stamp version and download URL into module.json
         run: |
@@ -39,8 +43,9 @@ jobs:
             scripts \
             styles \
             templates \
-            packs/${{ env.MODULE_ID }} \
-            README.md
+            packs \
+            README.md \
+            -x "packs/_source/*"
 
       - name: Create release
         uses: softprops/action-gh-release@v2

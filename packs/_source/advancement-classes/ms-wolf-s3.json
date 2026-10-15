@@ -1,0 +1,27 @@
+{
+  "_id": "cK97mGiHrKy8uM2M",
+  "_key": "!items!cK97mGiHrKy8uM2M",
+  "name": "Wolf: Wolf's Vigil",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Succeed on 10 Perception checks.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-wolf-s3",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 10
+    },
+    "calling": {},
+    "tracking": {
+      "event": "skillSuccess:prc",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

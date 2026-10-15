@@ -1,0 +1,27 @@
+{
+  "_id": "dJyg4RXu95n2fMUi",
+  "_key": "!items!dJyg4RXu95n2fMUi",
+  "name": "Wolf: Voice of the Pack",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Use Alpha Howl 10 times.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-wolf-s9",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 10
+    },
+    "calling": {},
+    "tracking": {
+      "event": "use:alpha-howl",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

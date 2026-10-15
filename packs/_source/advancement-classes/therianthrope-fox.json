@@ -1,0 +1,133 @@
+{
+  "_id": "2ODugQM5H8IuORss",
+  "_key": "!items!2ODugQM5H8IuORss",
+  "name": "Therianthrope: Fox",
+  "type": "advancement-classes.advancement-path",
+  "img": "icons/creatures/mammals/wolf-howl-moon.webp",
+  "system": {
+    "description": {
+      "value": "<p>The Fox branch of the Therianthrope curse. Your key ability is Dexterity; while transformed your alignment becomes Chaotic Neutral.</p>",
+      "chat": ""
+    },
+    "identifier": "therianthrope-fox",
+    "classIdentifier": "therianthrope",
+    "advancement": {
+      "VMNfhAS6AyK2aHX0": {
+        "_id": "VMNfhAS6AyK2aHX0",
+        "type": "ScaleValue",
+        "level": 0,
+        "configuration": {
+          "identifier": "key-ability-floor",
+          "type": "number",
+          "scale": {
+            "1": {
+              "value": 14
+            },
+            "4": {
+              "value": 16
+            },
+            "7": {
+              "value": 18
+            },
+            "10": {
+              "value": 20
+            }
+          },
+          "distance": {
+            "units": ""
+          }
+        },
+        "value": {}
+      },
+      "Zds08bsemjxlT6jS": {
+        "_id": "Zds08bsemjxlT6jS",
+        "type": "ItemGrant",
+        "level": 3,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.QlEW2NZZSDUY8rJu"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.qtXT71BcFRuXxkNd"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "tU4qEDKQL1ecljTi": {
+        "_id": "tU4qEDKQL1ecljTi",
+        "type": "ItemGrant",
+        "level": 5,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.9TDYUZaMxRCTOIjS"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.GqGS0iHrOmRHEW9M"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "eu21qkq7ugy8mtmm": {
+        "_id": "eu21qkq7ugy8mtmm",
+        "type": "ItemGrant",
+        "level": 7,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.I8r24qzU2vwY3PL3"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.J42oCqn2KeoDrD3g"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "FHez591ZiKoFHeWz": {
+        "_id": "FHez591ZiKoFHeWz",
+        "type": "ItemGrant",
+        "level": 9,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.XMd4Tp1Tsqk5MyIb"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.ZFWkVYjLuyTGHwuS"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      }
+    },
+    "source": {}
+  },
+  "flags": {
+    "advancement-classes": {
+      "transform": {
+        "abilityFloor": {
+          "ability": "dex",
+          "scale": "key-ability-floor"
+        },
+        "inject": [
+          {
+            "uuid": "Compendium.advancement-classes.advancement-classes.Item.tGLGCzImTRKZfs4U",
+            "minStage": 2
+          },
+          {
+            "uuid": "Compendium.advancement-classes.advancement-classes.Item.QlEW2NZZSDUY8rJu",
+            "minStage": 3
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "_id": "hHEYBrFtjQlyWWWR",
+  "_key": "!items!hHEYBrFtjQlyWWWR",
+  "name": "Bestial Flaw: Possessive",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Possessive.</strong> I will not allow anyone to touch anything that belongs to me. They might take it from me!</p><p><em>A Bestial Flaw is a roleplaying compulsion granted by the curse; your GM adjudicates its effects.</em></p>",
+      "chat": ""
+    },
+    "identifier": "flaw-possessive",
+    "type": {
+      "value": "feat",
+      "subtype": ""
+    },
+    "source": {}
+  },
+  "flags": {}
+}

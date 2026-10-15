@@ -1,0 +1,35 @@
+{
+  "_id": "xf5cnvUDp8oNzLRX",
+  "_key": "!items!xf5cnvUDp8oNzLRX",
+  "name": "Anchored Mind",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p>You retain your languages, proficiencies, and class features during Controlled Transformation. You still cannot cast spells that require Somatic components.</p>",
+      "chat": ""
+    },
+    "identifier": "gift-anchored-mind",
+    "type": {
+      "value": "supernaturalGift",
+      "subtype": "blessing"
+    },
+    "source": {},
+    "activities": {}
+  },
+  "flags": {
+    "advancement-classes": {
+      "gift": {
+        "side": "control",
+        "tier": "major"
+      },
+      "transform": {
+        "keep": [
+          "languages",
+          "class",
+          "feats"
+        ]
+      }
+    }
+  }
+}

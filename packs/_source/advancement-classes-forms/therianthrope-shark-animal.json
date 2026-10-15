@@ -1,0 +1,383 @@
+{
+  "_id": "hbWtc6rLGHJjJEik",
+  "_key": "!actors!hbWtc6rLGHJjJEik",
+  "name": "Shark Animal Form",
+  "type": "npc",
+  "img": "icons/creatures/mammals/bear-grizzly-brown.webp",
+  "system": {
+    "identifier": "therianthrope-shark-animal",
+    "abilities": {
+      "str": {
+        "value": 16,
+        "proficient": 0
+      },
+      "dex": {
+        "value": 14,
+        "proficient": 0
+      },
+      "con": {
+        "value": 14,
+        "proficient": 0
+      },
+      "int": {
+        "value": 3,
+        "proficient": 0
+      },
+      "wis": {
+        "value": 12,
+        "proficient": 0
+      },
+      "cha": {
+        "value": 6,
+        "proficient": 0
+      }
+    },
+    "attributes": {
+      "ac": {
+        "flat": 13,
+        "calc": "flat"
+      },
+      "hp": {
+        "value": 30,
+        "max": 30,
+        "temp": null,
+        "tempmax": null
+      },
+      "init": {
+        "ability": "",
+        "roll": {},
+        "bonus": ""
+      },
+      "movement": {
+        "units": "ft",
+        "hover": false,
+        "walk": 0,
+        "swim": 40
+      },
+      "senses": {
+        "darkvision": 60,
+        "blindsight": null,
+        "tremorsense": null,
+        "truesight": null,
+        "units": "ft",
+        "special": ""
+      }
+    },
+    "details": {
+      "alignment": "Neutral Evil",
+      "type": {
+        "value": "beast",
+        "subtype": "therianthrope"
+      },
+      "cr": 1,
+      "biography": {
+        "value": "<p>The animal form of a Therianthrope of the Shark branch.</p>",
+        "public": ""
+      }
+    },
+    "traits": {
+      "size": "lg",
+      "di": {
+        "value": [],
+        "bypasses": []
+      },
+      "dr": {
+        "value": [],
+        "bypasses": []
+      },
+      "dv": {
+        "value": [],
+        "bypasses": []
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
+      },
+      "ci": {
+        "value": [],
+        "bypasses": []
+      },
+      "languages": {
+        "value": [],
+        "custom": "",
+        "communication": {}
+      }
+    },
+    "bonuses": {
+      "mwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "msak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rsak": {
+        "attack": "",
+        "damage": ""
+      }
+    },
+    "source": {}
+  },
+  "items": [
+    {
+      "_id": "7y3kumnDcRGNlO96",
+      "_key": "!actors.items!hbWtc6rLGHJjJEik.7y3kumnDcRGNlO96",
+      "name": "Bite",
+      "type": "weapon",
+      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "system": {
+        "identifier": "bite",
+        "type": {
+          "value": "natural",
+          "baseItem": ""
+        },
+        "activities": {
+          "xdYJ69MLFjENkzFR": {
+            "_id": "xdYJ69MLFjENkzFR",
+            "type": "attack",
+            "name": "shark-animal-bite",
+            "img": null,
+            "sort": 0,
+            "activation": {
+              "type": "action",
+              "value": null,
+              "override": false,
+              "condition": ""
+            },
+            "consumption": {
+              "scaling": {
+                "allowed": false
+              },
+              "spellSlot": false,
+              "targets": []
+            },
+            "description": {
+              "chatFlavor": ""
+            },
+            "duration": {
+              "units": "inst",
+              "concentration": false,
+              "override": false
+            },
+            "effects": [],
+            "range": {
+              "units": "self",
+              "override": false
+            },
+            "target": {
+              "template": {
+                "contiguous": false,
+                "units": "ft",
+                "type": ""
+              },
+              "affects": {
+                "choice": false,
+                "type": "",
+                "count": ""
+              },
+              "override": false,
+              "prompt": true
+            },
+            "uses": {
+              "spent": 0,
+              "recovery": [],
+              "max": ""
+            },
+            "flags": {},
+            "visibility": {
+              "level": {},
+              "requireAttunement": false,
+              "requireIdentification": false,
+              "requireMagic": false
+            },
+            "attack": {
+              "critical": {
+                "threshold": null
+              },
+              "flat": false,
+              "type": {
+                "value": "",
+                "classification": ""
+              },
+              "ability": "str",
+              "bonus": ""
+            },
+            "damage": {
+              "critical": {
+                "bonus": ""
+              },
+              "includeBase": true,
+              "parts": []
+            }
+          },
+          "kWnhK7PouOFDSkWi": {
+            "_id": "kWnhK7PouOFDSkWi",
+            "type": "save",
+            "name": "Therianthrope's Curse",
+            "img": null,
+            "sort": 0,
+            "activation": {
+              "type": "special",
+              "value": null,
+              "override": false,
+              "condition": ""
+            },
+            "consumption": {
+              "scaling": {
+                "allowed": false
+              },
+              "spellSlot": false,
+              "targets": []
+            },
+            "description": {
+              "chatFlavor": ""
+            },
+            "duration": {
+              "units": "inst",
+              "concentration": false,
+              "override": false
+            },
+            "effects": [
+              {
+                "_id": "G0kkT7L0n4mUorTz"
+              }
+            ],
+            "range": {
+              "units": "self",
+              "override": false
+            },
+            "target": {
+              "template": {
+                "contiguous": false,
+                "units": "ft",
+                "type": ""
+              },
+              "affects": {
+                "choice": false,
+                "type": "creature",
+                "count": "1"
+              },
+              "override": false,
+              "prompt": true
+            },
+            "uses": {
+              "spent": 0,
+              "recovery": [],
+              "max": ""
+            },
+            "flags": {},
+            "visibility": {
+              "level": {},
+              "requireAttunement": false,
+              "requireIdentification": false,
+              "requireMagic": false
+            },
+            "save": {
+              "ability": [
+                "con"
+              ],
+              "dc": {
+                "calculation": "con",
+                "formula": ""
+              }
+            },
+            "damage": {
+              "onSave": "none",
+              "parts": []
+            }
+          }
+        },
+        "uses": {
+          "spent": 0,
+          "recovery": [],
+          "max": ""
+        },
+        "description": {
+          "value": "",
+          "chat": ""
+        },
+        "source": {},
+        "properties": [],
+        "identified": true,
+        "unidentified": {
+          "name": "Unidentified Weapon",
+          "description": ""
+        },
+        "mastery": "",
+        "range": {
+          "units": "ft",
+          "value": null,
+          "long": null,
+          "reach": null
+        },
+        "damage": {
+          "base": {
+            "number": 2,
+            "denomination": 6,
+            "bonus": "",
+            "types": [
+              "piercing"
+            ],
+            "custom": {
+              "enabled": false
+            }
+          },
+          "versatile": {
+            "number": null,
+            "denomination": null,
+            "types": [],
+            "custom": {
+              "enabled": false
+            }
+          }
+        },
+        "quantity": 1
+      },
+      "flags": {},
+      "effects": [
+        {
+          "_id": "G0kkT7L0n4mUorTz",
+          "_key": "!actors.items.effects!hbWtc6rLGHJjJEik.7y3kumnDcRGNlO96.G0kkT7L0n4mUorTz",
+          "name": "Therianthrope's Curse",
+          "img": "icons/magic/death/skull-energy-light-purple.webp",
+          "type": "base",
+          "transfer": false,
+          "disabled": false,
+          "changes": [],
+          "duration": {},
+          "origin": null,
+          "tint": "#ffffff",
+          "description": "The target is cursed. Unless the curse is removed before the next Planar Tear, the target gains Stage 1 of the Therianthrope advancement class.",
+          "statuses": [],
+          "flags": {
+            "advancement-classes": {
+              "cursed": true
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "effects": [],
+  "flags": {
+    "advancement-classes": {
+      "formAC": "11 + @abilities.con.mod"
+    }
+  },
+  "prototypeToken": {
+    "name": "Shark Animal Form",
+    "actorLink": true,
+    "sight": {
+      "enabled": true
+    },
+    "disposition": -1,
+    "texture": {
+      "src": "icons/creatures/mammals/bear-grizzly-brown.webp"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "_id": "jekuxkuZ6VE7bCke",
+  "_key": "!items!jekuxkuZ6VE7bCke",
+  "name": "Iron Will",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Succeed on 5 saving throws to resist Unwilling Transformation (any trigger).</p>",
+      "chat": ""
+    },
+    "identifier": "ms-s6-saves",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 5
+    },
+    "calling": {},
+    "tracking": {
+      "event": "",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

@@ -1,0 +1,81 @@
+{
+  "_id": "1yA1kk8dw2AB2tHJ",
+  "_key": "!items!1yA1kk8dw2AB2tHJ",
+  "name": "Shed Skin",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p>While transformed, you can use a Bonus Action to end one effect on yourself that is grappling or restraining you or reducing your speed. Once you use this feature, you cannot do so again until that transformation ends.</p>",
+      "chat": ""
+    },
+    "identifier": "shed-skin",
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "source": {},
+    "activities": {
+      "RSrG1txI6fD7BcmO": {
+        "_id": "RSrG1txI6fD7BcmO",
+        "type": "utility",
+        "name": "Shed Skin",
+        "img": null,
+        "sort": 0,
+        "activation": {
+          "type": "bonus",
+          "value": null,
+          "override": false,
+          "condition": ""
+        },
+        "consumption": {
+          "scaling": {
+            "allowed": false
+          },
+          "spellSlot": false,
+          "targets": []
+        },
+        "description": {
+          "chatFlavor": ""
+        },
+        "duration": {
+          "units": "inst",
+          "concentration": false,
+          "override": false
+        },
+        "effects": [],
+        "range": {
+          "units": "self",
+          "override": false
+        },
+        "target": {
+          "template": {
+            "contiguous": false,
+            "units": "ft",
+            "type": ""
+          },
+          "affects": {
+            "choice": false,
+            "type": "",
+            "count": ""
+          },
+          "override": false,
+          "prompt": true
+        },
+        "uses": {
+          "spent": 0,
+          "recovery": [],
+          "max": ""
+        },
+        "flags": {},
+        "visibility": {
+          "level": {},
+          "requireAttunement": false,
+          "requireIdentification": false,
+          "requireMagic": false
+        }
+      }
+    }
+  },
+  "flags": {}
+}

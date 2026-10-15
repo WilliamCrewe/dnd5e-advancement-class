@@ -1,0 +1,27 @@
+{
+  "_id": "UF9L99sgWRKVJ8g6",
+  "_key": "!items!UF9L99sgWRKVJ8g6",
+  "name": "Mark of the Curse",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Hit 10 different enemy creatures with your Bite.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-s6-bite",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 10
+    },
+    "calling": {},
+    "tracking": {
+      "event": "attackHit:bite,attackHit:peck,attackHit:beak",
+      "uniqueTargets": true,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

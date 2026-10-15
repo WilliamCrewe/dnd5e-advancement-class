@@ -1,0 +1,27 @@
+{
+  "_id": "FZBhKOWit6DLrzrA",
+  "_key": "!items!FZBhKOWit6DLrzrA",
+  "name": "Snake: Venom in the Veins",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Affect 5 different enemy creatures with Venomous Bite.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-snake-s5",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 5
+    },
+    "calling": {},
+    "tracking": {
+      "event": "use:venomous-bite",
+      "uniqueTargets": true,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

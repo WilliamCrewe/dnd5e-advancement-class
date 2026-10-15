@@ -1,0 +1,156 @@
+{
+  "_id": "PJzVhXdR0EmvkYTw",
+  "_key": "!items!PJzVhXdR0EmvkYTw",
+  "name": "Therianthrope: Tiger",
+  "type": "advancement-classes.advancement-path",
+  "img": "icons/creatures/mammals/wolf-howl-moon.webp",
+  "system": {
+    "description": {
+      "value": "<p>The Tiger branch of the Therianthrope curse. Your key ability is Strength; while transformed your alignment becomes Neutral.</p>",
+      "chat": ""
+    },
+    "identifier": "therianthrope-tiger",
+    "classIdentifier": "therianthrope",
+    "advancement": {
+      "2ql9ByzLjrPlHDPH": {
+        "_id": "2ql9ByzLjrPlHDPH",
+        "type": "ScaleValue",
+        "level": 0,
+        "configuration": {
+          "identifier": "key-ability-floor",
+          "type": "number",
+          "scale": {
+            "1": {
+              "value": 14
+            },
+            "4": {
+              "value": 16
+            },
+            "7": {
+              "value": 18
+            },
+            "10": {
+              "value": 20
+            }
+          },
+          "distance": {
+            "units": ""
+          }
+        },
+        "value": {}
+      },
+      "lEyEaFoyKCPcTLwH": {
+        "_id": "lEyEaFoyKCPcTLwH",
+        "type": "ScaleValue",
+        "level": 0,
+        "configuration": {
+          "identifier": "stalker-prowl",
+          "type": "dice",
+          "scale": {
+            "7": {
+              "number": 2,
+              "faces": 8
+            },
+            "9": {
+              "number": 2,
+              "faces": 12
+            }
+          },
+          "distance": {
+            "units": ""
+          }
+        },
+        "value": {}
+      },
+      "nVjrDkVXDV5r9YPN": {
+        "_id": "nVjrDkVXDV5r9YPN",
+        "type": "ItemGrant",
+        "level": 3,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.3rMGVnAhaArREhix"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.wttcr6ELfCWqXGOf"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "IKljz4LauErt4pvP": {
+        "_id": "IKljz4LauErt4pvP",
+        "type": "ItemGrant",
+        "level": 5,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.dgb4rApmiwjTf7tR"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.R9CBZvD323JQG5fE"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "lb7rvLCBeujIBCRC": {
+        "_id": "lb7rvLCBeujIBCRC",
+        "type": "ItemGrant",
+        "level": 7,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.FsvdUI2xrYhXrnGo"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.vjitDIUqvMM3GF9T"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "fOo78AISp3J2TNhV": {
+        "_id": "fOo78AISp3J2TNhV",
+        "type": "ItemGrant",
+        "level": 9,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.uOW9lAiM05fjZFtW"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.kOq0kGTJnUMVNkVJ"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      }
+    },
+    "source": {}
+  },
+  "flags": {
+    "advancement-classes": {
+      "transform": {
+        "abilityFloor": {
+          "ability": "str",
+          "scale": "key-ability-floor"
+        },
+        "inject": [
+          {
+            "uuid": "Compendium.advancement-classes.advancement-classes.Item.tGLGCzImTRKZfs4U",
+            "minStage": 2
+          },
+          {
+            "uuid": "Compendium.advancement-classes.advancement-classes.Item.3rMGVnAhaArREhix",
+            "minStage": 3
+          }
+        ]
+      }
+    }
+  }
+}

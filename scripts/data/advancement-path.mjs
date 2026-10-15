@@ -19,7 +19,7 @@ export default class AdvancementPathData extends ItemDataModel.mixin(
   /* -------------------------------------------- */
 
   /** @override */
-  static LOCALIZATION_PREFIXES = ["ADVANCEMENT_CLASSES.PATH", "DND5E.SOURCE"];
+  static LOCALIZATION_PREFIXES = ["ADVANCEMENT_CLASSES.Path", "DND5E.SOURCE"];
 
   /* -------------------------------------------- */
 

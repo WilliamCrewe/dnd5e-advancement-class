@@ -1,0 +1,20 @@
+{
+  "_id": "m92PASwEFDnspPn1",
+  "_key": "!items!m92PASwEFDnspPn1",
+  "name": "Bestial Aspect — Shark",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p>While transformed, you manifest your animal's blood in the water. While transformed, you gain blindsight out to 30 feet while you are underwater.</p>",
+      "chat": ""
+    },
+    "identifier": "bestial-aspect-shark",
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "source": {}
+  },
+  "flags": {}
+}

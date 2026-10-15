@@ -1,0 +1,425 @@
+{
+  "_id": "HoAgfOUQ3rJ8FBfo",
+  "_key": "!actors!HoAgfOUQ3rJ8FBfo",
+  "name": "Bear Animal Form",
+  "type": "npc",
+  "img": "icons/creatures/mammals/bear-grizzly-brown.webp",
+  "system": {
+    "identifier": "therianthrope-bear-animal",
+    "abilities": {
+      "str": {
+        "value": 16,
+        "proficient": 0
+      },
+      "dex": {
+        "value": 14,
+        "proficient": 0
+      },
+      "con": {
+        "value": 14,
+        "proficient": 0
+      },
+      "int": {
+        "value": 3,
+        "proficient": 0
+      },
+      "wis": {
+        "value": 12,
+        "proficient": 0
+      },
+      "cha": {
+        "value": 6,
+        "proficient": 0
+      }
+    },
+    "attributes": {
+      "ac": {
+        "flat": 15,
+        "calc": "flat"
+      },
+      "hp": {
+        "value": 30,
+        "max": 30,
+        "temp": null,
+        "tempmax": null
+      },
+      "init": {
+        "ability": "",
+        "roll": {},
+        "bonus": ""
+      },
+      "movement": {
+        "units": "ft",
+        "hover": false,
+        "walk": 40,
+        "climb": 30
+      },
+      "senses": {
+        "darkvision": 60,
+        "blindsight": null,
+        "tremorsense": null,
+        "truesight": null,
+        "units": "ft",
+        "special": ""
+      }
+    },
+    "details": {
+      "alignment": "Chaotic Good",
+      "type": {
+        "value": "beast",
+        "subtype": "therianthrope"
+      },
+      "cr": 1,
+      "biography": {
+        "value": "<p>The animal form of a Therianthrope of the Bear branch.</p>",
+        "public": ""
+      }
+    },
+    "traits": {
+      "size": "lg",
+      "di": {
+        "value": [],
+        "bypasses": []
+      },
+      "dr": {
+        "value": [],
+        "bypasses": []
+      },
+      "dv": {
+        "value": [],
+        "bypasses": []
+      },
+      "dm": {
+        "amount": {},
+        "bypasses": []
+      },
+      "ci": {
+        "value": [],
+        "bypasses": []
+      },
+      "languages": {
+        "value": [],
+        "custom": "",
+        "communication": {}
+      }
+    },
+    "bonuses": {
+      "mwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rwak": {
+        "attack": "",
+        "damage": ""
+      },
+      "msak": {
+        "attack": "",
+        "damage": ""
+      },
+      "rsak": {
+        "attack": "",
+        "damage": ""
+      }
+    },
+    "source": {}
+  },
+  "items": [
+    {
+      "_id": "zl9jqtFIGNUoqel6",
+      "_key": "!actors.items!HoAgfOUQ3rJ8FBfo.zl9jqtFIGNUoqel6",
+      "name": "Bite",
+      "type": "weapon",
+      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "system": {
+        "identifier": "bite",
+        "type": {
+          "value": "natural",
+          "baseItem": ""
+        },
+        "activities": {
+          "Xpi8g7jf0d80PxDz": {
+            "_id": "Xpi8g7jf0d80PxDz",
+            "type": "attack",
+            "name": "bear-animal-bite",
+            "img": null,
+            "sort": 0,
+            "activation": {
+              "type": "action",
+              "value": null,
+              "override": false,
+              "condition": ""
+            },
+            "consumption": {
+              "scaling": {
+                "allowed": false
+              },
+              "spellSlot": false,
+              "targets": []
+            },
+            "description": {
+              "chatFlavor": ""
+            },
+            "duration": {
+              "units": "inst",
+              "concentration": false,
+              "override": false
+            },
+            "effects": [],
+            "range": {
+              "units": "self",
+              "override": false
+            },
+            "target": {
+              "template": {
+                "contiguous": false,
+                "units": "ft",
+                "type": ""
+              },
+              "affects": {
+                "choice": false,
+                "type": "",
+                "count": ""
+              },
+              "override": false,
+              "prompt": true
+            },
+            "uses": {
+              "spent": 0,
+              "recovery": [],
+              "max": ""
+            },
+            "flags": {},
+            "visibility": {
+              "level": {},
+              "requireAttunement": false,
+              "requireIdentification": false,
+              "requireMagic": false
+            },
+            "attack": {
+              "critical": {
+                "threshold": null
+              },
+              "flat": false,
+              "type": {
+                "value": "",
+                "classification": ""
+              },
+              "ability": "str",
+              "bonus": ""
+            },
+            "damage": {
+              "critical": {
+                "bonus": ""
+              },
+              "includeBase": true,
+              "parts": []
+            }
+          }
+        },
+        "uses": {
+          "spent": 0,
+          "recovery": [],
+          "max": ""
+        },
+        "description": {
+          "value": "",
+          "chat": ""
+        },
+        "source": {},
+        "properties": [],
+        "identified": true,
+        "unidentified": {
+          "name": "Unidentified Weapon",
+          "description": ""
+        },
+        "mastery": "",
+        "range": {
+          "units": "ft",
+          "value": null,
+          "long": null,
+          "reach": null
+        },
+        "damage": {
+          "base": {
+            "number": 1,
+            "denomination": 8,
+            "bonus": "",
+            "types": [
+              "piercing"
+            ],
+            "custom": {
+              "enabled": false
+            }
+          },
+          "versatile": {
+            "number": null,
+            "denomination": null,
+            "types": [],
+            "custom": {
+              "enabled": false
+            }
+          }
+        },
+        "quantity": 1
+      },
+      "flags": {}
+    },
+    {
+      "_id": "CsoD0EvnGdH5iS5A",
+      "_key": "!actors.items!HoAgfOUQ3rJ8FBfo.CsoD0EvnGdH5iS5A",
+      "name": "Claws",
+      "type": "weapon",
+      "img": "icons/weapons/claws/claw-bear-paw-swipe-red.webp",
+      "system": {
+        "identifier": "claws",
+        "type": {
+          "value": "natural",
+          "baseItem": ""
+        },
+        "activities": {
+          "blfc04iTXhOIms9d": {
+            "_id": "blfc04iTXhOIms9d",
+            "type": "attack",
+            "name": "bear-animal-claws",
+            "img": null,
+            "sort": 0,
+            "activation": {
+              "type": "action",
+              "value": null,
+              "override": false,
+              "condition": ""
+            },
+            "consumption": {
+              "scaling": {
+                "allowed": false
+              },
+              "spellSlot": false,
+              "targets": []
+            },
+            "description": {
+              "chatFlavor": ""
+            },
+            "duration": {
+              "units": "inst",
+              "concentration": false,
+              "override": false
+            },
+            "effects": [],
+            "range": {
+              "units": "self",
+              "override": false
+            },
+            "target": {
+              "template": {
+                "contiguous": false,
+                "units": "ft",
+                "type": ""
+              },
+              "affects": {
+                "choice": false,
+                "type": "",
+                "count": ""
+              },
+              "override": false,
+              "prompt": true
+            },
+            "uses": {
+              "spent": 0,
+              "recovery": [],
+              "max": ""
+            },
+            "flags": {},
+            "visibility": {
+              "level": {},
+              "requireAttunement": false,
+              "requireIdentification": false,
+              "requireMagic": false
+            },
+            "attack": {
+              "critical": {
+                "threshold": null
+              },
+              "flat": false,
+              "type": {
+                "value": "",
+                "classification": ""
+              },
+              "ability": "str",
+              "bonus": ""
+            },
+            "damage": {
+              "critical": {
+                "bonus": ""
+              },
+              "includeBase": true,
+              "parts": []
+            }
+          }
+        },
+        "uses": {
+          "spent": 0,
+          "recovery": [],
+          "max": ""
+        },
+        "description": {
+          "value": "",
+          "chat": ""
+        },
+        "source": {},
+        "properties": [],
+        "identified": true,
+        "unidentified": {
+          "name": "Unidentified Weapon",
+          "description": ""
+        },
+        "mastery": "",
+        "range": {
+          "units": "ft",
+          "value": null,
+          "long": null,
+          "reach": null
+        },
+        "damage": {
+          "base": {
+            "number": 2,
+            "denomination": 4,
+            "bonus": "",
+            "types": [
+              "slashing"
+            ],
+            "custom": {
+              "enabled": false
+            }
+          },
+          "versatile": {
+            "number": null,
+            "denomination": null,
+            "types": [],
+            "custom": {
+              "enabled": false
+            }
+          }
+        },
+        "quantity": 1
+      },
+      "flags": {}
+    }
+  ],
+  "effects": [],
+  "flags": {
+    "advancement-classes": {
+      "formAC": "12 + @abilities.con.mod"
+    }
+  },
+  "prototypeToken": {
+    "name": "Bear Animal Form",
+    "actorLink": true,
+    "sight": {
+      "enabled": true
+    },
+    "disposition": -1,
+    "texture": {
+      "src": "icons/creatures/mammals/bear-grizzly-brown.webp"
+    }
+  }
+}

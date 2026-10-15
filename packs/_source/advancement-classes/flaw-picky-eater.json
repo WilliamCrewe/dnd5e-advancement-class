@@ -1,0 +1,20 @@
+{
+  "_id": "n1nxlOGFKOSIHvSz",
+  "_key": "!items!n1nxlOGFKOSIHvSz",
+  "name": "Bestial Flaw: Picky Eater",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p><strong>Picky Eater.</strong> I will only eat raw meat; the fresher, the better.</p><p><em>A Bestial Flaw is a roleplaying compulsion granted by the curse; your GM adjudicates its effects.</em></p>",
+      "chat": ""
+    },
+    "identifier": "flaw-picky-eater",
+    "type": {
+      "value": "feat",
+      "subtype": ""
+    },
+    "source": {}
+  },
+  "flags": {}
+}

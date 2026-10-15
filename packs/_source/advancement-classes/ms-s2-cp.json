@@ -1,0 +1,27 @@
+{
+  "_id": "a8zDBKxkXpeus65C",
+  "_key": "!items!a8zDBKxkXpeus65C",
+  "name": "Exert the Curse",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Spend 10 Control Points.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-s2-cp",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 10
+    },
+    "calling": {},
+    "tracking": {
+      "event": "consume:control-points",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

@@ -1,0 +1,27 @@
+{
+  "_id": "dwKa2FrbtGCfqTP7",
+  "_key": "!items!dwKa2FrbtGCfqTP7",
+  "name": "Bear: Bear's Maul",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Deal an extra 30 damage to enemies with Maul.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-bear-s9",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 30
+    },
+    "calling": {},
+    "tracking": {
+      "event": "damage:maul",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

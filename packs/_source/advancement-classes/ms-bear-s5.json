@@ -1,0 +1,27 @@
+{
+  "_id": "9MSH3NLaYPiKQXNq",
+  "_key": "!items!9MSH3NLaYPiKQXNq",
+  "name": "Bear: Crushing Embrace",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Grapple 5 different enemies.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-bear-s5",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 5
+    },
+    "calling": {},
+    "tracking": {
+      "event": "",
+      "uniqueTargets": true,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

@@ -1,0 +1,53 @@
+{
+  "_id": "H6PyURf0kSlL6rMR",
+  "_key": "!items!H6PyURf0kSlL6rMR",
+  "name": "Thick Hide",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p>Your maximum number of Control Points is reduced by 1. Add half your proficiency bonus (rounded down) to your Armor Class.</p><p><em>In addition, when you would make a saving throw against your Unwilling Transformation feature, you can choose to roll with Disadvantage. If this is the second Major Embrace gift you have taken, you can instead choose to fail the save.</em></p>",
+      "chat": ""
+    },
+    "identifier": "gift-thick-hide",
+    "type": {
+      "value": "supernaturalGift",
+      "subtype": "blessing"
+    },
+    "source": {},
+    "activities": {}
+  },
+  "flags": {
+    "advancement-classes": {
+      "gift": {
+        "side": "embrace",
+        "tier": "major"
+      },
+      "cpDelta": -1
+    }
+  },
+  "effects": [
+    {
+      "_id": "1glV7ngebWlxBLsa",
+      "name": "Thick Hide",
+      "icon": "icons/magic/death/undead-ghost-screaming-teal.webp",
+      "changes": [
+        {
+          "key": "system.attributes.ac.bonus",
+          "mode": 2,
+          "value": "floor(@prof / 2)"
+        }
+      ],
+      "type": "base",
+      "transfer": true,
+      "disabled": false,
+      "duration": {},
+      "origin": null,
+      "tint": "#ffffff",
+      "description": "Your maximum number of Control Points is reduced by 1. Add half your proficiency bonus (rounded down) to your Armor Class.",
+      "statuses": [],
+      "flags": {},
+      "_key": "!items.effects!H6PyURf0kSlL6rMR.1glV7ngebWlxBLsa"
+    }
+  ]
+}

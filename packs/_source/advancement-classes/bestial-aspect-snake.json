@@ -1,0 +1,20 @@
+{
+  "_id": "m6PwsafmNUCfrsWV",
+  "_key": "!items!m6PwsafmNUCfrsWV",
+  "name": "Bestial Aspect — Snake",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p>While transformed, you manifest your animal's heat-sensing pits. While transformed, you gain blindsight out to 10 feet.</p>",
+      "chat": ""
+    },
+    "identifier": "bestial-aspect-snake",
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "source": {}
+  },
+  "flags": {}
+}

@@ -1,0 +1,164 @@
+{
+  "_id": "lnbp5Qcl7CUpQz9o",
+  "_key": "!items!lnbp5Qcl7CUpQz9o",
+  "name": "Therianthrope: Snake",
+  "type": "advancement-classes.advancement-path",
+  "img": "icons/creatures/mammals/wolf-howl-moon.webp",
+  "system": {
+    "description": {
+      "value": "<p>The Snake branch of the Therianthrope curse. Your key ability is Dexterity; while transformed your alignment becomes Lawful Evil.</p>",
+      "chat": ""
+    },
+    "identifier": "therianthrope-snake",
+    "classIdentifier": "therianthrope",
+    "advancement": {
+      "lXReV6HHRxNncYjK": {
+        "_id": "lXReV6HHRxNncYjK",
+        "type": "ScaleValue",
+        "level": 0,
+        "configuration": {
+          "identifier": "key-ability-floor",
+          "type": "number",
+          "scale": {
+            "1": {
+              "value": 14
+            },
+            "4": {
+              "value": 16
+            },
+            "7": {
+              "value": 18
+            },
+            "10": {
+              "value": 20
+            }
+          },
+          "distance": {
+            "units": ""
+          }
+        },
+        "value": {}
+      },
+      "yN4H7qaDjkX6Mnlx": {
+        "_id": "yN4H7qaDjkX6Mnlx",
+        "type": "ScaleValue",
+        "level": 0,
+        "configuration": {
+          "identifier": "snake-venom",
+          "type": "dice",
+          "scale": {
+            "1": {
+              "number": 1,
+              "faces": 4
+            },
+            "5": {
+              "number": 2,
+              "faces": 4
+            },
+            "7": {
+              "number": 2,
+              "faces": 6
+            },
+            "9": {
+              "number": 2,
+              "faces": 8
+            }
+          },
+          "distance": {
+            "units": ""
+          }
+        },
+        "value": {}
+      },
+      "xrUMANTYEAiqrK6W": {
+        "_id": "xrUMANTYEAiqrK6W",
+        "type": "ItemGrant",
+        "level": 3,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.m6PwsafmNUCfrsWV"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.Fw9LPl696f14hUZn"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "PQ3CbcROMUH8X5HH": {
+        "_id": "PQ3CbcROMUH8X5HH",
+        "type": "ItemGrant",
+        "level": 5,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.aLVlCL9AOTwC4ZsQ"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.FZBhKOWit6DLrzrA"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "NITGygqB010I4RKK": {
+        "_id": "NITGygqB010I4RKK",
+        "type": "ItemGrant",
+        "level": 7,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.1yA1kk8dw2AB2tHJ"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.YvqiTnAHKMV1EVp9"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "yYmol7L8IM8Cmt1N": {
+        "_id": "yYmol7L8IM8Cmt1N",
+        "type": "ItemGrant",
+        "level": 9,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.2nEB80DweumZ8x00"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.pEp5u9Iblp1cEgJf"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      }
+    },
+    "source": {}
+  },
+  "flags": {
+    "advancement-classes": {
+      "transform": {
+        "abilityFloor": {
+          "ability": "dex",
+          "scale": "key-ability-floor"
+        },
+        "inject": [
+          {
+            "uuid": "Compendium.advancement-classes.advancement-classes.Item.tGLGCzImTRKZfs4U",
+            "minStage": 2
+          },
+          {
+            "uuid": "Compendium.advancement-classes.advancement-classes.Item.m6PwsafmNUCfrsWV",
+            "minStage": 3
+          }
+        ]
+      }
+    }
+  }
+}

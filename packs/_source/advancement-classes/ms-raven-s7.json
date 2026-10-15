@@ -1,0 +1,27 @@
+{
+  "_id": "tM9lmyX9an5x5FD7",
+  "_key": "!items!tM9lmyX9an5x5FD7",
+  "name": "Raven: Winged Death",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Perform 10 Flyby Strikes.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-raven-s7",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 10
+    },
+    "calling": {},
+    "tracking": {
+      "event": "use:flyby",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

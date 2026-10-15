@@ -1,0 +1,27 @@
+{
+  "_id": "kOq0kGTJnUMVNkVJ",
+  "_key": "!items!kOq0kGTJnUMVNkVJ",
+  "name": "Tiger: Apex Executioner",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Score 5 critical hits against enemy creatures while transformed.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-tiger-s9",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 5
+    },
+    "calling": {},
+    "tracking": {
+      "event": "",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

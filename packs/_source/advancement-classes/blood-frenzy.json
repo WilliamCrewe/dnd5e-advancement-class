@@ -1,0 +1,21 @@
+{
+  "_id": "cQfRPdTQ0N0EbdB2",
+  "_key": "!items!cQfRPdTQ0N0EbdB2",
+  "name": "Blood Frenzy",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p>While transformed, you have advantage on attack rolls against creatures that are below their hit point maximum.</p>",
+      "chat": ""
+    },
+    "identifier": "blood-frenzy",
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "source": {},
+    "activities": {}
+  },
+  "flags": {}
+}

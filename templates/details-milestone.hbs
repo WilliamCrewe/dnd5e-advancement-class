@@ -21,4 +21,54 @@
         </div>
         <p class="hint">{{ localize "ADVANCEMENT_CLASSES.Milestone.Type.CounterHint" }}</p>
     </div>
+
+    {{!-- Auto-Tracking --}}
+    <div class="form-group">
+        <label>{{ localize "ADVANCEMENT_CLASSES.Milestone.Tracking.Event" }}</label>
+        <div class="form-fields">
+            {{ formInput fields.tracking.fields.event value=source.tracking.event rootId=partId }}
+        </div>
+        <p class="hint">{{ localize "ADVANCEMENT_CLASSES.Milestone.Tracking.EventHint" }}</p>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "ADVANCEMENT_CLASSES.Milestone.Tracking.Unique" }}</label>
+        <div class="form-fields">
+            {{ formInput fields.tracking.fields.uniqueTargets value=source.tracking.uniqueTargets rootId=partId }}
+        </div>
+        <p class="hint">{{ localize "ADVANCEMENT_CLASSES.Milestone.Tracking.UniqueHint" }}</p>
+    </div>
+
+    {{!-- Calling configuration (milestoneType: calling) --}}
+    <div class="form-group">
+        <label>{{ localize "ADVANCEMENT_CLASSES.Milestone.Calling.ChoiceSet" }}</label>
+        <div class="form-fields">
+            {{ formInput fields.calling.fields.choiceSet value=source.calling.choiceSet rootId=partId }}
+        </div>
+        <p class="hint">{{ localize "ADVANCEMENT_CLASSES.Milestone.Calling.ChoiceSetHint" }}</p>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "ADVANCEMENT_CLASSES.Milestone.Calling.ChoiceKey" }}</label>
+        <div class="form-fields">
+            {{ formInput fields.calling.fields.choiceKey value=source.calling.choiceKey rootId=partId }}
+        </div>
+        <p class="hint">{{ localize "ADVANCEMENT_CLASSES.Milestone.Calling.ChoiceKeyHint" }}</p>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "ADVANCEMENT_CLASSES.Milestone.Calling.GiftSource" }}</label>
+        <div class="form-fields">
+            {{ formInput fields.calling.fields.giftSource value=source.calling.giftSource rootId=partId }}
+        </div>
+        <p class="hint">{{ localize "ADVANCEMENT_CLASSES.Milestone.Calling.GiftSourceHint" }}</p>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "ADVANCEMENT_CLASSES.Milestone.Calling.GiftTiers" }}</label>
+        <div class="form-fields">
+            {{#each giftTiers}}
+            <label class="checkbox">
+                <input type="checkbox" name="system.calling.giftTiers" value="{{ value }}" {{#if checked}}checked{{/if}}>
+                {{ label }}
+            </label>
+            {{/each}}
+        </div>
+    </div>
 </fieldset>

@@ -22,7 +22,7 @@ export default class AdvancementClassData extends ItemDataModel.mixin(
   /* -------------------------------------------- */
 
   /** @override */
-  static LOCALIZATION_PREFIXES = ["ADVANCEMENT_CLASSES.CLASS", "DND5E.SOURCE"];
+  static LOCALIZATION_PREFIXES = ["ADVANCEMENT_CLASSES.Class", "DND5E.SOURCE"];
 
   /* -------------------------------------------- */
 

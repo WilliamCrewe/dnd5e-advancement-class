@@ -1,0 +1,27 @@
+{
+  "_id": "ZFWkVYjLuyTGHwuS",
+  "_key": "!items!ZFWkVYjLuyTGHwuS",
+  "name": "Fox: Nine Lives",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Transform using Ninefold Wiles 10 times.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-fox-s9",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 10
+    },
+    "calling": {},
+    "tracking": {
+      "event": "use:ninefold-wiles",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

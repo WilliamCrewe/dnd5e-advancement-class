@@ -1,0 +1,27 @@
+{
+  "_id": "IQvmSBfZ7JpnnYP5",
+  "_key": "!items!IQvmSBfZ7JpnnYP5",
+  "name": "Bear: Ursine Instincts",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Succeed on 10 Perception or Survival checks.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-bear-s3",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 10
+    },
+    "calling": {},
+    "tracking": {
+      "event": "skillSuccess:prc,skillSuccess:sur",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

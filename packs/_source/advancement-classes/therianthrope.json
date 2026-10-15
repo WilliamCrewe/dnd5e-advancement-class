@@ -1,0 +1,369 @@
+{
+  "_id": "YdhHVJCtvpxopGeT",
+  "_key": "!items!YdhHVJCtvpxopGeT",
+  "name": "Therianthrope",
+  "type": "advancement-classes.advancement-class",
+  "img": "icons/creatures/mammals/wolf-howl-moon.webp",
+  "system": {
+    "description": {
+      "value": "<p>A Therianthrope is a creature cursed to transform into beast and hybrid forms — a werecreature whose condition spreads through its bite during the light of the Planar Tear. Therianthrope Stages are tracked independently of class level and do not increase character level or proficiency bonus.</p><p>See the @UUID[Compendium.advancement-classes.advancement-classes-journals.JournalEntry.On3AKlmYmTXKaq8h]{Therianthrope} journal for the full class write-up.</p>",
+      "chat": ""
+    },
+    "identifier": "therianthrope",
+    "levels": 1,
+    "hd": {
+      "additional": "0",
+      "denomination": "d6",
+      "spent": 0
+    },
+    "stageNames": {
+      "1": "Afflicted",
+      "2": "Savage",
+      "3": "Feral",
+      "4": "Primal",
+      "5": "Adapted",
+      "6": "Awakened",
+      "7": "Packborn",
+      "8": "Alpha",
+      "9": "Dire",
+      "10": "Apex"
+    },
+    "journal": "Compendium.advancement-classes.advancement-classes-journals.JournalEntry.On3AKlmYmTXKaq8h.JournalEntryPage.Zq5WfCQqrI2bbqAg",
+    "advancement": {
+      "tRGcz1dh0LjcTXeQ": {
+        "_id": "tRGcz1dh0LjcTXeQ",
+        "type": "ItemGrant",
+        "level": 1,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.J9OFWlo5WmbOTluk"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.1gsHLBlIv5s1LjTl"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.OiDSwprtVBHIMzHi"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.LFQs8FqHARA6k9DH"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "nCAwfPLOUcltWjdo": {
+        "_id": "nCAwfPLOUcltWjdo",
+        "type": "ItemChoice",
+        "level": 1,
+        "configuration": {
+          "allowDrops": false,
+          "choices": {
+            "1": {
+              "count": 1
+            }
+          },
+          "pool": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.pNplPH8Kr3eGwoOO"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.cNye5FGLPy2yqpm7"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.qvg5AjoZNy6zUnUQ"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.K21c9zZhcTHS3H6Z"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.hHEYBrFtjQlyWWWR"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.Gc9QSJ4lNAREEV8q"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.L1fBE2n2bJOq49CX"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.FB6IOmmsQE1GIj6Z"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.n1nxlOGFKOSIHvSz"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.QYEJu3A51FGu22vk"
+            }
+          ],
+          "restriction": {
+            "type": "feat"
+          },
+          "type": "feat",
+          "sorting": "a"
+        },
+        "value": {}
+      },
+      "gXyT6Qp9SWMhGhTX": {
+        "_id": "gXyT6Qp9SWMhGhTX",
+        "type": "AdvancementPath",
+        "level": 1,
+        "configuration": {},
+        "value": {}
+      },
+      "T99jyYLvfAPSOvGF": {
+        "_id": "T99jyYLvfAPSOvGF",
+        "type": "ItemGrant",
+        "level": 2,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.puj4EKeCgVkqrzeN"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.Zn9Bp5xsyFmSYj8d"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.tGLGCzImTRKZfs4U"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.a8zDBKxkXpeus65C"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.SDHM28YaxurA4xKr"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.EfTdGl4r9WGDBaB5"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.IhUdibEjAgOxB6nH"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "KAE7sNDYbDVbx42Q": {
+        "_id": "KAE7sNDYbDVbx42Q",
+        "type": "ItemGrant",
+        "level": 3,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.NriK4aNd6Yh6IWd9"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.OREC8O2WHzIqN22A"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "QyEepZgWqsVz3t6W": {
+        "_id": "QyEepZgWqsVz3t6W",
+        "type": "ItemGrant",
+        "level": 4,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.JNrVBy5ggAjWcM4A"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.NAAZCgBsp6FnlSlN"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.EWNgkFtUAoFV7izJ"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.mlXveAdRCkfJfIDh"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.DefzhVi8jpX9fb7C"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.rNzSu3yLcGBFPdR1"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "nQSYNmamtVbmaKRr": {
+        "_id": "nQSYNmamtVbmaKRr",
+        "type": "ItemGrant",
+        "level": 5,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.94z6zb70hNwOWmg3"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "BPDda4URInK87xII": {
+        "_id": "BPDda4URInK87xII",
+        "type": "ItemGrant",
+        "level": 6,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.UF9L99sgWRKVJ8g6"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.jekuxkuZ6VE7bCke"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.xbbXCkPvuKVVSP0H"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.6pr85qu1B5KoywA4"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "XaMcwvdHEMrZyXkL": {
+        "_id": "XaMcwvdHEMrZyXkL",
+        "type": "ItemGrant",
+        "level": 7,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.8TebQhSaFJ5DTqel"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "zzzHNoSPcEZa0kj5": {
+        "_id": "zzzHNoSPcEZa0kj5",
+        "type": "ItemGrant",
+        "level": 8,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.hAw9uJ52641C35yY"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.k0dBSPm554qNtCni"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.yyoelnt3K9NqBz2e"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.0QGEfhJpPA84xnc6"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.cMiJ0bTt9g2I3BES"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "yBtzyRylrIpGpX58": {
+        "_id": "yBtzyRylrIpGpX58",
+        "type": "ItemGrant",
+        "level": 9,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.8Td7S8QQUehTHu10"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "foiULHhCEE1CilBT": {
+        "_id": "foiULHhCEE1CilBT",
+        "type": "ItemGrant",
+        "level": 10,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.JHwhRqI4H37riOPC"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.AAGoyhzotAFWcKhK"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "jueVeNGyxv5ikebg": {
+        "_id": "jueVeNGyxv5ikebg",
+        "type": "ScaleValue",
+        "level": 0,
+        "configuration": {
+          "identifier": "control-points",
+          "type": "number",
+          "scale": {
+            "2": {
+              "value": 1
+            },
+            "4": {
+              "value": 2
+            },
+            "6": {
+              "value": 3
+            },
+            "8": {
+              "value": 4
+            },
+            "10": {
+              "value": 5
+            }
+          },
+          "distance": {
+            "units": ""
+          }
+        },
+        "value": {}
+      },
+      "YbYblq2Ge8oiLQRD": {
+        "_id": "YbYblq2Ge8oiLQRD",
+        "type": "ScaleValue",
+        "level": 0,
+        "configuration": {
+          "identifier": "wild-regen",
+          "type": "dice",
+          "scale": {
+            "2": {
+              "number": 1,
+              "faces": 4
+            },
+            "4": {
+              "number": 1,
+              "faces": 6
+            },
+            "6": {
+              "number": 1,
+              "faces": 8
+            },
+            "8": {
+              "number": 1,
+              "faces": 10
+            },
+            "10": {
+              "number": 2,
+              "faces": 6
+            }
+          },
+          "distance": {
+            "units": ""
+          }
+        },
+        "value": {}
+      }
+    },
+    "source": {}
+  },
+  "flags": {}
+}

@@ -1,0 +1,27 @@
+{
+  "_id": "8Td7S8QQUehTHu10",
+  "_key": "!items!8Td7S8QQUehTHu10",
+  "name": "Tamed Terror",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>End an Unwilling Transformation 5 times.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-s9-end",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 5
+    },
+    "calling": {},
+    "tracking": {
+      "event": "",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

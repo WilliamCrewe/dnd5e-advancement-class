@@ -1,0 +1,29 @@
+{
+  "_id": "rSZoWU87a2wpU6dT",
+  "_key": "!items!rSZoWU87a2wpU6dT",
+  "name": "Ravenous Regeneration",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p>Your maximum number of Control Points is reduced by 1. Wild Regeneration heals an extra amount equal to half your proficiency bonus (rounded down).</p>",
+      "chat": ""
+    },
+    "identifier": "gift-ravenous-regeneration",
+    "type": {
+      "value": "supernaturalGift",
+      "subtype": "blessing"
+    },
+    "source": {},
+    "activities": {}
+  },
+  "flags": {
+    "advancement-classes": {
+      "gift": {
+        "side": "embrace",
+        "tier": "minor"
+      },
+      "cpDelta": -1
+    }
+  }
+}

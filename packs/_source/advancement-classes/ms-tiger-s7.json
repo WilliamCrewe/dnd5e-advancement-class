@@ -1,0 +1,27 @@
+{
+  "_id": "vjitDIUqvMM3GF9T",
+  "_key": "!items!vjitDIUqvMM3GF9T",
+  "name": "Tiger: Ambush Predator",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Deal 30 damage with Stalker's Prowl.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-tiger-s7",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 30
+    },
+    "calling": {},
+    "tracking": {
+      "event": "damage:stalkers-prowl",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

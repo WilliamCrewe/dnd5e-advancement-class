@@ -1,0 +1,53 @@
+{
+  "_id": "EwcHnHbNCfl0zNN4",
+  "_key": "!items!EwcHnHbNCfl0zNN4",
+  "name": "Cursed Fury",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p>Your maximum number of Control Points is reduced by 1. Add half your proficiency bonus (rounded down) to attack rolls with Natural Weapons.</p><p><em>In addition, when you would make a saving throw against your Unwilling Transformation feature, you can choose to roll with Disadvantage. If this is the second Major Embrace gift you have taken, you can instead choose to fail the save.</em></p>",
+      "chat": ""
+    },
+    "identifier": "gift-cursed-fury",
+    "type": {
+      "value": "supernaturalGift",
+      "subtype": "blessing"
+    },
+    "source": {},
+    "activities": {}
+  },
+  "flags": {
+    "advancement-classes": {
+      "gift": {
+        "side": "embrace",
+        "tier": "major"
+      },
+      "cpDelta": -1
+    }
+  },
+  "effects": [
+    {
+      "_id": "pmcqg4eNyM1AhWvS",
+      "name": "Cursed Fury",
+      "icon": "icons/magic/death/undead-ghost-screaming-teal.webp",
+      "changes": [
+        {
+          "key": "system.bonuses.mwak.attack",
+          "mode": 2,
+          "value": "floor(@prof / 2)"
+        }
+      ],
+      "type": "base",
+      "transfer": true,
+      "disabled": false,
+      "duration": {},
+      "origin": null,
+      "tint": "#ffffff",
+      "description": "Your maximum number of Control Points is reduced by 1. Add half your proficiency bonus (rounded down) to attack rolls with Natural Weapons.",
+      "statuses": [],
+      "flags": {},
+      "_key": "!items.effects!EwcHnHbNCfl0zNN4.pmcqg4eNyM1AhWvS"
+    }
+  ]
+}

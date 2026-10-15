@@ -1,5 +1,6 @@
 import AdvancementClassManager from "../applications/advancement-class-manager.mjs";
 import { ACTOR_FLAG, CLASS_TYPE, MILESTONE_TYPE, MODULE_ID, SETTING_ENABLED, SETTING_MAX_STAGE } from "../constants.mjs";
+import { commitCalling } from "./calling.mjs";
 
 const { renderTemplate } = foundry.applications.handlebars;
 const PILLS_TEMPLATE = `modules/${MODULE_ID}/templates/advancement-classes.hbs`;
@@ -159,6 +160,7 @@ function registerSheetActions() {
     async advancementClassesMilestoneComplete(event, target) {
       const item = this.actor.items.get(target.closest("[data-item-id]")?.dataset.itemId);
       if ( item?.type !== MILESTONE_TYPE ) return;
+      if ( item.system.milestoneType === "calling" ) return commitCalling(item);
       await item.deleteDialog({ sheet: this });
     },
     async advancementClassesOpenJournal(event, target) {

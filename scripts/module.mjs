@@ -8,6 +8,9 @@ import AdvancementClassData from "./data/advancement-class.mjs";
 import AdvancementMilestoneData from "./data/advancement-milestone.mjs";
 import AdvancementPathData from "./data/advancement-path.mjs";
 import { applyPatches } from "./patches.mjs";
+import { registerTracking, track } from "./tracking.mjs";
+import { registerTransformInjection } from "./transform.mjs";
+import { commitCalling } from "./ui/calling.mjs";
 import { registerSheetUI } from "./ui/features-tab.mjs";
 import { registerDocumentHooks } from "./ui/stage-change.mjs";
 
@@ -64,6 +67,8 @@ Hooks.once("init", () => {
   applyPatches();
   registerSheetUI();
   registerDocumentHooks();
+  registerTracking();
+  registerTransformInjection();
 
   // Public API
   game.advancementClasses = {
@@ -72,7 +77,17 @@ Hooks.once("init", () => {
      * Complete (remove) a milestone, bypassing mode restrictions.
      * @param {Item5e} item
      */
-    completeMilestone: item => item.delete({ [MODULE_ID]: { bypass: true } })
+    completeMilestone: item => item.delete({ [MODULE_ID]: { bypass: true } }),
+    /**
+     * Begin the commitment flow for a Calling milestone.
+     * @param {Item5e} item
+     */
+    commitCalling,
+    /**
+     * Emit a milestone tracking event. See scripts/tracking.mjs for the
+     * event vocabulary.
+     */
+    track
   };
 
   // Handlebars partials (details tabs for the custom item sheets)

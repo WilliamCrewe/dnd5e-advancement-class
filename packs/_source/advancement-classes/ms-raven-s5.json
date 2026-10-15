@@ -1,0 +1,27 @@
+{
+  "_id": "tsiyBBRM5Onfccs6",
+  "_key": "!items!tsiyBBRM5Onfccs6",
+  "name": "Raven: Doomed Gaze",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Have 3 different enemy creatures fail a saving throw against your DC while affected by Ominous Gaze.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-raven-s5",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 3
+    },
+    "calling": {},
+    "tracking": {
+      "event": "",
+      "uniqueTargets": true,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

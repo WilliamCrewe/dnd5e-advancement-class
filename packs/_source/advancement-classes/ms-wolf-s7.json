@@ -1,0 +1,27 @@
+{
+  "_id": "vfAptwwoUZ9fijEx",
+  "_key": "!items!vfAptwwoUZ9fijEx",
+  "name": "Wolf: Pack Hunter",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Hit 15 different enemies with attacks benefiting from Pack Tactics.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-wolf-s7",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 15
+    },
+    "calling": {},
+    "tracking": {
+      "event": "",
+      "uniqueTargets": true,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

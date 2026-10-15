@@ -1,0 +1,20 @@
+{
+  "_id": "fLQlyfTD0fj9CZSh",
+  "_key": "!items!fLQlyfTD0fj9CZSh",
+  "name": "Bestial Aspect — Raven",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p>While transformed, you manifest your animal's mimicry. While transformed, you can mimic simple sounds and voices you have heard; a creature can tell the sound is imitation with a successful Wisdom (Insight) check against your Therianthrope DC.</p>",
+      "chat": ""
+    },
+    "identifier": "bestial-aspect-raven",
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "source": {}
+  },
+  "flags": {}
+}

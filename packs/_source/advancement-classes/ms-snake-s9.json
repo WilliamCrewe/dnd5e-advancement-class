@@ -1,0 +1,27 @@
+{
+  "_id": "pEp5u9Iblp1cEgJf",
+  "_key": "!items!pEp5u9Iblp1cEgJf",
+  "name": "Snake: Pitiless Poison",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Affect 10 different enemy creatures with Virulent Venom.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-snake-s9",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 10
+    },
+    "calling": {},
+    "tracking": {
+      "event": "use:virulent-venom",
+      "uniqueTargets": true,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

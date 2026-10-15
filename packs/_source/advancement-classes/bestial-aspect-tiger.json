@@ -1,0 +1,20 @@
+{
+  "_id": "3rMGVnAhaArREhix",
+  "_key": "!items!3rMGVnAhaArREhix",
+  "name": "Bestial Aspect — Tiger",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p>While transformed, you manifest your animal's keen smell. While transformed, you have advantage on Wisdom (Perception) checks that rely on smell and on Dexterity (Stealth) checks made in natural terrain.</p>",
+      "chat": ""
+    },
+    "identifier": "bestial-aspect-tiger",
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "source": {}
+  },
+  "flags": {}
+}

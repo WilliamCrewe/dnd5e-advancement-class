@@ -1,0 +1,27 @@
+{
+  "_id": "7oJqOlygCiVDBpdv",
+  "_key": "!items!7oJqOlygCiVDBpdv",
+  "name": "Bear: Stoic Hide",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Gain 50 temporary hit points from Enduring Hide.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-bear-s7",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 50
+    },
+    "calling": {},
+    "tracking": {
+      "event": "",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

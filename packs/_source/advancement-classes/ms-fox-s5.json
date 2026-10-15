@@ -1,0 +1,27 @@
+{
+  "_id": "GqGS0iHrOmRHEW9M",
+  "_key": "!items!GqGS0iHrOmRHEW9M",
+  "name": "Fox: Uncatchable",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Disengage from 5 different enemies in melee.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-fox-s5",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 5
+    },
+    "calling": {},
+    "tracking": {
+      "event": "",
+      "uniqueTargets": true,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

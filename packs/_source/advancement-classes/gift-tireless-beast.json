@@ -1,0 +1,28 @@
+{
+  "_id": "TGYEChEt3B7BLDDo",
+  "_key": "!items!TGYEChEt3B7BLDDo",
+  "name": "Tireless Beast",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p>You no longer gain a level of Exhaustion when a Controlled Transformation ends.</p>",
+      "chat": ""
+    },
+    "identifier": "gift-tireless-beast",
+    "type": {
+      "value": "supernaturalGift",
+      "subtype": "blessing"
+    },
+    "source": {},
+    "activities": {}
+  },
+  "flags": {
+    "advancement-classes": {
+      "gift": {
+        "side": "control",
+        "tier": "major"
+      }
+    }
+  }
+}

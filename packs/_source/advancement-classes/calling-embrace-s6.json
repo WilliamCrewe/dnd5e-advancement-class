@@ -1,0 +1,35 @@
+{
+  "_id": "6pr85qu1B5KoywA4",
+  "_key": "!items!6pr85qu1B5KoywA4",
+  "name": "Calling: Embrace",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Commit yourself to the path of Embrace and claim a gift of the curse. Completing this Calling removes the alternative offered alongside it.</p>",
+      "chat": ""
+    },
+    "identifier": "calling-embrace-s6",
+    "milestoneType": "calling",
+    "progress": {
+      "value": 0,
+      "max": 1
+    },
+    "calling": {
+      "choiceSet": "therianthrope-calling",
+      "choiceKey": "embrace",
+      "giftSource": "advancement-classes.advancement-classes",
+      "giftTiers": [
+        "minor",
+        "major"
+      ]
+    },
+    "tracking": {
+      "event": "",
+      "uniqueTargets": false,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

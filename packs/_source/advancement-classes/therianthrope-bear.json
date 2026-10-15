@@ -1,0 +1,133 @@
+{
+  "_id": "JiNIKcHUC5jxpjr0",
+  "_key": "!items!JiNIKcHUC5jxpjr0",
+  "name": "Therianthrope: Bear",
+  "type": "advancement-classes.advancement-path",
+  "img": "icons/creatures/mammals/wolf-howl-moon.webp",
+  "system": {
+    "description": {
+      "value": "<p>The Bear branch of the Therianthrope curse. Your key ability is Strength; while transformed your alignment becomes Chaotic Good.</p>",
+      "chat": ""
+    },
+    "identifier": "therianthrope-bear",
+    "classIdentifier": "therianthrope",
+    "advancement": {
+      "bR0QMlGcU4ck9jTL": {
+        "_id": "bR0QMlGcU4ck9jTL",
+        "type": "ScaleValue",
+        "level": 0,
+        "configuration": {
+          "identifier": "key-ability-floor",
+          "type": "number",
+          "scale": {
+            "1": {
+              "value": 14
+            },
+            "4": {
+              "value": 16
+            },
+            "7": {
+              "value": 18
+            },
+            "10": {
+              "value": 20
+            }
+          },
+          "distance": {
+            "units": ""
+          }
+        },
+        "value": {}
+      },
+      "4huDfM5Vh76tA6JE": {
+        "_id": "4huDfM5Vh76tA6JE",
+        "type": "ItemGrant",
+        "level": 3,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.g1i39mYP0UhQn2XY"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.IQvmSBfZ7JpnnYP5"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "V4VMCv2JBhgpdriq": {
+        "_id": "V4VMCv2JBhgpdriq",
+        "type": "ItemGrant",
+        "level": 5,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.gx27sRuDApn5zoxH"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.9MSH3NLaYPiKQXNq"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "61k1iUVn7mvvt6qk": {
+        "_id": "61k1iUVn7mvvt6qk",
+        "type": "ItemGrant",
+        "level": 7,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.gtrDR6tPCBPsYibZ"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.7oJqOlygCiVDBpdv"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      },
+      "yZ2UBVzNRv9LmGN7": {
+        "_id": "yZ2UBVzNRv9LmGN7",
+        "type": "ItemGrant",
+        "level": 9,
+        "configuration": {
+          "items": [
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.KKnPTvOeNIFCHBzi"
+            },
+            {
+              "uuid": "Compendium.advancement-classes.advancement-classes.Item.dwKa2FrbtGCfqTP7"
+            }
+          ],
+          "optional": false
+        },
+        "value": {}
+      }
+    },
+    "source": {}
+  },
+  "flags": {
+    "advancement-classes": {
+      "transform": {
+        "abilityFloor": {
+          "ability": "str",
+          "scale": "key-ability-floor"
+        },
+        "inject": [
+          {
+            "uuid": "Compendium.advancement-classes.advancement-classes.Item.tGLGCzImTRKZfs4U",
+            "minStage": 2
+          },
+          {
+            "uuid": "Compendium.advancement-classes.advancement-classes.Item.g1i39mYP0UhQn2XY",
+            "minStage": 3
+          }
+        ]
+      }
+    }
+  }
+}

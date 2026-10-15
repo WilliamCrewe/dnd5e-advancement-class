@@ -1,0 +1,27 @@
+{
+  "_id": "R9CBZvD323JQG5fE",
+  "_key": "!items!R9CBZvD323JQG5fE",
+  "name": "Tiger: First Pounce",
+  "type": "advancement-classes.advancement-milestone",
+  "img": "icons/sundries/flags/banner-symbol-wolf.webp",
+  "system": {
+    "description": {
+      "value": "<p>Pounce on 5 different enemy creatures.</p>",
+      "chat": ""
+    },
+    "identifier": "ms-tiger-s5",
+    "milestoneType": "counter",
+    "progress": {
+      "value": 0,
+      "max": 5
+    },
+    "calling": {},
+    "tracking": {
+      "event": "use:pounce",
+      "uniqueTargets": true,
+      "seen": []
+    },
+    "source": {}
+  },
+  "flags": {}
+}

@@ -314,7 +314,7 @@ function patchCharacterSheet() {
         "controls"
       ]);
       const { milestoneType, progress } = item.system;
-      const typeKeys = { manual: "Manual", counter: "Counter", gmConfirm: "GMConfirm" };
+      const typeKeys = { manual: "Manual", counter: "Counter", gmConfirm: "GMConfirm", calling: "Calling" };
       ctx.milestone = {
         type: milestoneType,
         typeLabel: game.i18n.localize(`ADVANCEMENT_CLASSES.Milestone.Type.${typeKeys[milestoneType] ?? "Manual"}`),
@@ -431,6 +431,34 @@ function patchCharacterSheet() {
 }
 
 /* -------------------------------------------- */
+/*  Gift Modifiers                              */
+/* -------------------------------------------- */
+
+/**
+ * Gift items may carry `flags.advancement-classes.cpDelta` to raise or lower
+ * the owner's Control Point maximum. The Control Points feature item is any
+ * feat with the identifier `control-points` whose uses are driven by a
+ * formula; after uses are resolved, apply the summed delta and re-clamp.
+ */
+function patchControlPointMax() {
+  const FeatData = CONFIG.Item.dataModels.feat;
+  if ( !FeatData ) return;
+  const original = FeatData.prototype.prepareFinalData;
+  FeatData.prototype.prepareFinalData = function(rollData) {
+    original.call(this, rollData);
+    const item = this.parent;
+    const actor = item?.actor;
+    if ( !actor || (item.identifier !== "control-points") || (this.uses?.max == null) ) return;
+    const delta = actor.items.reduce(
+      (n, i) => n + (i.getFlag(MODULE_ID, "cpDelta") ?? 0), 0
+    );
+    if ( !delta ) return;
+    this.uses.max = Math.max(0, this.uses.max + delta);
+    this.uses.value = Math.clamp(this.uses.max - this.uses.spent, 0, this.uses.max);
+  };
+}
+
+/* -------------------------------------------- */
 /*  Public API                                  */
 /* -------------------------------------------- */
 
@@ -443,4 +471,5 @@ export function applyPatches() {
   patchAbilityScoreImprovement();
   patchHitPoints();
   patchCharacterSheet();
+  patchControlPointMax();
 }

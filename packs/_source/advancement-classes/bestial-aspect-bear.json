@@ -1,0 +1,20 @@
+{
+  "_id": "g1i39mYP0UhQn2XY",
+  "_key": "!items!g1i39mYP0UhQn2XY",
+  "name": "Bestial Aspect — Bear",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p>While transformed, you manifest your animal's keen smell. While transformed, you have advantage on Wisdom (Perception) checks that rely on smell and on Wisdom (Survival) checks to track creatures.</p>",
+      "chat": ""
+    },
+    "identifier": "bestial-aspect-bear",
+    "type": {
+      "value": "class",
+      "subtype": ""
+    },
+    "source": {}
+  },
+  "flags": {}
+}

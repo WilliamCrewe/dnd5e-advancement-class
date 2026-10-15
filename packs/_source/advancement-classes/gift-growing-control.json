@@ -1,0 +1,29 @@
+{
+  "_id": "m2CptZTDoGPBUoNg",
+  "_key": "!items!m2CptZTDoGPBUoNg",
+  "name": "Growing Control",
+  "type": "feat",
+  "img": "icons/magic/death/undead-ghost-screaming-teal.webp",
+  "system": {
+    "description": {
+      "value": "<p>Your maximum number of Control Points increases by 1.</p>",
+      "chat": ""
+    },
+    "identifier": "gift-growing-control",
+    "type": {
+      "value": "supernaturalGift",
+      "subtype": "blessing"
+    },
+    "source": {},
+    "activities": {}
+  },
+  "flags": {
+    "advancement-classes": {
+      "gift": {
+        "side": "control",
+        "tier": "minor"
+      },
+      "cpDelta": 1
+    }
+  }
+}
