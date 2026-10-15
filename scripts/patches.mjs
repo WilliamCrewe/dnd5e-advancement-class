@@ -227,7 +227,7 @@ function patchCharacterSheet() {
           columns: [
             { id: "milestoneProgress", label: "ADVANCEMENT_CLASSES.Sheet.MilestoneProgress",
               order: 200, width: 120,
-              template: `modules/${MODULE_ID}/templates/columns/milestone-progress.hbs` },
+              template: `${MODULE_ID}.column-milestone` },
             "controls"
           ],
           id: "advancementMilestones", order: 900,

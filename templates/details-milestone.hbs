@@ -2,7 +2,14 @@
     <legend>{{ localize "ADVANCEMENT_CLASSES.Details.MilestoneDetails" }}</legend>
 
     {{!-- Milestone Type --}}
-    {{ formField fields.milestoneType value=source.milestoneType localize=true rootId=partId }}
+    <div class="form-group">
+        <label>{{ localize "ADVANCEMENT_CLASSES.Milestone.Type.Label" }}</label>
+        <div class="form-fields">
+            <select name="system.milestoneType">
+                {{ selectOptions milestoneTypes selected=source.milestoneType }}
+            </select>
+        </div>
+    </div>
 
     {{!-- Progress --}}
     <div class="form-group">
@@ -12,6 +19,6 @@
             <span class="sep">/</span>
             {{ formInput fields.progress.fields.max value=source.progress.max rootId=partId }}
         </div>
-        <p class="hint">{{ localize "ADVANCEMENT_CLASSES.Milestone.CounterHint" }}</p>
+        <p class="hint">{{ localize "ADVANCEMENT_CLASSES.Milestone.Type.CounterHint" }}</p>
     </div>
 </fieldset>

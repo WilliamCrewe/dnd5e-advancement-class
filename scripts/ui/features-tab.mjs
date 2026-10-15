@@ -22,8 +22,7 @@ function onRenderCharacterSheet(app, element, context, options) {
   if ( app.actor?.type !== "character" ) return;
   injectToggle(app, element);
   if ( app.actor.getFlag("dnd5e", ACTOR_FLAG) ) {
-    void injectPills(app, element, context);
-    bindStageSelector(app, element);
+    void injectPills(app, element, context).then(() => bindStageSelector(app, element));
   }
 }
 

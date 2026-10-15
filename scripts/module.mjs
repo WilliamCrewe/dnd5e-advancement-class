@@ -78,6 +78,7 @@ Hooks.once("init", () => {
   foundry.applications.handlebars.loadTemplates({
     [`${MODULE_ID}.details-class`]: `modules/${MODULE_ID}/templates/details-class.hbs`,
     [`${MODULE_ID}.details-path`]: `modules/${MODULE_ID}/templates/details-path.hbs`,
-    [`${MODULE_ID}.details-milestone`]: `modules/${MODULE_ID}/templates/details-milestone.hbs`
+    [`${MODULE_ID}.details-milestone`]: `modules/${MODULE_ID}/templates/details-milestone.hbs`,
+    [`${MODULE_ID}.column-milestone`]: `modules/${MODULE_ID}/templates/columns/milestone-progress.hbs`
   });
 });
