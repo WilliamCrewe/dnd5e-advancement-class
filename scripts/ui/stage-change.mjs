@@ -10,6 +10,7 @@ const { renderTemplate } = foundry.applications.handlebars;
 export function registerDocumentHooks() {
   Hooks.on("preUpdateItem", stashStage);
   Hooks.on("updateItem", onStageChanged);
+  Hooks.on("updateItem", promptMilestoneCompletion);
   Hooks.on("preDeleteItem", guardMilestoneDeletion);
 }
 
@@ -66,6 +67,19 @@ async function onStageChanged(item, changed, options, userId) {
 /* -------------------------------------------- */
 /*  Milestone Guards                            */
 /* -------------------------------------------- */
+
+/**
+ * When a counter milestone's progress is set to its maximum — by the sheet
+ * +/- actions, editing the item directly, or any other source — offer the
+ * responsible user the completion confirmation.
+ */
+function promptMilestoneCompletion(item, changed, options, userId) {
+  if ( (item.type !== MILESTONE_TYPE) || (item.system.milestoneType !== "counter") ) return;
+  if ( userId !== game.user.id ) return;
+  if ( !foundry.utils.hasProperty(changed, "system.progress.value") ) return;
+  if ( item.system.progress.value < item.system.progress.max ) return;
+  void item.deleteDialog();
+}
 
 /**
  * Completing a milestone means deleting it. Counter milestones must reach

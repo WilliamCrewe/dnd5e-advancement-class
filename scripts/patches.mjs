@@ -145,6 +145,15 @@ function patchCharacterSheet() {
     if ( item.type === MILESTONE_TYPE ) {
       ctx.groups.origin = "advancementMilestone";
       ctx.groups.activation = "passive";
+      // Rows are rendered under the first section's columns before grouping
+      // redistributes them, so milestones need a per-item column override to
+      // show the progress cell at all.
+      const Inventory = customElements.get(this.options.elements.inventory);
+      ctx.columns = Inventory.mapColumns([
+        { id: "milestoneProgress", label: "ADVANCEMENT_CLASSES.Sheet.MilestoneProgress",
+          order: 200, width: 120, template: `${MODULE_ID}.column-milestone` },
+        "controls"
+      ]);
       const { milestoneType, progress } = item.system;
       const typeKeys = { manual: "Manual", counter: "Counter", gmConfirm: "GMConfirm" };
       ctx.milestone = {

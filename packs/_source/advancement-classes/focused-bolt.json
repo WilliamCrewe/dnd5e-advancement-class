@@ -3,7 +3,7 @@
   "_key": "!items!7RHGDL4CmJ2wdQp3",
   "name": "Focused Bolt",
   "type": "spell",
-  "img": "icons/magic/light/projectiles-beams-salvo-yellow.webp",
+  "img": "icons/magic/light/beam-rays-blue.webp",
   "system": {
     "description": {
       "value": "<p>A bolt of focused power streaks toward a creature within range. Make a ranged spell attack. On a hit, the target takes 2d8 radiant damage, plus your Exemplar die (@scale.exemplar.exemplardie).</p><p><em>Costs 2 Paragon Focus charges.</em></p>",

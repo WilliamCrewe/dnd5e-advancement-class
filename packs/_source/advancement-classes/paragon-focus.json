@@ -29,7 +29,7 @@
         "_id": "actFocusedBolt001",
         "type": "cast",
         "name": "Focused Bolt",
-        "img": "icons/magic/light/projectiles-beams-salvo-yellow.webp",
+        "img": "icons/magic/light/beam-rays-blue.webp",
         "sort": 0,
         "activation": {
           "type": "action",
