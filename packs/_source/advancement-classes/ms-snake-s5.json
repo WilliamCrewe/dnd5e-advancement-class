@@ -4,6 +4,7 @@
   "name": "Snake: Venom in the Veins",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "fgtuw9HXdpwX4BKC",
   "system": {
     "description": {
       "value": "<p>Affect 5 different enemy creatures with Venomous Bite.</p>",

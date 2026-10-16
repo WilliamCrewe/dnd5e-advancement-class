@@ -4,6 +4,7 @@
   "name": "Snake: Shed the Old",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "AYT9DAkSFvj4fMc3",
   "system": {
     "description": {
       "value": "<p>Use Shed Skin against 3 different enemies.</p>",

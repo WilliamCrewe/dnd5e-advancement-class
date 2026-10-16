@@ -4,6 +4,7 @@
   "name": "Extended Form",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "1HZmskPhdBfM509n",
   "system": {
     "description": {
       "value": "<p>Your Controlled Transformation lasts a number of hours equal to your Stage instead of half your Stage.</p>",

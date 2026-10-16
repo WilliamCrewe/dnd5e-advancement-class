@@ -4,6 +4,7 @@
   "name": "True Mastery",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "ODysgX3S8yFO2avE",
   "system": {
     "description": {
       "value": "<p>You have mastered the curse. Unwilling Transformation triggers only from the Planar Tear; you never gain Exhaustion from transforming; you can use Controlled Transformation as a Bonus Action; and your maximum number of Control Points increases by 1.</p>",

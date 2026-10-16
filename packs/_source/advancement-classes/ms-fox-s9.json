@@ -4,6 +4,7 @@
   "name": "Fox: Nine Lives",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "uWZc0OJSHamkswGc",
   "system": {
     "description": {
       "value": "<p>Transform using Ninefold Wiles 10 times.</p>",

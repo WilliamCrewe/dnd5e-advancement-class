@@ -4,6 +4,7 @@
   "name": "Adorned Beast",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "1HZmskPhdBfM509n",
   "system": {
     "description": {
       "value": "<p>When you use Controlled Transformation, your equipment continues to be worn if your new form could physically wear it. You cannot benefit from magic items through this feature unless you also have the Hybrid Mastery gift.</p>",

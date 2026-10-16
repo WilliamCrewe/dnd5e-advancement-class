@@ -4,6 +4,7 @@
   "name": "Flaw Mitigation",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "RIEKKbDcppdSHth8",
   "system": {
     "description": {
       "value": "<p>Your growing mastery lets you blunt the curse's compulsions. This feature improves as you gain Stages:</p>\n<ul>\n<li><strong>Stage 3.</strong> When reduced below half your hit point maximum would trigger an Unwilling Transformation, you can instead spend 1 Control Point to transform via Controlled Transformation.</li>\n<li><strong>Stage 4.</strong> The above also applies when witnessing an ally reduced to 0 hit points.</li>\n<li><strong>Stage 5.</strong> During the Planar Tear you can spend 1 Control Point to automatically succeed on the saving throw, transforming into your Animal Form.</li>\n<li><strong>Stage 6.</strong> You have advantage on the saving throw triggered by being reduced below half your hit point maximum.</li>\n<li><strong>Stage 7.</strong> You have advantage on that save and on the save triggered by witnessing an ally reduced to 0 hit points.</li>\n<li><strong>Stage 8.</strong> An Unwilling Transformation no longer forces you to attack the damage's source.</li>\n<li><strong>Stage 9.</strong> At the end of each of your turns during an Unwilling Transformation you can repeat the saving throw, ending the transformation on a success.</li>\n<li><strong>Stage 10.</strong> You can choose to succeed on any saving throw against your Unwilling Transformation.</li>\n</ul>",

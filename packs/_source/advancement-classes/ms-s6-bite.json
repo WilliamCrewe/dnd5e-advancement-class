@@ -4,6 +4,7 @@
   "name": "Mark of the Curse",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "fxICQzh4XQMW5UUQ",
   "system": {
     "description": {
       "value": "<p>Hit 10 different enemy creatures with your Bite.</p>",

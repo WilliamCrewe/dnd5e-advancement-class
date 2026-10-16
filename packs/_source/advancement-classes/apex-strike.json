@@ -4,6 +4,7 @@
   "name": "Apex Strike",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "XRFWkbTtJCeVQbFH",
   "system": {
     "description": {
       "value": "<p>While transformed, your natural weapon attacks score a critical hit on a roll of 19 or 20. In addition, the extra damage from Stalker's Prowl increases to 2d12.</p>",

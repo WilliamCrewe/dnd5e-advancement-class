@@ -4,6 +4,7 @@
   "name": "Therianthrope: Snake",
   "type": "advancement-classes.advancement-path",
   "img": "systems/dnd5e/icons/svg/subclass.svg",
+  "folder": "erKQCyewXcn0pta3",
   "system": {
     "description": {
       "value": "<p>The Snake branch of the Therianthrope curse. Your key ability is Dexterity; while transformed your alignment becomes Lawful Evil.</p>",
@@ -74,6 +75,8 @@
         "_id": "1Wh6NLoYZvjk3hfd",
         "type": "ItemGrant",
         "level": 1,
+        "title": "Stage 1 Features",
+        "hint": "Features granted by this Stage of the Therianthrope advancement class.",
         "configuration": {
           "items": [
             {
@@ -88,6 +91,8 @@
         "_id": "3CA39ZNCHoVlXZje",
         "type": "ItemGrant",
         "level": 2,
+        "title": "Stage 2 Features",
+        "hint": "Features granted by this Stage of the Therianthrope advancement class.",
         "configuration": {
           "items": [
             {
@@ -102,6 +107,8 @@
         "_id": "cngOjo9HNZIn2DbX",
         "type": "ItemGrant",
         "level": 3,
+        "title": "Stage 3 Features",
+        "hint": "Features granted by this Stage of the Therianthrope advancement class.",
         "configuration": {
           "items": [
             {
@@ -116,6 +123,8 @@
         "_id": "iWePTFWjNK8pq7Pt",
         "type": "ItemGrant",
         "level": 3,
+        "title": "Stage 3 Milestones",
+        "hint": "Advancement Milestones are goals you must complete before you can advance to the next Stage.",
         "configuration": {
           "items": [
             {
@@ -130,6 +139,8 @@
         "_id": "HK0LMf75Dj1CB7Ad",
         "type": "ItemGrant",
         "level": 5,
+        "title": "Stage 5 Features",
+        "hint": "Features granted by this Stage of the Therianthrope advancement class.",
         "configuration": {
           "items": [
             {
@@ -144,6 +155,8 @@
         "_id": "4GPcEFyiqY7dM1gI",
         "type": "ItemGrant",
         "level": 5,
+        "title": "Stage 5 Milestones",
+        "hint": "Advancement Milestones are goals you must complete before you can advance to the next Stage.",
         "configuration": {
           "items": [
             {
@@ -158,6 +171,8 @@
         "_id": "3x6L3eUAcXDhJM8H",
         "type": "ItemGrant",
         "level": 7,
+        "title": "Stage 7 Features",
+        "hint": "Features granted by this Stage of the Therianthrope advancement class.",
         "configuration": {
           "items": [
             {
@@ -172,6 +187,8 @@
         "_id": "EK7xmmee9t7mBCfg",
         "type": "ItemGrant",
         "level": 7,
+        "title": "Stage 7 Milestones",
+        "hint": "Advancement Milestones are goals you must complete before you can advance to the next Stage.",
         "configuration": {
           "items": [
             {
@@ -186,6 +203,8 @@
         "_id": "LOAJz70u2ggdK10d",
         "type": "ItemGrant",
         "level": 9,
+        "title": "Stage 9 Features",
+        "hint": "Features granted by this Stage of the Therianthrope advancement class.",
         "configuration": {
           "items": [
             {
@@ -200,6 +219,8 @@
         "_id": "O4KogBoX2a7bq2xs",
         "type": "ItemGrant",
         "level": 9,
+        "title": "Stage 9 Milestones",
+        "hint": "Advancement Milestones are goals you must complete before you can advance to the next Stage.",
         "configuration": {
           "items": [
             {

@@ -4,6 +4,7 @@
   "name": "Unwilling Transformation — Shark",
   "type": "feat",
   "img": "icons/creatures/magical/humanoid-horned-rider.webp",
+  "folder": "OhIecSGPKHAzcrnl",
   "system": {
     "description": {
       "value": "<p>The curse overwhelms your body at times of great stress, or when the moon is fullest, forcing you to transform.</p>\n<p><strong>Triggers.</strong> When your hit points are reduced below half your maximum, or when you see an ally reduced to 0 hit points, you must succeed on a Wisdom saving throw against your Therianthrope DC or transform into your Hybrid Form for up to 10 minutes. During that time you must attack the source of the damage. If you are reduced to 0 hit points, the transformation ends.</p>\n<p><strong>Planar Tear.</strong> For three nights each month the Planar Tear bathes the world in magical light. When it occurs you must make the same saving throw: on a failure you transform into your Hybrid Form, and on a success into your Animal Form, remaining transformed until morning.</p>\n<p>When you revert to your normal form after an Unwilling Transformation, you gain 1 level of Exhaustion. While transformed, you ignore all levels of Exhaustion.</p>\n<p>When one of these triggers occurs, roll the appropriate saving throw using the activities on this feature; on a failure, use the Transform activity to assume your Hybrid Form.</p>\n<p><em>Therianthrope DC = 8 + your proficiency bonus + your Constitution modifier.</em></p>",

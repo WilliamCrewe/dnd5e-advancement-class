@@ -4,6 +4,7 @@
   "name": "Blood Frenzy",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "iDwxzKV70mBn37ZV",
   "system": {
     "description": {
       "value": "<p>While transformed, you have advantage on attack rolls against creatures that are below their hit point maximum.</p>",

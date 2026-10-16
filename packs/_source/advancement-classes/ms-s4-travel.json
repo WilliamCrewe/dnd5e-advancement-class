@@ -4,6 +4,7 @@
   "name": "Bound of the Beast",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "C2jkwQGkFrkEZApi",
   "system": {
     "description": {
       "value": "<p>Travel 80 feet in one turn while transformed during Initiative.</p>",

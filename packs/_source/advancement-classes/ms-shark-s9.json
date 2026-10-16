@@ -4,6 +4,7 @@
   "name": "Shark: Devour",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "uWZc0OJSHamkswGc",
   "system": {
     "description": {
       "value": "<p>Regain 30 hit points from enemies with Feeding Frenzy.</p>",

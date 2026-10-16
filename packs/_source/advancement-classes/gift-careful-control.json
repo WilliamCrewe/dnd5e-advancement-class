@@ -4,6 +4,7 @@
   "name": "Careful Control",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "1HZmskPhdBfM509n",
   "system": {
     "description": {
       "value": "<p>Whenever you finish a Short Rest, you regain 1 spent Control Point.</p>",

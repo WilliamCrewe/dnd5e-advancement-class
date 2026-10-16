@@ -4,6 +4,7 @@
   "name": "Rending Bite",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "qe8ilvMHqjwKHfAb",
   "system": {
     "description": {
       "value": "<p>While transformed, when you hit a creature with your Bite, it cannot regain hit points until the end of your next turn.</p>",

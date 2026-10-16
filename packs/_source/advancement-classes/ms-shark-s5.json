@@ -4,6 +4,7 @@
   "name": "Shark: Feeding Frenzy",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "fgtuw9HXdpwX4BKC",
   "system": {
     "description": {
       "value": "<p>Hit 5 different enemy creatures while benefiting from Blood Frenzy.</p>",

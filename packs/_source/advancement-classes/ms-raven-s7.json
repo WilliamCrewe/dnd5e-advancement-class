@@ -4,6 +4,7 @@
   "name": "Raven: Winged Death",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "AYT9DAkSFvj4fMc3",
   "system": {
     "description": {
       "value": "<p>Perform 10 Flyby Strikes.</p>",

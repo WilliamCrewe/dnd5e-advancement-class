@@ -4,6 +4,7 @@
   "name": "Fox: Uncatchable",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "fgtuw9HXdpwX4BKC",
   "system": {
     "description": {
       "value": "<p>Disengage from 5 different enemies in melee.</p>",

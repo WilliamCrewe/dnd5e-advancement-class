@@ -4,6 +4,7 @@
   "name": "Tamed Terror",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "uWZc0OJSHamkswGc",
   "system": {
     "description": {
       "value": "<p>End an Unwilling Transformation 5 times.</p>",

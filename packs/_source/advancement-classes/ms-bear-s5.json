@@ -4,6 +4,7 @@
   "name": "Bear: Crushing Embrace",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "fgtuw9HXdpwX4BKC",
   "system": {
     "description": {
       "value": "<p>Grapple 5 different enemies.</p>",

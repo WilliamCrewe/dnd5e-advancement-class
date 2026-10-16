@@ -4,6 +4,7 @@
   "name": "Ninefold Wiles",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "iHpVAgkp3V52pwO3",
   "system": {
     "description": {
       "value": "<p>When you roll Initiative, you can use your Reaction to transform. If you would be Surprised, spending this Reaction prevents it. You cannot be Surprised while transformed.</p>",

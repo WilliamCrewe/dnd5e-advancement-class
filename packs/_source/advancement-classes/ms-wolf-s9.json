@@ -4,6 +4,7 @@
   "name": "Wolf: Voice of the Pack",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "uWZc0OJSHamkswGc",
   "system": {
     "description": {
       "value": "<p>Use Alpha Howl 10 times.</p>",

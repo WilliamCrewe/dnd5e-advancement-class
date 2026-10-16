@@ -4,6 +4,7 @@
   "name": "Feeding Frenzy",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "kmoUvrF6fMEwXxbf",
   "system": {
     "description": {
       "value": "<p>While transformed, when you deal damage with your Bite to a creature, you regain hit points equal to half the damage dealt.</p>",

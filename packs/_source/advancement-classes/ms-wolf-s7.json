@@ -4,6 +4,7 @@
   "name": "Wolf: Pack Hunter",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "AYT9DAkSFvj4fMc3",
   "system": {
     "description": {
       "value": "<p>Hit 15 different enemies with attacks benefiting from Pack Tactics.</p>",

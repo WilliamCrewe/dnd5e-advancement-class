@@ -259,6 +259,61 @@ const EMBRACE_MAJOR_RIDER = " In addition, when you would make a saving throw ag
 /*  Document factories                          */
 /* -------------------------------------------- */
 
+/* ----- pack folders ----- */
+const folderDocs = [];
+function folder(slug, name, parent = null) {
+  const fid = id(`folder:${slug}`);
+  folderDocs.push({
+    _id: fid, _key: `!folders!${fid}`, name, type: "Item",
+    folder: parent, color: null, sort: 0, sorting: "a", flags: {}
+  });
+  return fid;
+}
+
+const F_ROOT = folder("therianthrope", "Therianthrope");
+const F_FEATURES = folder("features", "Features", F_ROOT);
+const F_STAGE = {}; // stage -> folder id
+for ( let s = 1; s <= 10; s++ ) F_STAGE[s] = folder(`features-s${s}`, `Stage ${s}`, F_FEATURES);
+const F_PATHS = folder("paths", "Paths", F_ROOT);
+const F_PATH_BRANCH = {}; // branch -> folder id
+const F_PATH_STAGE = {}; // "branch:stage" -> folder id
+for ( const b of Object.keys(BRANCHES) ) {
+  F_PATH_BRANCH[b] = folder(`paths-${b}`, BRANCHES[b].name, F_PATHS);
+  for ( const s of [1, 2, 3, 5, 7, 9] ) {
+    F_PATH_STAGE[`${b}:${s}`] = folder(`paths-${b}-s${s}`, `Stage ${s}`, F_PATH_BRANCH[b]);
+  }
+}
+const F_GIFTS = folder("gifts", "Gifts", F_ROOT);
+const F_GIFT_SIDE = { control: {}, embrace: {} };
+for ( const side of ["control", "embrace"] ) {
+  const sideFid = folder(`gifts-${side}`, side === "control" ? "Control" : "Embrace", F_GIFTS);
+  for ( const tier of ["minor", "major", "grand"] ) {
+    F_GIFT_SIDE[side][tier] = folder(
+      `gifts-${side}-${tier}`, tier[0].toUpperCase() + tier.slice(1), sideFid);
+  }
+}
+const F_MILESTONES = folder("milestones", "Milestones", F_ROOT);
+const F_MS_STANDARD = {}; // stage -> "Stage N -> N+1" folder id
+{
+  const stdFid = folder("ms-standard", "Standard", F_MILESTONES);
+  for ( let s = 1; s <= 9; s++ ) {
+    F_MS_STANDARD[s] = folder(`ms-standard-s${s}`, `Stage ${s} -> ${s + 1}`, stdFid);
+  }
+}
+const F_MS_CALLING = { control: {}, embrace: {} }; // side -> stage -> folder id
+for ( const side of ["control", "embrace"] ) {
+  const sideFid = folder(`ms-${side}`, side === "control" ? "Control" : "Embrace", F_MILESTONES);
+  for ( const s of [2, 4, 6, 8, 10] ) {
+    F_MS_CALLING[side][s] = folder(`ms-${side}-s${s}`, `Stage ${s}`, sideFid);
+  }
+}
+
+/** Stage at which each class-level feature is granted. */
+const FEATURE_STAGE = {
+  "flaw-mitigation": 3, "feral-speed": 4, "empowered-transformation": 4,
+  "predators-resurgence": 8, "control-points": 2, "wild-regeneration": 2
+};
+
 function feat(name, ident, description, extra = {}) {
   const docId = id(`feat:${ident}`);
   if ( extra.effects ) {
@@ -269,6 +324,7 @@ function feat(name, ident, description, extra = {}) {
     _key: `!items!${docId}`,
     name, type: "feat",
     img: extra.img ?? "systems/dnd5e/icons/svg/items/feature.svg",
+    folder: extra.folder ?? null,
     system: {
       description: { value: description, chat: "" },
       identifier: ident,
@@ -290,6 +346,7 @@ function milestone(name, ident, description, opts = {}) {
     _key: `!items!${id(`ms:${ident}`)}`,
     name, type: "advancement-classes.advancement-milestone",
     img: opts.img ?? "icons/magic/symbols/star-rising-purple.webp",
+    folder: opts.folder ?? F_MS_STANDARD[opts.stage ?? 1] ?? null,
     system: {
       description: { value: `<p>${description}</p>`, chat: "" },
       identifier: ident,
@@ -313,6 +370,7 @@ function callingMilestone(stage, key) {
   return milestone(`Calling: ${label}`, `calling-${key}-s${stage}`,
     `Commit yourself to the path of ${label} and claim a gift of the curse. Completing this Calling removes the alternative offered alongside it.`, {
       type: "calling",
+      folder: F_MS_CALLING[key][stage],
       img: key === "control"
         ? "icons/magic/symbols/rune-sigil-rough-white-teal.webp"
         : "icons/magic/symbols/rune-sigil-red-orange.webp",
@@ -695,7 +753,7 @@ for ( const b of Object.keys(BRANCHES) ) {
   tf.consumption.targets = [];
   acts[tf._id] = tf;
   items.push(feat(`Unwilling Transformation — ${BRANCHES[b].name}`, `unwilling-transformation-${b}`,
-    FEATURE_TEXT.unwilling, { activities: acts, img: IMG_UNWILLING }));
+    FEATURE_TEXT.unwilling, { activities: acts, img: IMG_UNWILLING, folder: F_PATH_STAGE[`${b}:1`] }));
 }
 
 // Per-branch Controlling the Curse: the Controlled Transformation only
@@ -704,12 +762,12 @@ for ( const b of Object.keys(BRANCHES) ) {
   const ct = transformActivity("Controlled Transformation",
     [animalProfiles.find(p => p.name.startsWith(BRANCHES[b].name))]);
   items.push(feat(`Controlling the Curse — ${BRANCHES[b].name}`, `controlling-the-curse-${b}`,
-    FEATURE_TEXT.controlling, { activities: { [ct._id]: ct }, img: IMG_CONTROLLING }));
+    FEATURE_TEXT.controlling, { activities: { [ct._id]: ct }, img: IMG_CONTROLLING, folder: F_PATH_STAGE[`${b}:2`] }));
 }
 
 items.push(feat("Control Points", "control-points",
   `<p>Control Points fuel the curse's deliberate gifts. You regain all expended Control Points when you finish a Long Rest. Maximum: @scale.therianthrope.control-points.</p>`,
-  { uses: { max: "@scale.therianthrope.control-points", spent: 0, recovery: [{ period: "lr", type: "recoverAll" }] }, img: IMG_CONTROL_POINTS }
+  { uses: { max: "@scale.therianthrope.control-points", spent: 0, recovery: [{ period: "lr", type: "recoverAll" }] }, img: IMG_CONTROL_POINTS, folder: F_STAGE[2] }
 ));
 
 const wrHeal = baseActivity("heal", "Wild Regeneration", {
@@ -721,10 +779,10 @@ const wrHeal = baseActivity("heal", "Wild Regeneration", {
 items.push(feat("Wild Regeneration", "wild-regeneration", FEATURE_TEXT.wildRegen, {
   activities: { [wrHeal._id]: wrHeal },
   flags: { "advancement-classes": { transform: { injectSelf: true } } },
-  img: IMG_WILD_REGEN
+  img: IMG_WILD_REGEN, folder: F_STAGE[2]
 }));
 
-items.push(feat("Flaw Mitigation", "flaw-mitigation", FEATURE_TEXT.flawMitigation));
+items.push(feat("Flaw Mitigation", "flaw-mitigation", FEATURE_TEXT.flawMitigation, { folder: F_STAGE[3] }));
 
 const fsEffect = {
   _id: effId("feral-speed"), name: "Feral Speed",
@@ -734,12 +792,13 @@ const fsEffect = {
   description: "Your speed increases by 10 feet while transformed.", statuses: [], transfer: true
 };
 items.push(feat("Feral Speed", "feral-speed", FEATURE_TEXT.feralSpeed, {
-  flags: { "advancement-classes": { transform: { effects: [fsEffect] } } }
+  flags: { "advancement-classes": { transform: { effects: [fsEffect] } } },
+  folder: F_STAGE[4]
 }));
-items.push(feat("Empowered Transformation", "empowered-transformation", FEATURE_TEXT.empowered));
+items.push(feat("Empowered Transformation", "empowered-transformation", FEATURE_TEXT.empowered, { folder: F_STAGE[4] }));
 const prAct = baseActivity("utility", "Predator's Resurgence", { activation: "reaction" });
 items.push(feat("Predator's Resurgence", "predators-resurgence", FEATURE_TEXT.resurgence, {
-  activities: { [prAct._id]: prAct }
+  activities: { [prAct._id]: prAct }, folder: F_STAGE[8]
 }));
 
 /* ----- flaws ----- */
@@ -747,12 +806,13 @@ for ( const [name, text] of FLAWS ) {
   const ident = `flaw-${name.toLowerCase().replace(/[^a-z]+/g, "-").replace(/-$/, "")}`;
   items.push(feat(`Bestial Flaw: ${name}`, ident,
     `<p><strong>${name}.</strong> ${text}</p><p><em>A Bestial Flaw is a roleplaying compulsion granted by the curse; your GM adjudicates its effects.</em></p>`,
-    { featType: "feat", img: IMG_FLAW }));
+    { featType: "feat", img: IMG_FLAW, folder: F_STAGE[1] }));
 }
 
 /* ----- bestial aspects ----- */
 for ( const [key, branch] of Object.entries(BRANCHES) ) {
-  items.push(feat(`Bestial Aspect — ${branch.name}`, `bestial-aspect-${key}`, FEATURE_TEXT.bestialAspect(branch)));
+  items.push(feat(`Bestial Aspect — ${branch.name}`, `bestial-aspect-${key}`,
+    FEATURE_TEXT.bestialAspect(branch), { folder: F_PATH_STAGE[`${key}:3`] }));
 }
 
 /* ----- branch features ----- */
@@ -784,7 +844,7 @@ for ( const [key, feats] of Object.entries(BRANCH_FEATURES) ) {
       const act = BRANCH_ACTIVITY_BUILDERS[f.activity](f);
       activities[act._id] = act;
     }
-    items.push(feat(f.name, f.ident, `<p>${f.text}</p>`, { activities }));
+    items.push(feat(f.name, f.ident, `<p>${f.text}</p>`, { activities, folder: F_PATH_STAGE[`${key}:${f.stage}`] }));
     branchFeatIds[key][f.stage] = id(`feat:${f.ident}`);
   }
 }
@@ -813,7 +873,7 @@ for ( const g of GIFTS ) {
     changes: [{ key: c.key, mode: c.mode, value: c.value }], type: "base", transfer: true,
     disabled: false, duration: {}, origin: null, tint: "#ffffff", description: g.text, statuses: [], flags: {}
   }));
-  items.push(feat(g.name, g.ident, text, { activities, effects: effs.length ? effs : undefined, flags, featType: "supernaturalGift", subtype: "blessing" }));
+  items.push(feat(g.name, g.ident, text, { activities, effects: effs.length ? effs : undefined, flags, featType: "supernaturalGift", subtype: "blessing", folder: F_GIFT_SIDE[g.side][g.tier] }));
 }
 
 /* ----- milestones ----- */
@@ -821,7 +881,7 @@ const classMilestoneIds = {}; // stage -> { regular: [ids], calling: [ids] }
 for ( const [stage, list] of Object.entries(CLASS_MILESTONES) ) {
   classMilestoneIds[stage] = { regular: [], calling: [] };
   for ( const [name, ident, text, opts] of list ) {
-    items.push(milestone(name, ident, text, opts));
+    items.push(milestone(name, ident, text, { ...opts, stage: Number(stage) }));
     classMilestoneIds[stage].regular.push(id(`ms:${ident}`));
   }
   if ( Number(stage) % 2 === 0 ) {
@@ -838,17 +898,19 @@ for ( const [key, stages] of Object.entries(BRANCH_MILESTONES) ) {
   branchMilestoneIds[key] = {};
   for ( const [stage, [name, text, opts]] of Object.entries(stages) ) {
     const ident = `ms-${key}-s${stage}`;
-    items.push(milestone(`${BRANCHES[key].name}: ${name}`, ident, text, opts));
+    items.push(milestone(`${BRANCHES[key].name}: ${name}`, ident, text, { ...opts, stage: Number(stage) }));
     branchMilestoneIds[key][stage] = id(`ms:${ident}`);
   }
 }
 
 /* ----- class & paths ----- */
 
-function itemGrant(level, uuids) {
+function itemGrant(level, uuids, meta = {}) {
   return {
-    _id: advId(`grant:${level}:${uuids.join("|")}`),
+    _id: advId(`grant:${level}:${meta.tag ?? "items"}:${uuids.join("|")}`),
     type: "ItemGrant", level,
+    title: meta.title ?? "",
+    hint: meta.hint ?? "",
     configuration: { items: uuids.map(uuid => ({ uuid })), optional: false },
     value: {}
   };
@@ -874,11 +936,18 @@ const journalPageUuid = `${journalUuid}.JournalEntryPage.${journalPageId}`;
 const classAdv = {};
 // Each stage emits up to three ItemGrant advancements: gained features,
 // regular milestones, and Calling (Control/Embrace) milestones.
+const GRANT_META = {
+  features: (s) => ({ tag: "features", title: `Stage ${s} Features`,
+    hint: "Features granted by this Stage of the Therianthrope advancement class." }),
+  milestones: (s) => ({ tag: "milestones", title: `Stage ${s} Milestones`,
+    hint: "Advancement Milestones are goals you must complete before you can advance to the next Stage." }),
+  callings: (s) => ({ tag: "callings", title: `Stage ${s} Callings`,
+    hint: "Choose a Calling — Control or Embrace — and complete its milestone to claim a gift. The path not taken is lost." })
+};
 const grantAt = (stage, { features = [], milestones = [], callings = [] } = {}) => {
   for ( const [tag, uuids] of [["features", features], ["milestones", milestones], ["callings", callings]] ) {
     if ( !uuids.length ) continue;
-    const a = itemGrant(stage, uuids);
-    a._id = advId(`grant:${stage}:${tag}:${uuids.join("|")}`);
+    const a = itemGrant(stage, uuids, GRANT_META[tag](stage));
     classAdv[a._id] = a;
   }
 };
@@ -890,6 +959,8 @@ grantAt(1, { milestones: msUUIDs(1) });
 const flawPool = FLAWS.map(([name]) => ITEM_UUID(id(`feat:flaw-${name.toLowerCase().replace(/[^a-z]+/g, "-").replace(/-$/, "")}`)));
 const flawChoice = {
   _id: advId("choice:flaw"), type: "ItemChoice", level: 1,
+  title: "Bestial Flaw",
+  hint: "Choose a Bestial Flaw — a roleplaying compulsion the curse imposes on you.",
   configuration: {
     allowDrops: false,
     choices: { 1: { count: 1 } },
@@ -900,7 +971,12 @@ const flawChoice = {
   value: {}
 };
 classAdv[flawChoice._id] = flawChoice;
-const pathPick = { _id: advId("path:pick"), type: "AdvancementPath", level: 1, configuration: {}, value: {} };
+const pathPick = {
+  _id: advId("path:pick"), type: "AdvancementPath", level: 1,
+  title: "Therianthrope Branch",
+  hint: "Choose the animalistic branch of your curse, determined by the Therianthrope that infected you.",
+  configuration: {}, value: {}
+};
 classAdv[pathPick._id] = pathPick;
 
 // Stage 2+ — branch-specific Controlling the Curse is granted by the Path.
@@ -940,6 +1016,7 @@ items.push({
   name: "Therianthrope",
   type: "advancement-classes.advancement-class",
   img: "systems/dnd5e/icons/svg/items/class.svg",
+  folder: F_ROOT,
   system: {
     description: {
       value: `<p>A Therianthrope is a creature cursed to transform into beast and hybrid forms — a werecreature whose condition spreads through its bite during the light of the Planar Tear. Therianthrope Stages are tracked independently of class level and do not increase character level or proficiency bonus.</p><p>See the @UUID[${journalUuid}]{Therianthrope} journal for the full class write-up.</p>`,
@@ -983,7 +1060,7 @@ for ( const [key, branch] of Object.entries(BRANCHES) ) {
   ] ) {
     for ( const [tag, ids] of [["features", featIdents.map(i => id(`feat:${i}`))], ["milestones", msIds]] ) {
       if ( !ids.length ) continue;
-      const a = itemGrant(stage, ids.map(ITEM_UUID));
+      const a = itemGrant(stage, ids.map(ITEM_UUID), GRANT_META[tag](stage));
       a._id = advId(`grant:${key}:${stage}:${tag}`);
       adv[a._id] = a;
     }
@@ -994,6 +1071,7 @@ for ( const [key, branch] of Object.entries(BRANCHES) ) {
     name: `Therianthrope: ${branch.name}`,
     type: "advancement-classes.advancement-path",
     img: "systems/dnd5e/icons/svg/subclass.svg",
+    folder: F_PATH_BRANCH[key],
     system: {
       description: { value: `<p>The ${branch.name} branch of the Therianthrope curse. Your key ability is ${branch.keyName}; while transformed your alignment becomes ${branch.alignment}.</p>`, chat: "" },
       identifier: `therianthrope-${key}`,
@@ -1110,13 +1188,14 @@ const writeOut = (dir, list) => {
   const target = join(ROOT, "packs/_source", dir);
   mkdirSync(target, { recursive: true });
   for ( const doc of list ) {
-    const base = doc.system?.identifier || doc.name;
+    const isFolder = doc._key?.startsWith("!folders!");
+    const base = isFolder ? `folder-${doc._id}` : (doc.system?.identifier || doc.name);
     const slug = base.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
     writeFileSync(join(target, `${slug}.json`), JSON.stringify(doc, null, 2) + "\n");
   }
   console.log(`${dir}: ${list.length} documents`);
 };
 
-writeOut("advancement-classes", items);
+writeOut("advancement-classes", [...folderDocs, ...items]);
 writeOut("advancement-classes-forms", actors);
 writeOut("advancement-classes-journals", journals);

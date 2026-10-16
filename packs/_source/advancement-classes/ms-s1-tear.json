@@ -4,6 +4,7 @@
   "name": "Transformation: Planar Tear",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "fmRA248EW75x7I6k",
   "system": {
     "description": {
       "value": "<p>Transform 3 times due to the Planar Tear.</p>",

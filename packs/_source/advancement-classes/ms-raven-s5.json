@@ -4,6 +4,7 @@
   "name": "Raven: Doomed Gaze",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "fgtuw9HXdpwX4BKC",
   "system": {
     "description": {
       "value": "<p>Have 3 different enemy creatures fail a saving throw against your DC while affected by Ominous Gaze.</p>",

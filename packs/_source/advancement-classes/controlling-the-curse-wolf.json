@@ -4,6 +4,7 @@
   "name": "Controlling the Curse — Wolf",
   "type": "feat",
   "img": "icons/magic/nature/wolf-paw-glow-large-orange.webp",
+  "folder": "F3WPeN7KdGq9L0ZH",
   "system": {
     "description": {
       "value": "<p>You have gained a small measure of control over the curse. You gain 1 Control Point, which you can spend to transform into your Animal Form as an Action using the activity on this feature. You regain all expended Control Points when you finish a Long Rest. Your Control Point maximum increases as you gain Stages (@scale.therianthrope.control-points).</p>\n<p>A Controlled Transformation lasts a number of hours equal to half your Stage (rounded down). It ends early if you are reduced to 0 hit points or if you dismiss it as a Bonus Action. When the duration would expire, you can spend 1 additional Control Point to extend it by the same duration. Reverting from any transformation inflicts 1 level of Exhaustion; while transformed you ignore all Exhaustion.</p>",

@@ -4,6 +4,7 @@
   "name": "Shark: Hunter's Eye",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "f4JMRdVIAmXDmyso",
   "system": {
     "description": {
       "value": "<p>Succeed on 10 Perception checks.</p>",

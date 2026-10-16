@@ -4,6 +4,7 @@
   "name": "Calm in the Tear",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "fgtuw9HXdpwX4BKC",
   "system": {
     "description": {
       "value": "<p>Spend 3 Control Points to automatically succeed on saving throws during the Planar Tear.</p>",

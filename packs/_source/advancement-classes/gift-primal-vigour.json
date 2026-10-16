@@ -4,6 +4,7 @@
   "name": "Primal Vigour",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "xf2hCVaJN8gtdu4P",
   "system": {
     "description": {
       "value": "<p>Your maximum number of Control Points is reduced by 1. You can use Wild Regeneration while not transformed.</p><p><em>In addition, when you would make a saving throw against your Unwilling Transformation feature, you can choose to roll with Disadvantage. If this is the second Major Embrace gift you have taken, you can instead choose to fail the save.</em></p>",

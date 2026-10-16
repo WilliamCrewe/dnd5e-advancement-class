@@ -4,6 +4,7 @@
   "name": "Pack Tactics",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "sitFs1s7iNnuhF1s",
   "system": {
     "description": {
       "value": "<p>While transformed, you have advantage on attack rolls against a creature if at least one of your allies is within 5 feet of it and that ally does not have the Incapacitated condition.</p>",

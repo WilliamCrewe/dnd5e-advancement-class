@@ -4,6 +4,7 @@
   "name": "Tapped Instinct",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "ObunyjIkZ3NLIB3X",
   "system": {
     "description": {
       "value": "<p>While not transformed, you can spend 1 Control Point as a Bonus Action to heighten your body's capabilities for 1 minute, gaining the benefits of Bestial Aspect, Wild Regeneration, and Feral Speed.</p>",

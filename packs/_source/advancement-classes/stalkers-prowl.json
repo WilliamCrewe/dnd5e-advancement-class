@@ -4,6 +4,7 @@
   "name": "Stalker's Prowl",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "HDhwyC8AXIdNFepB",
   "system": {
     "description": {
       "value": "<p>While transformed, once per turn when you hit a creature with a natural weapon attack while you are hidden from it, the attack deals an extra 2d8 damage. At Stage 9 this extra damage increases to 2d12.</p>",

@@ -4,6 +4,7 @@
   "name": "Flyby",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "SBreKb0xLzqq6ts4",
   "system": {
     "description": {
       "value": "<p>While transformed, you do not provoke opportunity attacks when you fly out of a creature's reach.</p>",

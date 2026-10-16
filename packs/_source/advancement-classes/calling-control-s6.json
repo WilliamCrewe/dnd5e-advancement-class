@@ -4,6 +4,7 @@
   "name": "Calling: Control",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/rune-sigil-rough-white-teal.webp",
+  "folder": "kInO3NYc5BkgLpT0",
   "system": {
     "description": {
       "value": "<p>Commit yourself to the path of Control and claim a gift of the curse. Completing this Calling removes the alternative offered alongside it.</p>",

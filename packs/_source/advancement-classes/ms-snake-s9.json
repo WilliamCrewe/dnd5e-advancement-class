@@ -4,6 +4,7 @@
   "name": "Snake: Pitiless Poison",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "uWZc0OJSHamkswGc",
   "system": {
     "description": {
       "value": "<p>Affect 10 different enemy creatures with Virulent Venom.</p>",

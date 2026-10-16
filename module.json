@@ -39,7 +39,7 @@
   "packs": [
     {
       "name": "advancement-classes",
-      "label": "Advancement Classes",
+      "label": "Classes",
       "type": "Item",
       "path": "packs/advancement-classes",
       "flags": {
@@ -56,15 +56,27 @@
     },
     {
       "name": "advancement-classes-forms",
-      "label": "Advancement Classes — Forms",
+      "label": "Actors",
       "type": "Actor",
       "path": "packs/advancement-classes-forms"
     },
     {
       "name": "advancement-classes-journals",
-      "label": "Advancement Classes — Journals",
+      "label": "Journals",
       "type": "JournalEntry",
       "path": "packs/advancement-classes-journals"
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Advancement Class",
+      "color": "#4a2c6e",
+      "sorting": "m",
+      "packs": [
+        "advancement-classes",
+        "advancement-classes-forms",
+        "advancement-classes-journals"
+      ]
     }
   ],
   "relationships": {

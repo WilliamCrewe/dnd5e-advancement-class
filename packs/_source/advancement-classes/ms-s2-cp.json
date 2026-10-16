@@ -4,6 +4,7 @@
   "name": "Exert the Curse",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "TIZoLB6Lsot2nfJ9",
   "system": {
     "description": {
       "value": "<p>Spend 10 Control Points.</p>",

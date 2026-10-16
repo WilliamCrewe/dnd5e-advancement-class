@@ -4,6 +4,7 @@
   "name": "Pounce",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "1hhZ8ZI3GpSjyGWJ",
   "system": {
     "description": {
       "value": "<p>While transformed, if you move at least 20 feet straight toward a creature and then hit it with a natural weapon attack, the target must succeed on a Strength saving throw against your Therianthrope DC or have the Prone condition.</p>",

@@ -4,6 +4,7 @@
   "name": "Tiger: Ambush Predator",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "AYT9DAkSFvj4fMc3",
   "system": {
     "description": {
       "value": "<p>Deal 30 damage with Stalker's Prowl.</p>",

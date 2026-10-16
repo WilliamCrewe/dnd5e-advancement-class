@@ -4,6 +4,7 @@
   "name": "Feral Speed",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "inbizcvh7S8KmsO2",
   "system": {
     "description": {
       "value": "<p>While transformed, your speed increases by 10 feet.</p>",

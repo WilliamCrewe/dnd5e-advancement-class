@@ -4,6 +4,7 @@
   "name": "Alpha Howl",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "folder": "1E4UHqMckj1WsHqD",
   "system": {
     "description": {
       "value": "<p>While transformed, you can use a Bonus Action to loose a commanding howl. Each ally of your choice within 30 feet that can hear you gains temporary hit points equal to your Stage and advantage on the next attack roll it makes before the end of your next turn.</p>",

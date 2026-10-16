@@ -4,6 +4,7 @@
   "name": "Tiger: Apex Executioner",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
+  "folder": "uWZc0OJSHamkswGc",
   "system": {
     "description": {
       "value": "<p>Score 5 critical hits against enemy creatures while transformed.</p>",
