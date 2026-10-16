@@ -24,6 +24,7 @@
         "name": "Flyby Strike",
         "img": null,
         "sort": 0,
+        "identifier": "",
         "activation": {
           "type": "none",
           "value": null,

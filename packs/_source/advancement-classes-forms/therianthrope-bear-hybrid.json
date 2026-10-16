@@ -1,7 +1,7 @@
 {
   "_id": "EruBVzUXm9ZHa1MF",
   "_key": "!actors!EruBVzUXm9ZHa1MF",
-  "name": "Bear Hybrid Form",
+  "name": "Werebear (Hybrid)",
   "type": "npc",
   "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
@@ -142,6 +142,7 @@
             "name": "bear-hybrid-claw",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -282,6 +283,7 @@
             "name": "bear-hybrid-bite",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -411,7 +413,7 @@
     }
   },
   "prototypeToken": {
-    "name": "Bear Hybrid Form",
+    "name": "Werebear (Hybrid)",
     "actorLink": true,
     "sight": {
       "enabled": true

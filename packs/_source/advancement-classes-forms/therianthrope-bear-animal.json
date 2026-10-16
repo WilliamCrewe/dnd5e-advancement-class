@@ -1,7 +1,7 @@
 {
   "_id": "HoAgfOUQ3rJ8FBfo",
   "_key": "!actors!HoAgfOUQ3rJ8FBfo",
-  "name": "Bear Animal Form",
+  "name": "Werebear (Animal)",
   "type": "npc",
   "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
@@ -143,6 +143,7 @@
             "name": "bear-animal-bite",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -283,6 +284,7 @@
             "name": "bear-animal-claws",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -412,7 +414,7 @@
     }
   },
   "prototypeToken": {
-    "name": "Bear Animal Form",
+    "name": "Werebear (Animal)",
     "actorLink": true,
     "sight": {
       "enabled": true

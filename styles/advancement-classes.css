@@ -97,3 +97,37 @@
   text-align: center;
   padding: 4px;
 }
+
+/* Calling gift picker */
+.calling-gift {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.calling-gift:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.calling-gift .gift-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.calling-gift .gift-link {
+  flex: 1;
+}
+
+.calling-gift .gift-link:hover {
+  text-shadow: 0 0 8px var(--color-shadow-primary);
+}
+
+.calling-gift .gift-tier {
+  font-size: 0.85em;
+  opacity: 0.7;
+}

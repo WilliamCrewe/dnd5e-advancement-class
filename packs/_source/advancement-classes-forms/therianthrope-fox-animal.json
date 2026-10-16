@@ -1,7 +1,7 @@
 {
   "_id": "riB1UoRl2nrmA8d1",
   "_key": "!actors!riB1UoRl2nrmA8d1",
-  "name": "Fox Animal Form",
+  "name": "Werefox (Animal)",
   "type": "npc",
   "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
@@ -142,6 +142,7 @@
             "name": "fox-animal-bite",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -271,7 +272,7 @@
     }
   },
   "prototypeToken": {
-    "name": "Fox Animal Form",
+    "name": "Werefox (Animal)",
     "actorLink": true,
     "sight": {
       "enabled": true

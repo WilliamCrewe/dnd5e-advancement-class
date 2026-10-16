@@ -1,7 +1,7 @@
 {
   "_id": "gxvfEsZ2FPsxEFVZ",
   "_key": "!actors!gxvfEsZ2FPsxEFVZ",
-  "name": "Fox Hybrid Form",
+  "name": "Werefox (Hybrid)",
   "type": "npc",
   "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
@@ -142,6 +142,7 @@
             "name": "fox-hybrid-claw",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -282,6 +283,7 @@
             "name": "fox-hybrid-bite",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -411,7 +413,7 @@
     }
   },
   "prototypeToken": {
-    "name": "Fox Hybrid Form",
+    "name": "Werefox (Hybrid)",
     "actorLink": true,
     "sight": {
       "enabled": true

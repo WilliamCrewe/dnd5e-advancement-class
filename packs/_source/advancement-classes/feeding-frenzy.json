@@ -24,6 +24,7 @@
         "name": "Feeding Frenzy",
         "img": null,
         "sort": 0,
+        "identifier": "",
         "activation": {
           "type": "action",
           "value": null,

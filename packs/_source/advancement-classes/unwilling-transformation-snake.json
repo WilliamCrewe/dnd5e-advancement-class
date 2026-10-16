@@ -24,6 +24,7 @@
         "name": "Save: Reduced Below Half HP",
         "img": null,
         "sort": 0,
+        "identifier": "",
         "activation": {
           "type": "special",
           "value": null,
@@ -96,6 +97,7 @@
         "name": "Save: Ally Reduced to 0 HP",
         "img": null,
         "sort": 0,
+        "identifier": "",
         "activation": {
           "type": "special",
           "value": null,
@@ -168,6 +170,7 @@
         "name": "Save: Planar Tear",
         "img": null,
         "sort": 0,
+        "identifier": "",
         "activation": {
           "type": "special",
           "value": null,
@@ -240,6 +243,7 @@
         "name": "Transform",
         "img": null,
         "sort": 0,
+        "identifier": "",
         "activation": {
           "type": "special",
           "value": null,
@@ -300,7 +304,7 @@
         "profiles": [
           {
             "_id": "mH0HAQhW2vqWSkHq",
-            "name": "Snake (Animal Form)",
+            "name": "Animal Form",
             "uuid": "Compendium.advancement-classes.advancement-classes-forms.Actor.bHMlLVjXJo5vCj6j",
             "cr": "",
             "level": {
@@ -313,7 +317,7 @@
           },
           {
             "_id": "q5mb2XfNI6MGf6xS",
-            "name": "Snake (Hybrid Form)",
+            "name": "Hybrid Form",
             "uuid": "Compendium.advancement-classes.advancement-classes-forms.Actor.1lZ3qLRHICmCC53A",
             "cr": "",
             "level": {
@@ -343,7 +347,8 @@
             "mental",
             "resistances",
             "vision",
-            "bio"
+            "bio",
+            "prof"
           ],
           "minimumAC": "",
           "other": [],

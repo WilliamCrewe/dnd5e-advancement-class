@@ -24,6 +24,7 @@
         "name": "Stalker's Prowl",
         "img": null,
         "sort": 0,
+        "identifier": "",
         "activation": {
           "type": "action",
           "value": null,

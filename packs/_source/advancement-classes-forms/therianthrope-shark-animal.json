@@ -1,7 +1,7 @@
 {
   "_id": "hbWtc6rLGHJjJEik",
   "_key": "!actors!hbWtc6rLGHJjJEik",
-  "name": "Shark Animal Form",
+  "name": "Wereshark (Animal)",
   "type": "npc",
   "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
@@ -56,7 +56,7 @@
       },
       "senses": {
         "darkvision": 60,
-        "blindsight": null,
+        "blindsight": 30,
         "tremorsense": null,
         "truesight": null,
         "units": "ft",
@@ -143,6 +143,7 @@
             "name": "shark-animal-bite",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -221,6 +222,7 @@
             "name": "Therianthrope's Curse",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "special",
               "value": null,
@@ -370,7 +372,7 @@
     }
   },
   "prototypeToken": {
-    "name": "Shark Animal Form",
+    "name": "Wereshark (Animal)",
     "actorLink": true,
     "sight": {
       "enabled": true

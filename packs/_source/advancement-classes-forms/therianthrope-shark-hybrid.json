@@ -1,7 +1,7 @@
 {
   "_id": "CS4Q1ToMG8Fd7Leu",
   "_key": "!actors!CS4Q1ToMG8Fd7Leu",
-  "name": "Shark Hybrid Form",
+  "name": "Wereshark (Hybrid)",
   "type": "npc",
   "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
@@ -56,7 +56,7 @@
       },
       "senses": {
         "darkvision": 60,
-        "blindsight": null,
+        "blindsight": 30,
         "tremorsense": null,
         "truesight": null,
         "units": "ft",
@@ -143,6 +143,7 @@
             "name": "shark-hybrid-bite",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -221,6 +222,7 @@
             "name": "Therianthrope's Curse",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "special",
               "value": null,
@@ -381,6 +383,7 @@
             "name": "shark-hybrid-claw",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -510,7 +513,7 @@
     }
   },
   "prototypeToken": {
-    "name": "Shark Hybrid Form",
+    "name": "Wereshark (Hybrid)",
     "actorLink": true,
     "sight": {
       "enabled": true

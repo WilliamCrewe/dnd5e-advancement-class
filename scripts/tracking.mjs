@@ -48,6 +48,7 @@ export function registerTracking() {
  */
 export function track(actor, event, { amount = 1, targets = [] } = {}) {
   if ( !actor || !event ) return;
+  actor = milestoneOwner(actor);
   for ( const item of actor.items ) {
     if ( (item.type !== MILESTONE_TYPE) || (item.system.milestoneType !== "counter") ) continue;
     const { tracking, progress } = item.system;
@@ -114,6 +115,23 @@ function onAttackRoll(rolls, { subject } = {}) {
 
 function onTransform(host, source, data, settings, options) {
   track(host, "transform");
+}
+
+/* -------------------------------------------- */
+
+/**
+ * dnd5e transformations create a new Actor document linked back to the
+ * original via the `dnd5e.originalActor` flag. Milestone items live on the
+ * original actor, so events emitted by the transformed copy are redirected —
+ * progress made while transformed persists when the copy is discarded on
+ * revert.
+ */
+function milestoneOwner(actor) {
+  const ref = actor.getFlag?.("dnd5e", "originalActor");
+  if ( !ref ) return actor;
+  const original = game.actors.get(ref)
+    ?? (ref.includes(".") ? foundry.utils.fromUuidSync(ref) : null);
+  return original ?? actor;
 }
 
 function onCheckRoll(rolls, data, type, key) {

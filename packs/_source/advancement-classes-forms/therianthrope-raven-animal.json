@@ -1,7 +1,7 @@
 {
   "_id": "aMfzoocostLYMCUD",
   "_key": "!actors!aMfzoocostLYMCUD",
-  "name": "Raven Animal Form",
+  "name": "Wereraven (Animal)",
   "type": "npc",
   "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
@@ -143,6 +143,7 @@
             "name": "raven-animal-peck",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -221,6 +222,7 @@
             "name": "Therianthrope's Curse",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "special",
               "value": null,
@@ -370,7 +372,7 @@
     }
   },
   "prototypeToken": {
-    "name": "Raven Animal Form",
+    "name": "Wereraven (Animal)",
     "actorLink": true,
     "sight": {
       "enabled": true

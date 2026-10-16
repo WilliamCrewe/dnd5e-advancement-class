@@ -3,7 +3,7 @@
   "_key": "!items!9sJ8Jujq1Cb4F3op",
   "name": "True Mastery",
   "type": "feat",
-  "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "img": "icons/magic/symbols/rune-sigil-horned-white-purple.webp",
   "folder": "nhvQDoLlqNGgDuZ5",
   "sort": 301,
   "system": {
@@ -23,7 +23,8 @@
     "advancement-classes": {
       "gift": {
         "side": "control",
-        "tier": "grand"
+        "tier": "grand",
+        "class": "therianthrope"
       },
       "cpDelta": 1
     }

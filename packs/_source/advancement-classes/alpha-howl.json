@@ -24,6 +24,7 @@
         "name": "Alpha Howl",
         "img": null,
         "sort": 0,
+        "identifier": "",
         "activation": {
           "type": "bonus",
           "value": null,

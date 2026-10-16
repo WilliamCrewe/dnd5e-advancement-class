@@ -3,7 +3,7 @@
   "_key": "!items!rSZoWU87a2wpU6dT",
   "name": "Ravenous Regeneration",
   "type": "feat",
-  "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "img": "icons/magic/symbols/rune-sigil-white-pink.webp",
   "folder": "SPaAhDRAbGB6v4o4",
   "sort": 103,
   "system": {
@@ -23,7 +23,8 @@
     "advancement-classes": {
       "gift": {
         "side": "embrace",
-        "tier": "minor"
+        "tier": "minor",
+        "class": "therianthrope"
       },
       "cpDelta": -1
     }

@@ -116,8 +116,8 @@
         "configuration": {},
         "value": {}
       },
-      "VnwY68YR05hg4aCA": {
-        "_id": "VnwY68YR05hg4aCA",
+      "G1kymY4tl7SB1GsD": {
+        "_id": "G1kymY4tl7SB1GsD",
         "type": "ItemGrant",
         "level": 2,
         "title": "Stage 2 Features",
@@ -126,9 +126,6 @@
           "items": [
             {
               "uuid": "Compendium.advancement-classes.advancement-classes.Item.Zn9Bp5xsyFmSYj8d"
-            },
-            {
-              "uuid": "Compendium.advancement-classes.advancement-classes.Item.tGLGCzImTRKZfs4U"
             }
           ],
           "optional": false
@@ -425,6 +422,8 @@
         "_id": "jueVeNGyxv5ikebg",
         "type": "ScaleValue",
         "level": 0,
+        "title": "Control Points",
+        "hint": "Your pool of Control Points — spent on Controlled Transformation and Control gifts, and regained when you finish a Long Rest.",
         "configuration": {
           "identifier": "control-points",
           "type": "number",
@@ -455,6 +454,8 @@
         "_id": "YbYblq2Ge8oiLQRD",
         "type": "ScaleValue",
         "level": 0,
+        "title": "Wild Regeneration",
+        "hint": "The hit points you regain when you use your Wild Regeneration reaction while transformed.",
         "configuration": {
           "identifier": "wild-regen",
           "type": "dice",

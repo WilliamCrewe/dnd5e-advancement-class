@@ -102,21 +102,21 @@ const FORMS = {
       ], specials: [] }
   },
   shark: {
-    animal: { size: "lg", ac: "11 + @abilities.con.mod", acFlat: 13, move: { walk: 0, swim: 40 },
+    animal: { size: "lg", ac: "11 + @abilities.con.mod", acFlat: 13, move: { walk: 0, swim: 40 }, blindsight: 30,
       attacks: [{ name: "Bite", ident: "bite", dice: "2d6", dmg: "piercing", ability: "str", cursed: true }],
       specials: ["Water Breathing"] },
-    hybrid: { size: "lg", ac: "11 + @abilities.con.mod", acFlat: 13, move: { walk: 30, swim: 40 },
+    hybrid: { size: "lg", ac: "11 + @abilities.con.mod", acFlat: 13, move: { walk: 30, swim: 40 }, blindsight: 30,
       attacks: [
         { name: "Bite", ident: "bite", dice: "2d6", dmg: "piercing", ability: "str", cursed: true },
         { name: "Claw", ident: "claw", dice: "1d10", dmg: "slashing", ability: "str" }
       ], specials: ["Amphibious"] }
   },
   snake: {
-    animal: { size: "sm", ac: "11 + @abilities.dex.mod", acFlat: 13, move: { walk: 30, swim: 30 },
+    animal: { size: "sm", ac: "11 + @abilities.dex.mod", acFlat: 13, move: { walk: 30, swim: 30 }, blindsight: 10,
       attacks: [{ name: "Bite", ident: "bite", dice: "1d4", dmg: "piercing", ability: "dex",
                   extra: "1d4", extraType: "poison", cursed: true }],
       specials: [] },
-    hybrid: { size: "sm", ac: "11 + @abilities.dex.mod", acFlat: 13, move: { walk: 30 },
+    hybrid: { size: "sm", ac: "11 + @abilities.dex.mod", acFlat: 13, move: { walk: 30 }, blindsight: 10,
       attacks: [{ name: "Bite", ident: "bite", dice: "1d6", dmg: "piercing", ability: "dex",
                   extra: "1d4", extraType: "poison", cursed: true }],
       specials: [] }
@@ -378,7 +378,7 @@ function callingMilestone(stage, key) {
 function baseActivity(type, name, extra = {}) {
   return {
     _id: actId(`${type}:${name}`), type,
-    name, img: null, sort: 0,
+    name, img: null, sort: 0, identifier: extra.identifier ?? "",
     activation: { type: extra.activation ?? "action", value: null, override: false, condition: "" },
     consumption: { scaling: { allowed: false }, spellSlot: false, targets: extra.consume ?? [] },
     description: { chatFlavor: "" },
@@ -408,7 +408,7 @@ function transformActivity(name, profiles, minimumAC = "") {
       profiles,
       settings: {
         effects: ["origin", "otherOrigin", "background", "feat"], merge: ["saves", "skills"],
-        keep: ["hp", "tempHP", "physical", "mental", "resistances", "vision", "bio"],
+        keep: ["hp", "tempHP", "physical", "mental", "resistances", "vision", "bio", "prof"],
         minimumAC, other: [], spellLists: [], transformTokens: true, tempFormula: ""
       }
     }
@@ -506,19 +506,18 @@ function formNPC(branchKey, kind) {
   const spec = FORMS[branchKey][kind];
   const branch = BRANCHES[branchKey];
   const nid = id(`form:${branchKey}:${kind}`);
-  const label = kind === "animal" ? "Animal Form" : "Hybrid Form";
   const items = spec.attacks.map(a => weaponItem(`${branchKey}-${kind}`, a, nid));
 
   const abilities = {};
   for ( const ab of ["str", "dex", "con", "int", "wis", "cha"] ) {
     abilities[ab] = { value: { str: 16, dex: 14, con: 14, int: 3, wis: 12, cha: 6 }[ab], proficient: 0 };
   }
-  const senses = { darkvision: 60, blindsight: null, tremorsense: null, truesight: null, units: "ft", special: "" };
+  const senses = { darkvision: 60, blindsight: spec.blindsight ?? null, tremorsense: null, truesight: null, units: "ft", special: "" };
 
   return {
     _id: nid,
     _key: `!actors!${nid}`,
-    name: `${branch.name} ${label}`,
+    name: `Were${branch.name.toLowerCase()} (${kind === "animal" ? "Animal" : "Hybrid"})`,
     type: "npc",
     img: "systems/dnd5e/icons/svg/monster.svg",
     system: {
@@ -535,7 +534,7 @@ function formNPC(branchKey, kind) {
         alignment: branch.alignment,
         type: { value: "beast", subtype: "therianthrope" },
         cr: 1,
-        biography: { value: `<p>The ${label.toLowerCase()} of a Therianthrope of the ${branch.name} branch.</p>`, public: "" }
+        biography: { value: `<p>The ${kind} form of a Therianthrope of the ${branch.name} branch.</p>`, public: "" }
       },
       traits: {
         size: spec.size,
@@ -551,7 +550,7 @@ function formNPC(branchKey, kind) {
     effects: [],
     flags: { "advancement-classes": { formAC: spec.ac } },
     prototypeToken: {
-      name: `${branch.name} ${label}`, actorLink: true, sight: { enabled: true },
+      name: `Were${branch.name.toLowerCase()} (${kind === "animal" ? "Animal" : "Hybrid"})`, actorLink: true, sight: { enabled: true },
       disposition: -1, texture: { src: "systems/dnd5e/icons/svg/monster.svg" }
     }
   };
@@ -711,18 +710,18 @@ const IMG_NPC = "systems/dnd5e/icons/svg/monster.svg";
 const IMG_JOURNAL = "icons/svg/book.svg";
 
 const animalProfiles = Object.keys(BRANCHES).map(b => ({
-  _id: actId(`profile:${b}:animal`), name: `${BRANCHES[b].name} (Animal Form)`,
+  _id: actId(`profile:${b}:animal`), name: "Animal Form",
   uuid: ACTOR_UUID(id(`form:${b}:animal`)), cr: "", level: { min: null, max: null },
   movement: [], sizes: [], types: []
 }));
 const hybridProfiles = Object.keys(BRANCHES).map(b => ({
-  _id: actId(`profile:${b}:hybrid`), name: `${BRANCHES[b].name} (Hybrid Form)`,
+  _id: actId(`profile:${b}:hybrid`), name: "Hybrid Form",
   uuid: ACTOR_UUID(id(`form:${b}:hybrid`)), cr: "", level: { min: null, max: null },
   movement: [], sizes: [], types: []
 }));
 const branchProfiles = b => [
-  animalProfiles.find(p => p.name.startsWith(BRANCHES[b].name)),
-  hybridProfiles.find(p => p.name.startsWith(BRANCHES[b].name))
+  animalProfiles.find(p => p.uuid === ACTOR_UUID(id(`form:${b}:animal`))),
+  hybridProfiles.find(p => p.uuid === ACTOR_UUID(id(`form:${b}:hybrid`)))
 ];
 
 // Per-branch Unwilling Transformation: each variant carries only that
@@ -750,7 +749,7 @@ for ( const b of Object.keys(BRANCHES) ) {
 // offers that branch's Animal Form.
 for ( const b of Object.keys(BRANCHES) ) {
   const ct = transformActivity("Controlled Transformation",
-    [animalProfiles.find(p => p.name.startsWith(BRANCHES[b].name))]);
+    [animalProfiles.find(p => p.uuid === ACTOR_UUID(id(`form:${b}:animal`)))]);
   items.push(feat(`Controlling the Curse — ${BRANCHES[b].name}`, `controlling-the-curse-${b}`,
     FEATURE_TEXT.controlling, { activities: { [ct._id]: ct }, img: IMG_CONTROLLING, folder: F_PATH_BRANCH[b], sort: 20 }));
 }
@@ -761,7 +760,7 @@ items.push(feat("Control Points", "control-points",
 ));
 
 const wrHeal = baseActivity("heal", "Wild Regeneration", {
-  activation: "reaction",
+  activation: "reaction", identifier: "wild-regeneration",
   data: {
     healing: { number: null, denomination: null, bonus: "", custom: { enabled: true, formula: "@scale.therianthrope.wild-regen" }, types: ["healing"], scaling: { number: 0 } }
   }
@@ -847,26 +846,47 @@ for ( const g of GIFTS ) {
   const text = g.side === "embrace" && g.tier === "major"
     ? `<p>${g.text}</p><p><em>${EMBRACE_MAJOR_RIDER.trim()}</em></p>`
     : `<p>${g.text}</p>`;
-  const flags = { "advancement-classes": { gift: { side: g.side, tier: g.tier } } };
+  const flags = { "advancement-classes": { gift: { side: g.side, tier: g.tier, class: "therianthrope" } } };
   if ( g.cpDelta ) flags["advancement-classes"].cpDelta = g.cpDelta;
   if ( g.keep ) flags["advancement-classes"].transform = { keep: g.keep };
   if ( g.srRefund ) flags["advancement-classes"].srRefund = { target: "control-points", amount: g.srRefund };
   const activities = {};
-  if ( g.activity === "tapped-instinct" ) {
-    const act = baseActivity("utility", "Tapped Instinct", { activation: "bonus", consume: cpConsume(1) });
-    activities[act._id] = act;
-  }
-  if ( g.ident === "gift-hybrid-mastery" ) {
-    const act = transformActivity("Controlled Transformation (Hybrid)", hybridProfiles);
-    act._id = actId("gift:hybrid-mastery:transform");
-    activities[act._id] = act;
-  }
   const effs = (g.changes ?? []).map(c => ({
     _id: effId(g.ident + c.key), name: g.name, icon: "icons/magic/death/undead-ghost-screaming-teal.webp",
     changes: [{ key: c.key, mode: c.mode, value: c.value }], type: "base", transfer: true,
     disabled: false, duration: {}, origin: null, tint: "#ffffff", description: g.text, statuses: [], flags: {}
   }));
-  items.push(feat(g.name, g.ident, text, { activities, effects: effs.length ? effs : undefined, flags, featType: "supernaturalGift", subtype: "blessing", folder: F_GIFT_SIDE[g.side], sort: { minor: 100, major: 200, grand: 300 }[g.tier] + giftSortSeq[gk] }));
+  if ( g.ident === "gift-tapped-instinct" ) {
+    const tiEff = {
+      _id: effId("tapped-instinct"), name: "Tapped Instinct",
+      icon: "icons/magic/symbols/rune-sigil-horned-white-purple.webp",
+      changes: [
+        { key: "system.attributes.movement.walk", mode: 2, value: "10" },
+        { key: "system.skills.prc.roll.mode", mode: 2, value: "1" },
+        { key: "system.skills.sur.roll.mode", mode: 2, value: "1" }
+      ],
+      type: "base", transfer: false, disabled: false,
+      duration: { seconds: 600 }, origin: null, tint: "#ffffff",
+      description: g.text, statuses: [], flags: {}
+    };
+    const act = baseActivity("utility", "Tapped Instinct", {
+      activation: "bonus", consume: cpConsume(1), affects: "self",
+      effects: [{ _id: tiEff._id }]
+    });
+    activities[act._id] = act;
+    activities[wrHeal._id] = wrHeal;
+    effs.push(tiEff);
+  }
+  if ( g.ident === "gift-primal-vigour" ) activities[wrHeal._id] = wrHeal;
+  if ( g.ident === "gift-hybrid-mastery" ) {
+    const act = transformActivity("Controlled Transformation (Hybrid)", hybridProfiles);
+    act._id = actId("gift:hybrid-mastery:transform");
+    activities[act._id] = act;
+  }
+  items.push(feat(g.name, g.ident, text, { activities, effects: effs.length ? effs : undefined, flags, featType: "supernaturalGift", subtype: "blessing", folder: F_GIFT_SIDE[g.side], sort: { minor: 100, major: 200, grand: 300 }[g.tier] + giftSortSeq[gk],
+    img: g.side === "control"
+      ? "icons/magic/symbols/rune-sigil-horned-white-purple.webp"
+      : "icons/magic/symbols/rune-sigil-white-pink.webp" }));
 }
 
 /* ----- milestones ----- */
@@ -908,10 +928,12 @@ function itemGrant(level, uuids, meta = {}) {
     value: {}
   };
 }
-function scaleValue(identifier, type, scale) {
+function scaleValue(identifier, type, scale, meta = {}) {
   return {
     _id: advId(`sv:${identifier}`),
     type: "ScaleValue", level: 0,
+    title: meta.title ?? "",
+    hint: meta.hint ?? "",
     configuration: { identifier, type, scale, distance: { units: "" } },
     value: {}
   };
@@ -974,7 +996,7 @@ classAdv[pathPick._id] = pathPick;
 
 // Stage 2+ — branch-specific Controlling the Curse is granted by the Path.
 grantAt(2, {
-  features: [ITEM_UUID(id("feat:control-points")), ITEM_UUID(id("feat:wild-regeneration"))],
+  features: [ITEM_UUID(id("feat:control-points"))],
   milestones: msUUIDs(2), callings: callingUUIDs(2)
 });
 grantAt(3, {
@@ -995,11 +1017,17 @@ grantAt(8, {
 grantAt(9, { milestones: msUUIDs(9) });
 grantAt(10, { callings: callingUUIDs(10) });
 
-const svCP = scaleValue("control-points", "number", { 2: { value: 1 }, 4: { value: 2 }, 6: { value: 3 }, 8: { value: 4 }, 10: { value: 5 } });
+const svCP = scaleValue("control-points", "number", { 2: { value: 1 }, 4: { value: 2 }, 6: { value: 3 }, 8: { value: 4 }, 10: { value: 5 } }, {
+  title: "Control Points",
+  hint: "Your pool of Control Points — spent on Controlled Transformation and Control gifts, and regained when you finish a Long Rest."
+});
 classAdv[svCP._id] = svCP;
 const svWR = scaleValue("wild-regen", "dice", {
   2: { number: 1, faces: 4 }, 4: { number: 1, faces: 6 }, 6: { number: 1, faces: 8 },
   8: { number: 1, faces: 10 }, 10: { number: 2, faces: 6 }
+}, {
+  title: "Wild Regeneration",
+  hint: "The hit points you regain when you use your Wild Regeneration reaction while transformed."
 });
 classAdv[svWR._id] = svWR;
 
@@ -1032,16 +1060,25 @@ for ( const [key, branch] of Object.entries(BRANCHES) ) {
   const pathId = id(`path:${key}`);
   const adv = {};
   const floorSv = scaleValue("key-ability-floor", "number",
-    { 1: { value: 14 }, 4: { value: 16 }, 7: { value: 18 }, 10: { value: 20 } });
+    { 1: { value: 14 }, 4: { value: 16 }, 7: { value: 18 }, 10: { value: 20 } }, {
+      title: "Key Ability",
+      hint: `The curse enhances your body — while transformed, your ${branch.keyName} score is increased to this value if it is not already higher.`
+    });
   floorSv._id = advId(`sv:${key}:floor`);
   adv[floorSv._id] = floorSv;
   if ( key === "snake" ) {
     const sv = scaleValue("snake-venom", "dice",
-      { 1: { number: 1, faces: 4 }, 5: { number: 2, faces: 4 }, 7: { number: 2, faces: 6 }, 9: { number: 2, faces: 8 } });
+      { 1: { number: 1, faces: 4 }, 5: { number: 2, faces: 4 }, 7: { number: 2, faces: 6 }, 9: { number: 2, faces: 8 } }, {
+        title: "Snake Venom",
+        hint: "The extra poison damage dealt by your Venomous Bite feature while transformed."
+      });
     adv[sv._id] = sv;
   }
   if ( key === "tiger" ) {
-    const sv = scaleValue("stalker-prowl", "dice", { 7: { number: 2, faces: 8 }, 9: { number: 2, faces: 12 } });
+    const sv = scaleValue("stalker-prowl", "dice", { 7: { number: 2, faces: 8 }, 9: { number: 2, faces: 12 } }, {
+      title: "Stalker's Prowl",
+      hint: "The extra damage dealt by your Stalker's Prowl feature while transformed."
+    });
     adv[sv._id] = sv;
   }
   for ( const [stage, featIdents, msIds] of [

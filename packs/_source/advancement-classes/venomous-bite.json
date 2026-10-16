@@ -24,6 +24,7 @@
         "name": "Venomous Bite",
         "img": null,
         "sort": 0,
+        "identifier": "",
         "activation": {
           "type": "special",
           "value": null,

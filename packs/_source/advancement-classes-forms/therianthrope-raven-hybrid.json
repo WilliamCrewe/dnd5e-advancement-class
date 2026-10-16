@@ -1,7 +1,7 @@
 {
   "_id": "37rFaF2Bq7GP9S2r",
   "_key": "!actors!37rFaF2Bq7GP9S2r",
-  "name": "Raven Hybrid Form",
+  "name": "Wereraven (Hybrid)",
   "type": "npc",
   "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
@@ -143,6 +143,7 @@
             "name": "raven-hybrid-talon",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -283,6 +284,7 @@
             "name": "raven-hybrid-beak",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -361,6 +363,7 @@
             "name": "Therianthrope's Curse",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "special",
               "value": null,
@@ -510,7 +513,7 @@
     }
   },
   "prototypeToken": {
-    "name": "Raven Hybrid Form",
+    "name": "Wereraven (Hybrid)",
     "actorLink": true,
     "sight": {
       "enabled": true

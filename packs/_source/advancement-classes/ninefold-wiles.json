@@ -24,6 +24,7 @@
         "name": "Ninefold Wiles",
         "img": null,
         "sort": 0,
+        "identifier": "",
         "activation": {
           "type": "reaction",
           "value": null,

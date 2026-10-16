@@ -1,7 +1,7 @@
 {
   "_id": "FddvZoa7quXZxcHN",
   "_key": "!actors!FddvZoa7quXZxcHN",
-  "name": "Wolf Animal Form",
+  "name": "Werewolf (Animal)",
   "type": "npc",
   "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
@@ -142,6 +142,7 @@
             "name": "wolf-animal-bite",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -220,6 +221,7 @@
             "name": "Therianthrope's Curse",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "special",
               "value": null,
@@ -369,7 +371,7 @@
     }
   },
   "prototypeToken": {
-    "name": "Wolf Animal Form",
+    "name": "Werewolf (Animal)",
     "actorLink": true,
     "sight": {
       "enabled": true

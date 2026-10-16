@@ -24,6 +24,7 @@
         "name": "Wild Regeneration",
         "img": null,
         "sort": 0,
+        "identifier": "wild-regeneration",
         "activation": {
           "type": "reaction",
           "value": null,

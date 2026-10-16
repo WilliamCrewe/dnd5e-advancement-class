@@ -12,13 +12,11 @@
   "ADVANCEMENT_CLASSES": {
     "Stage": "Stage {stage}",
     "StageLabel": "Stage",
-
     "Details": {
       "ClassDetails": "Advancement Class Details",
       "PathDetails": "Advancement Path Details",
       "MilestoneDetails": "Advancement Milestone Details"
     },
-
     "Settings": {
       "Enabled": {
         "Name": "Enable Advancement Classes",
@@ -33,14 +31,12 @@
         "Hint": "Post a chat message whenever a character gains a Stage in an Advancement Class."
       }
     },
-
     "Flags": {
       "Enabled": {
         "Name": "Advancement Classes",
         "Hint": "Track Advancement Classes on this character. Advancement Stages do not increase character level or proficiency bonus."
       }
     },
-
     "Sheet": {
       "Add": "Add Advancement Class",
       "AddBlocked": "All current Advancement Classes must reach Stage {max} before a new one can be added.",
@@ -50,9 +46,10 @@
       "Milestones": "Advancement Milestones",
       "MilestoneProgress": "Progress",
       "MilestoneComplete": "Complete",
-      "Features": "{name} Features"
+      "Features": "{name} Features",
+      "Gifts": "Gifts",
+      "ClassGifts": "{class} Gifts"
     },
-
     "Milestone": {
       "Type": {
         "Label": "Milestone Type",
@@ -112,25 +109,21 @@
         }
       }
     },
-
     "Class": {
       "StageNames": "Stage Names",
       "StageNamesHint": "Optional display names for each stage, e.g. \"Initiate\", \"Adept\".",
       "Journal": "Reference Journal",
       "JournalHint": "Journal entry page describing this Advancement Class."
     },
-
     "HitPoints": {
       "StagesLabel": "Hit Point Stages",
       "StagesHint": "The Stages at which this advancement grants hit points and a hit die. Defaults to every Stage."
     },
-
     "Path": {
       "Subtitle": "{class} path",
       "ClassIdentifier": "Advancement Class Identifier",
       "ClassIdentifierHint": "Identifier of the Advancement Class this path belongs to. Set automatically when chosen through advancement."
     },
-
     "Advancement": {
       "Path": {
         "Title": "Advancement Path",
@@ -139,12 +132,10 @@
         "InvalidType": "Only Advancement Path items may be chosen."
       }
     },
-
     "Chat": {
       "StageUp": "<strong>{actor}</strong> reaches {stage} of <strong>{class}</strong>.",
       "StageUpName": "<strong>{actor}</strong> reaches <strong>{name}</strong> ({stage}) of <strong>{class}</strong>."
     },
-
     "Warnings": {
       "DuplicateIdentifier": "This character already has an Advancement Class with identifier \"{identifier}\".",
       "StageMinimum": "An Advancement Class cannot be below Stage 1.",

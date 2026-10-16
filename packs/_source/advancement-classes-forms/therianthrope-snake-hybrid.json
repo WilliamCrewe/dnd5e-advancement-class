@@ -1,7 +1,7 @@
 {
   "_id": "1lZ3qLRHICmCC53A",
   "_key": "!actors!1lZ3qLRHICmCC53A",
-  "name": "Snake Hybrid Form",
+  "name": "Weresnake (Hybrid)",
   "type": "npc",
   "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
@@ -55,7 +55,7 @@
       },
       "senses": {
         "darkvision": 60,
-        "blindsight": null,
+        "blindsight": 10,
         "tremorsense": null,
         "truesight": null,
         "units": "ft",
@@ -142,6 +142,7 @@
             "name": "snake-hybrid-bite",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -232,6 +233,7 @@
             "name": "Therianthrope's Curse",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "special",
               "value": null,
@@ -381,7 +383,7 @@
     }
   },
   "prototypeToken": {
-    "name": "Snake Hybrid Form",
+    "name": "Weresnake (Hybrid)",
     "actorLink": true,
     "sight": {
       "enabled": true

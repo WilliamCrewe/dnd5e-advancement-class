@@ -23,7 +23,74 @@ function onRenderCharacterSheet(app, element, context, options) {
   if ( app.actor?.type !== "character" ) return;
   injectToggle(app, element);
   if ( app.actor.getFlag("dnd5e", ACTOR_FLAG) ) {
-    void injectPills(app, element, context).then(() => bindStageSelector(app, element));
+    void injectPills(app, element, context)
+      .then(() => { bindStageSelector(app, element); regroupGifts(app, element); });
+  } else {
+    regroupGifts(app, element);
+  }
+}
+
+/* -------------------------------------------- */
+/*  Gift Grouping                               */
+/* -------------------------------------------- */
+
+/**
+ * Move gift items out of "Other Features" into a per-class
+ * "<Class Name> Gifts" section on the Features tab. Gifts declare their
+ * class via `flags.advancement-classes.gift.class` (a class identifier);
+ * the label resolves through the actor's matching Advancement Class item so
+ * renamed classes stay correct.
+ */
+function regroupGifts(app, element) {
+  const gifts = app.actor.items.filter(i => i.getFlag(MODULE_ID, "gift"));
+  if ( !gifts.length ) return;
+  const featuresTab = element.querySelector('[data-tab="features"]');
+  const list = featuresTab?.querySelector("ol.items-list");
+  if ( !list || list.dataset.acGiftGrouped ) return;
+  list.dataset.acGiftGrouped = "1";
+
+  const classNames = new Map(
+    app.actor.items.filter(i => i.type === CLASS_TYPE).map(i => [i.identifier, i.name])
+  );
+  const groups = new Map(); // label -> item ids
+  for ( const item of gifts ) {
+    const gift = item.getFlag(MODULE_ID, "gift");
+    const className = classNames.get(gift.class)
+      ?? (gift.class ? gift.class.capitalize() : null);
+    const label = className
+      ? game.i18n.format("ADVANCEMENT_CLASSES.Sheet.ClassGifts", { class: className })
+      : game.i18n.localize("ADVANCEMENT_CLASSES.Sheet.Gifts");
+    if ( !groups.has(label) ) groups.set(label, []);
+    groups.get(label).push(item.id);
+  }
+
+  // Insert gift sections directly after the advancement-classes pill block
+  // (or at the top of the list if the toggle is off).
+  let anchor = featuresTab.querySelector("section.advancement-classes");
+  for ( const [label, ids] of groups ) {
+    const header = document.createElement("li");
+    header.className = "items-header flexrow advancement-class-gifts";
+    header.dataset.acGifts = "1";
+    header.innerHTML = `<h3 class="item-name flexrow">${foundry.utils.escapeHTML(label)}</h3>`;
+    const group = document.createElement("ol");
+    group.className = "item-list";
+    if ( anchor ) anchor.insertAdjacentElement("afterend", header);
+    else list.prepend(header);
+    header.insertAdjacentElement("afterend", group);
+    anchor = group;
+    for ( const id of ids ) {
+      const row = featuresTab.querySelector(`li.item[data-item-id="${id}"]`);
+      if ( row ) group.appendChild(row);
+    }
+  }
+
+  // Hide sections left empty by the move.
+  for ( const itemList of list.querySelectorAll("ol.item-list") ) {
+    const header = itemList.previousElementSibling;
+    if ( header?.classList.contains("items-header") && !itemList.querySelector("li.item") ) {
+      header.style.display = "none";
+      itemList.style.display = "none";
+    }
   }
 }
 

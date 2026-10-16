@@ -18,6 +18,8 @@
         "_id": "lXReV6HHRxNncYjK",
         "type": "ScaleValue",
         "level": 0,
+        "title": "Key Ability",
+        "hint": "The curse enhances your body — while transformed, your Dexterity score is increased to this value if it is not already higher.",
         "configuration": {
           "identifier": "key-ability-floor",
           "type": "number",
@@ -45,6 +47,8 @@
         "_id": "yN4H7qaDjkX6Mnlx",
         "type": "ScaleValue",
         "level": 0,
+        "title": "Snake Venom",
+        "hint": "The extra poison damage dealt by your Venomous Bite feature while transformed.",
         "configuration": {
           "identifier": "snake-venom",
           "type": "dice",

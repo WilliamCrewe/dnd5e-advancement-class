@@ -1,4 +1,4 @@
-import { MODULE_ID } from "../constants.mjs";
+import { CLASS_TYPE, MODULE_ID } from "../constants.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 
@@ -85,10 +85,9 @@ async function giftCandidates(item, actor) {
   const grandEligible = (counts.minor >= 2) && (counts.major >= 2);
 
   return docs
-    .map(doc => ({ doc, gift: doc.getFlag(MODULE_ID, "gift") }))
+    .map(doc => ({ doc, item: doc.toObject(), gift: doc.getFlag(MODULE_ID, "gift") }))
     .filter(({ gift }) => gift?.side === choiceKey && giftTiers.has(gift.tier))
-    .filter(({ gift }) => (gift.tier !== "grand") || grandEligible)
-    .map(({ doc }) => ({ item: doc.toObject(), gift: doc.getFlag(MODULE_ID, "gift") }));
+    .filter(({ gift }) => (gift.tier !== "grand") || grandEligible);
 }
 
 /* -------------------------------------------- */
@@ -118,13 +117,19 @@ async function presentGifts(actor, item, choiceKey) {
   const radios = candidates.map(({ item: data, gift }, i) => `
     <label class="calling-gift">
       <input type="radio" name="gift" value="${i}" ${i === 0 ? "checked" : ""}>
-      <span class="gift-name">${foundry.utils.escapeHTML(data.name)}
-        <span class="gift-tier">(${gift.tier})</span></span>
+      <img class="gift-icon" src="${data.img}" alt="">
+      <a class="gift-link" data-action="viewGift" data-index="${i}">${foundry.utils.escapeHTML(data.name)}</a>
+      <span class="gift-tier">(${gift.tier})</span>
     </label>`).join("");
 
   const chosen = await DialogV2.prompt({
     window: { title: game.i18n.format("ADVANCEMENT_CLASSES.Calling.GiftTitle", { choice: choiceKey }) },
     content: `<form><p>${game.i18n.localize("ADVANCEMENT_CLASSES.Calling.GiftText")}</p>${radios}</form>`,
+    actions: {
+      viewGift(event, target) {
+        candidates[Number(target.dataset.index)]?.doc.sheet?.render(true);
+      }
+    },
     ok: {
       label: game.i18n.localize("ADVANCEMENT_CLASSES.Calling.GiftConfirm"),
       callback: (event, button) => Number(new FormData(button.form).get("gift"))
@@ -135,5 +140,13 @@ async function presentGifts(actor, item, choiceKey) {
 
   const data = candidates[chosen].item;
   delete data._id;
+  // Gifts group on the character sheet by their advancement class. If the
+  // item didn't declare one and the actor has exactly one, inherit it.
+  if ( !data.flags?.[MODULE_ID]?.gift?.class ) {
+    const classes = actor.items.filter(i => i.type === CLASS_TYPE);
+    if ( classes.length === 1 && classes[0].identifier ) {
+      foundry.utils.setProperty(data, `flags.${MODULE_ID}.gift.class`, classes[0].identifier);
+    }
+  }
   await actor.createEmbeddedDocuments("Item", [data]);
 }

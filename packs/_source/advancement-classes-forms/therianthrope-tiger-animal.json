@@ -1,7 +1,7 @@
 {
   "_id": "RMMMkHPTcE3A9EMA",
   "_key": "!actors!RMMMkHPTcE3A9EMA",
-  "name": "Tiger Animal Form",
+  "name": "Weretiger (Animal)",
   "type": "npc",
   "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
@@ -142,6 +142,7 @@
             "name": "tiger-animal-claw",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -282,6 +283,7 @@
             "name": "tiger-animal-bite",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -360,6 +362,7 @@
             "name": "Therianthrope's Curse",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "special",
               "value": null,
@@ -509,7 +512,7 @@
     }
   },
   "prototypeToken": {
-    "name": "Tiger Animal Form",
+    "name": "Weretiger (Animal)",
     "actorLink": true,
     "sight": {
       "enabled": true

@@ -1,7 +1,7 @@
 {
   "_id": "MPuJMfqgy8HFfTvC",
   "_key": "!actors!MPuJMfqgy8HFfTvC",
-  "name": "Wolf Hybrid Form",
+  "name": "Werewolf (Hybrid)",
   "type": "npc",
   "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
@@ -142,6 +142,7 @@
             "name": "wolf-hybrid-bite",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -220,6 +221,7 @@
             "name": "Therianthrope's Curse",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "special",
               "value": null,
@@ -380,6 +382,7 @@
             "name": "wolf-hybrid-claw",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -509,7 +512,7 @@
     }
   },
   "prototypeToken": {
-    "name": "Wolf Hybrid Form",
+    "name": "Werewolf (Hybrid)",
     "actorLink": true,
     "sight": {
       "enabled": true

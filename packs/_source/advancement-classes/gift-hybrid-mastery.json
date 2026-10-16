@@ -3,7 +3,7 @@
   "_key": "!items!BPyG7IqQUAFdozx5",
   "name": "Hybrid Mastery",
   "type": "feat",
-  "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "img": "icons/magic/symbols/rune-sigil-horned-white-purple.webp",
   "folder": "nhvQDoLlqNGgDuZ5",
   "sort": 203,
   "system": {
@@ -24,6 +24,7 @@
         "name": "Controlled Transformation (Hybrid)",
         "img": null,
         "sort": 0,
+        "identifier": "",
         "activation": {
           "type": "action",
           "value": null,
@@ -94,7 +95,7 @@
         "profiles": [
           {
             "_id": "EQqsdYV5Gy6lGd00",
-            "name": "Bear (Hybrid Form)",
+            "name": "Hybrid Form",
             "uuid": "Compendium.advancement-classes.advancement-classes-forms.Actor.EruBVzUXm9ZHa1MF",
             "cr": "",
             "level": {
@@ -107,7 +108,7 @@
           },
           {
             "_id": "xZSjwhBTaXXfM3xT",
-            "name": "Fox (Hybrid Form)",
+            "name": "Hybrid Form",
             "uuid": "Compendium.advancement-classes.advancement-classes-forms.Actor.gxvfEsZ2FPsxEFVZ",
             "cr": "",
             "level": {
@@ -120,7 +121,7 @@
           },
           {
             "_id": "fGTK5omEGIvsdqBn",
-            "name": "Raven (Hybrid Form)",
+            "name": "Hybrid Form",
             "uuid": "Compendium.advancement-classes.advancement-classes-forms.Actor.37rFaF2Bq7GP9S2r",
             "cr": "",
             "level": {
@@ -133,7 +134,7 @@
           },
           {
             "_id": "4mbjVmgxpzC2Uu5k",
-            "name": "Tiger (Hybrid Form)",
+            "name": "Hybrid Form",
             "uuid": "Compendium.advancement-classes.advancement-classes-forms.Actor.aNznjsu3ifs22PYy",
             "cr": "",
             "level": {
@@ -146,7 +147,7 @@
           },
           {
             "_id": "6BUkd7eS1fqE7Vx4",
-            "name": "Shark (Hybrid Form)",
+            "name": "Hybrid Form",
             "uuid": "Compendium.advancement-classes.advancement-classes-forms.Actor.CS4Q1ToMG8Fd7Leu",
             "cr": "",
             "level": {
@@ -159,7 +160,7 @@
           },
           {
             "_id": "q5mb2XfNI6MGf6xS",
-            "name": "Snake (Hybrid Form)",
+            "name": "Hybrid Form",
             "uuid": "Compendium.advancement-classes.advancement-classes-forms.Actor.1lZ3qLRHICmCC53A",
             "cr": "",
             "level": {
@@ -172,7 +173,7 @@
           },
           {
             "_id": "H2NhHod87AzRGokJ",
-            "name": "Wolf (Hybrid Form)",
+            "name": "Hybrid Form",
             "uuid": "Compendium.advancement-classes.advancement-classes-forms.Actor.MPuJMfqgy8HFfTvC",
             "cr": "",
             "level": {
@@ -202,7 +203,8 @@
             "mental",
             "resistances",
             "vision",
-            "bio"
+            "bio",
+            "prof"
           ],
           "minimumAC": "",
           "other": [],
@@ -217,7 +219,8 @@
     "advancement-classes": {
       "gift": {
         "side": "control",
-        "tier": "major"
+        "tier": "major",
+        "class": "therianthrope"
       },
       "transform": {
         "keep": [

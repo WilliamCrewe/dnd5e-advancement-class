@@ -1,7 +1,7 @@
 {
   "_id": "bHMlLVjXJo5vCj6j",
   "_key": "!actors!bHMlLVjXJo5vCj6j",
-  "name": "Snake Animal Form",
+  "name": "Weresnake (Animal)",
   "type": "npc",
   "img": "systems/dnd5e/icons/svg/monster.svg",
   "system": {
@@ -56,7 +56,7 @@
       },
       "senses": {
         "darkvision": 60,
-        "blindsight": null,
+        "blindsight": 10,
         "tremorsense": null,
         "truesight": null,
         "units": "ft",
@@ -143,6 +143,7 @@
             "name": "snake-animal-bite",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "action",
               "value": null,
@@ -233,6 +234,7 @@
             "name": "Therianthrope's Curse",
             "img": null,
             "sort": 0,
+            "identifier": "",
             "activation": {
               "type": "special",
               "value": null,
@@ -382,7 +384,7 @@
     }
   },
   "prototypeToken": {
-    "name": "Snake Animal Form",
+    "name": "Weresnake (Animal)",
     "actorLink": true,
     "sight": {
       "enabled": true

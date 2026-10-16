@@ -3,7 +3,7 @@
   "_key": "!items!ywXWnSJRCEGwVkhz",
   "name": "Tapped Instinct",
   "type": "feat",
-  "img": "systems/dnd5e/icons/svg/items/feature.svg",
+  "img": "icons/magic/symbols/rune-sigil-horned-white-purple.webp",
   "folder": "nhvQDoLlqNGgDuZ5",
   "sort": 204,
   "system": {
@@ -24,6 +24,7 @@
         "name": "Tapped Instinct",
         "img": null,
         "sort": 0,
+        "identifier": "",
         "activation": {
           "type": "bonus",
           "value": null,
@@ -46,6 +47,70 @@
               }
             }
           ]
+        },
+        "description": {
+          "chatFlavor": ""
+        },
+        "duration": {
+          "units": "inst",
+          "concentration": false,
+          "override": false
+        },
+        "effects": [
+          {
+            "_id": "qJToDpH4tIT8C5fc"
+          }
+        ],
+        "range": {
+          "units": "self",
+          "override": false
+        },
+        "target": {
+          "template": {
+            "contiguous": false,
+            "units": "ft",
+            "type": ""
+          },
+          "affects": {
+            "choice": false,
+            "type": "self",
+            "count": ""
+          },
+          "override": false,
+          "prompt": true
+        },
+        "uses": {
+          "spent": 0,
+          "recovery": [],
+          "max": ""
+        },
+        "flags": {},
+        "visibility": {
+          "level": {},
+          "requireAttunement": false,
+          "requireIdentification": false,
+          "requireMagic": false
+        }
+      },
+      "kPDGE0bUwGvLQH0Q": {
+        "_id": "kPDGE0bUwGvLQH0Q",
+        "type": "heal",
+        "name": "Wild Regeneration",
+        "img": null,
+        "sort": 0,
+        "identifier": "wild-regeneration",
+        "activation": {
+          "type": "reaction",
+          "value": null,
+          "override": false,
+          "condition": ""
+        },
+        "consumption": {
+          "scaling": {
+            "allowed": false
+          },
+          "spellSlot": false,
+          "targets": []
         },
         "description": {
           "chatFlavor": ""
@@ -85,6 +150,21 @@
           "requireAttunement": false,
           "requireIdentification": false,
           "requireMagic": false
+        },
+        "healing": {
+          "number": null,
+          "denomination": null,
+          "bonus": "",
+          "custom": {
+            "enabled": true,
+            "formula": "@scale.therianthrope.wild-regen"
+          },
+          "types": [
+            "healing"
+          ],
+          "scaling": {
+            "number": 0
+          }
         }
       }
     }
@@ -93,8 +173,45 @@
     "advancement-classes": {
       "gift": {
         "side": "control",
-        "tier": "major"
+        "tier": "major",
+        "class": "therianthrope"
       }
     }
-  }
+  },
+  "effects": [
+    {
+      "_id": "qJToDpH4tIT8C5fc",
+      "name": "Tapped Instinct",
+      "icon": "icons/magic/symbols/rune-sigil-horned-white-purple.webp",
+      "changes": [
+        {
+          "key": "system.attributes.movement.walk",
+          "mode": 2,
+          "value": "10"
+        },
+        {
+          "key": "system.skills.prc.roll.mode",
+          "mode": 2,
+          "value": "1"
+        },
+        {
+          "key": "system.skills.sur.roll.mode",
+          "mode": 2,
+          "value": "1"
+        }
+      ],
+      "type": "base",
+      "transfer": false,
+      "disabled": false,
+      "duration": {
+        "seconds": 600
+      },
+      "origin": null,
+      "tint": "#ffffff",
+      "description": "While not transformed, you can spend 1 Control Point as a Bonus Action to heighten your body's capabilities for 1 minute, gaining the benefits of Bestial Aspect, Wild Regeneration, and Feral Speed.",
+      "statuses": [],
+      "flags": {},
+      "_key": "!items.effects!ywXWnSJRCEGwVkhz.qJToDpH4tIT8C5fc"
+    }
+  ]
 }

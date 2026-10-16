@@ -24,6 +24,7 @@
         "name": "Controlled Transformation",
         "img": null,
         "sort": 0,
+        "identifier": "",
         "activation": {
           "type": "action",
           "value": null,
@@ -94,7 +95,7 @@
         "profiles": [
           {
             "_id": "m0FAqh5L83CHKoQU",
-            "name": "Bear (Animal Form)",
+            "name": "Animal Form",
             "uuid": "Compendium.advancement-classes.advancement-classes-forms.Actor.HoAgfOUQ3rJ8FBfo",
             "cr": "",
             "level": {
@@ -124,7 +125,8 @@
             "mental",
             "resistances",
             "vision",
-            "bio"
+            "bio",
+            "prof"
           ],
           "minimumAC": "",
           "other": [],
