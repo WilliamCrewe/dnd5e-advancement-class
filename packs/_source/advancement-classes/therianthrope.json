@@ -8,7 +8,7 @@
   "sort": -10,
   "system": {
     "description": {
-      "value": "<p>A Therianthrope is a creature cursed to transform into beast and hybrid forms — a werecreature whose condition spreads through its bite during the light of the Planar Tear. Therianthrope Stages are tracked independently of class level and do not increase character level or proficiency bonus.</p><p>See the @UUID[Compendium.advancement-classes.advancement-classes-journals.JournalEntry.On3AKlmYmTXKaq8h]{Therianthrope} journal for the full class write-up.</p>",
+      "value": "<p>A Therianthrope is a creature cursed to transform into beast and hybrid forms - a werecreature whose condition spreads through its bite during the light of the Planar Tear. Therianthrope Stages are tracked independently of class level and do not increase character level or proficiency bonus.</p><p>See the @UUID[Compendium.advancement-classes.advancement-classes-journals.JournalEntry.On3AKlmYmTXKaq8h]{Therianthrope} journal for the full class write-up.</p>",
       "chat": ""
     },
     "identifier": "therianthrope",
@@ -59,7 +59,7 @@
         "type": "ItemChoice",
         "level": 1,
         "title": "Bestial Flaw",
-        "hint": "Choose a Bestial Flaw — a roleplaying compulsion the curse imposes on you.",
+        "hint": "Choose a Bestial Flaw - a roleplaying compulsion the curse imposes on you.",
         "configuration": {
           "allowDrops": false,
           "choices": {
@@ -156,7 +156,7 @@
         "type": "ItemGrant",
         "level": 2,
         "title": "Stage 2 Callings",
-        "hint": "Choose a Calling — Control or Embrace — and complete its milestone to claim a gift. The path not taken is lost.",
+        "hint": "Choose a Calling - Control or Embrace - and complete its milestone to claim a gift. The path not taken is lost. Grand gifts are offered only to those holding at least two Minor and two Major gifts of the same side.",
         "configuration": {
           "items": [
             {
@@ -245,7 +245,7 @@
         "type": "ItemGrant",
         "level": 4,
         "title": "Stage 4 Callings",
-        "hint": "Choose a Calling — Control or Embrace — and complete its milestone to claim a gift. The path not taken is lost.",
+        "hint": "Choose a Calling - Control or Embrace - and complete its milestone to claim a gift. The path not taken is lost. Grand gifts are offered only to those holding at least two Minor and two Major gifts of the same side.",
         "configuration": {
           "items": [
             {
@@ -299,7 +299,7 @@
         "type": "ItemGrant",
         "level": 6,
         "title": "Stage 6 Callings",
-        "hint": "Choose a Calling — Control or Embrace — and complete its milestone to claim a gift. The path not taken is lost.",
+        "hint": "Choose a Calling - Control or Embrace - and complete its milestone to claim a gift. The path not taken is lost. Grand gifts are offered only to those holding at least two Minor and two Major gifts of the same side.",
         "configuration": {
           "items": [
             {
@@ -369,7 +369,7 @@
         "type": "ItemGrant",
         "level": 8,
         "title": "Stage 8 Callings",
-        "hint": "Choose a Calling — Control or Embrace — and complete its milestone to claim a gift. The path not taken is lost.",
+        "hint": "Choose a Calling - Control or Embrace - and complete its milestone to claim a gift. The path not taken is lost. Grand gifts are offered only to those holding at least two Minor and two Major gifts of the same side.",
         "configuration": {
           "items": [
             {
@@ -404,7 +404,7 @@
         "type": "ItemGrant",
         "level": 10,
         "title": "Stage 10 Callings",
-        "hint": "Choose a Calling — Control or Embrace — and complete its milestone to claim a gift. The path not taken is lost.",
+        "hint": "Choose a Calling - Control or Embrace - and complete its milestone to claim a gift. The path not taken is lost. Grand gifts are offered only to those holding at least two Minor and two Major gifts of the same side.",
         "configuration": {
           "items": [
             {
@@ -423,7 +423,7 @@
         "type": "ScaleValue",
         "level": 0,
         "title": "Control Points",
-        "hint": "Your pool of Control Points — spent on Controlled Transformation and Control gifts, and regained when you finish a Long Rest.",
+        "hint": "Your pool of Control Points - spent on Controlled Transformation and Control gifts, and regained when you finish a Long Rest.",
         "configuration": {
           "identifier": "control-points",
           "type": "number",

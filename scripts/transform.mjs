@@ -6,16 +6,16 @@ import { CLASS_TYPE, MODULE_ID, PATH_TYPE } from "./constants.mjs";
  * Class), this hook inspects the host actor's Advancement Class/Path items
  * for the `flags.advancement-classes.transform` configuration and applies:
  *
- *   keep: string[]          — added to the transformation's keep set
+ *   keep: string[]          - added to the transformation's keep set
  *   abilityFloor: {
- *     ability: "str",       — ability to floor
- *     scale: "identifier"   — Scale Value identifier resolving to the floor
+ *     ability: "str",       - ability to floor
+ *     scale: "identifier"   - Scale Value identifier resolving to the floor
  *   }
  *   inject: [{
- *     uuid: "Item.x" | "Compendium.x.y.Item.z",  — item granted to the form
- *     minStage: 2                                 — stage gate, default 1
+ *     uuid: "Item.x" | "Compendium.x.y.Item.z",  - item granted to the form
+ *     minStage: 2                                 - stage gate, default 1
  *   }]
- *   effects: [{                                 — Active Effects applied to
+ *   effects: [{                                 - Active Effects applied to
  *     name: "Feral Speed",                          the transformed actor
  *     changes: [{key, mode, value}]
  *   }]
@@ -24,7 +24,7 @@ import { CLASS_TYPE, MODULE_ID, PATH_TYPE } from "./constants.mjs";
  * with values resolved on the host (whose class/path items are not carried
  * into the transformed actor).
  * Injected documents live only on the transformed actor and are discarded
- * on revert — no cleanup required.
+ * on revert - no cleanup required.
  *
  * Multiple sources merge: keep entries union, abilityFloor applies the
  * highest resolved floor per ability, inject dedupes by UUID.
@@ -168,7 +168,7 @@ function substituteScales(itemData, host) {
 
 /**
  * Resolve a scale value to a number. Accepts a number scale value, a dice
- * scale value (evaluated against an empty roll context — not meaningful for
+ * scale value (evaluated against an empty roll context - not meaningful for
  * floors), or a raw value.
  */
 function resolveScaleValue(sv, stage) {

@@ -11,7 +11,6 @@ export function registerDocumentHooks() {
   Hooks.on("preUpdateItem", stashStage);
   Hooks.on("updateItem", onStageChanged);
   Hooks.on("updateItem", promptMilestoneCompletion);
-  Hooks.on("preDeleteItem", guardMilestoneDeletion);
 }
 
 /* -------------------------------------------- */
@@ -74,8 +73,8 @@ async function onStageChanged(item, changed, options, userId) {
 /* -------------------------------------------- */
 
 /**
- * When a counter milestone's progress is set to its maximum — by the sheet
- * +/- actions, editing the item directly, or any other source — offer the
+ * When a counter milestone's progress is set to its maximum - by the sheet
+ * +/- actions, editing the item directly, or any other source - offer the
  * responsible user the completion confirmation.
  */
 function promptMilestoneCompletion(item, changed, options, userId) {
@@ -87,20 +86,7 @@ function promptMilestoneCompletion(item, changed, options, userId) {
 }
 
 /**
- * Completing a milestone means deleting it. Counter milestones must reach
- * their required progress; GM-confirm milestones may only be removed by a
- * GM. Advancement-manager reversals and explicit API calls bypass.
+ * Completing a milestone means deleting it. Any owner may delete a milestone
+ * at any time - progress completion and GM confirmation are the intended
+ * flow, but not enforced.
  */
-function guardMilestoneDeletion(item, options, userId) {
-  if ( item.type !== MILESTONE_TYPE ) return;
-  if ( options[MODULE_ID]?.bypass || options.isAdvancement ) return;
-
-  const user = game.users.get(userId);
-  if ( !item.system.canComplete(user) ) {
-    const key = item.system.milestoneType === "gmConfirm"
-      ? "ADVANCEMENT_CLASSES.Milestone.GMOnly"
-      : "ADVANCEMENT_CLASSES.Milestone.IncompleteWarn";
-    ui.notifications.warn(key, { localize: true });
-    return false;
-  }
-}

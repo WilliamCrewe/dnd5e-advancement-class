@@ -45,7 +45,7 @@ function regroupGifts(app, element) {
   const gifts = app.actor.items.filter(i => i.getFlag(MODULE_ID, "gift"));
   if ( !gifts.length ) return;
   const featuresTab = element.querySelector('[data-tab="features"]');
-  const list = featuresTab?.querySelector("ol.items-list");
+  const list = featuresTab?.querySelector("section.items-list");
   if ( !list || list.dataset.acGiftGrouped ) return;
   list.dataset.acGiftGrouped = "1";
 
@@ -64,20 +64,20 @@ function regroupGifts(app, element) {
     groups.get(label).push(item.id);
   }
 
-  // Insert gift sections directly after the advancement-classes pill block
-  // (or at the top of the list if the toggle is off).
-  let anchor = featuresTab.querySelector("section.advancement-classes");
+  // Gift sections go first in the features list, directly beneath the
+  // advancement-classes pill block.
+  let after = null;
   for ( const [label, ids] of groups ) {
-    const header = document.createElement("li");
-    header.className = "items-header flexrow advancement-class-gifts";
-    header.dataset.acGifts = "1";
-    header.innerHTML = `<h3 class="item-name flexrow">${foundry.utils.escapeHTML(label)}</h3>`;
-    const group = document.createElement("ol");
-    group.className = "item-list";
-    if ( anchor ) anchor.insertAdjacentElement("afterend", header);
-    else list.prepend(header);
-    header.insertAdjacentElement("afterend", group);
-    anchor = group;
+    const section = document.createElement("div");
+    section.className = "items-section card advancement-class-gifts";
+    section.dataset.type = "feat";
+    section.innerHTML = `
+      <div class="items-header header"><h3 class="item-name">${foundry.utils.escapeHTML(label)}</h3></div>
+      <ol class="item-list unlist"></ol>`;
+    if ( after ) after.insertAdjacentElement("afterend", section);
+    else list.prepend(section);
+    after = section;
+    const group = section.querySelector("ol.item-list");
     for ( const id of ids ) {
       const row = featuresTab.querySelector(`li.item[data-item-id="${id}"]`);
       if ( row ) group.appendChild(row);
@@ -85,12 +85,9 @@ function regroupGifts(app, element) {
   }
 
   // Hide sections left empty by the move.
-  for ( const itemList of list.querySelectorAll("ol.item-list") ) {
-    const header = itemList.previousElementSibling;
-    if ( header?.classList.contains("items-header") && !itemList.querySelector("li.item") ) {
-      header.style.display = "none";
-      itemList.style.display = "none";
-    }
+  for ( const section of list.querySelectorAll("div.items-section") ) {
+    const itemList = section.querySelector("ol.item-list");
+    if ( itemList && !itemList.querySelector("li.item") ) section.style.display = "none";
   }
 }
 

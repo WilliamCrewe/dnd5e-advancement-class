@@ -335,7 +335,7 @@ function patchCharacterSheet() {
         const value = stage - item.system.levels;
         const name = item.system.stageNames?.[String(stage)];
         const base = name
-          ? `${stage} — ${name}`
+          ? `${stage} - ${name}`
           : game.i18n.format("ADVANCEMENT_CLASSES.Stage", { stage });
         const label = value ? `${base} (${value > 0 ? "+" : ""}${value})` : base;
         return { label, value, disabled: (value > 0) && blocked };
@@ -354,7 +354,7 @@ function patchCharacterSheet() {
       const journal = item.system.journal;
       if ( journal ) ctx.journalUuid = journal;
 
-      // Path picker indicator — mirrors the system's needsSubclass logic.
+      // Path picker indicator - mirrors the system's needsSubclass logic.
       if ( !item.advancementPath ) {
         const pathAdvancement = item.advancement.byType.AdvancementPath?.[0];
         if ( pathAdvancement && (pathAdvancement.level <= item.system.levels) ) ctx.needsPath = true;

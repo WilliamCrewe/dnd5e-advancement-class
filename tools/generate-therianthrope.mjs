@@ -2,7 +2,7 @@
  * Generate the Therianthrope compendium content for the Advancement Classes
  * module. Emits pack _source JSON into:
  *   packs/_source/advancement-classes/          (Items)
- *   packs/_source/advancement-classes-forms/    (Actors — form NPC sheets)
+ *   packs/_source/advancement-classes-forms/    (Actors - form NPC sheets)
  *   packs/_source/advancement-classes-journals/ (JournalEntry)
  *
  * Run: node tools/generate-therianthrope.mjs
@@ -54,6 +54,8 @@ const BRANCHES = {
   wolf:  { name: "Wolf",  key: "str", keyName: "Strength",     alignment: "Chaotic Evil",
            aspect: "keen hearing and smell. While transformed, you have advantage on Wisdom (Perception) checks that rely on hearing or smell." }
 };
+
+const TOKEN_SIZE = { tiny: 0.5, sm: 1, med: 1, lg: 2, huge: 3, grg: 4 };
 
 const FORMS = {
   // [size, acBase, acFormula, movement, attacks, specials]
@@ -206,7 +208,7 @@ const BRANCH_FEATURES = {
 };
 
 const GIFTS = [
-  // Control — Minor
+  // Control - Minor
   { name: "Growing Control", side: "control", tier: "minor", ident: "gift-growing-control", cpDelta: 1,
     text: "Your maximum number of Control Points increases by 1." },
   { name: "Extended Form", side: "control", tier: "minor", ident: "gift-extended-form",
@@ -215,7 +217,7 @@ const GIFTS = [
     text: "When you use Controlled Transformation, your equipment continues to be worn if your new form could physically wear it. You cannot benefit from magic items through this feature unless you also have the Hybrid Mastery gift." },
   { name: "Careful Control", side: "control", tier: "minor", ident: "gift-careful-control", srRefund: 1,
     text: "Whenever you finish a Short Rest, you regain 1 spent Control Point." },
-  // Control — Major
+  // Control - Major
   { name: "Tireless Beast", side: "control", tier: "major", ident: "gift-tireless-beast",
     text: "You no longer gain a level of Exhaustion when a Controlled Transformation ends." },
   { name: "Anchored Mind", side: "control", tier: "major", ident: "gift-anchored-mind",
@@ -225,10 +227,10 @@ const GIFTS = [
     text: "Your Hybrid Form becomes an option for Controlled Transformation. Because the Hybrid Form has the physique for it, you can benefit from attuned magic items and their properties while transformed; you still cannot use any item your current form lacks the physique to use." },
   { name: "Tapped Instinct", side: "control", tier: "major", ident: "gift-tapped-instinct", activity: "tapped-instinct",
     text: "While not transformed, you can spend 1 Control Point as a Bonus Action to heighten your body's capabilities for 1 minute, gaining the benefits of Bestial Aspect, Wild Regeneration, and Feral Speed." },
-  // Control — Grand
+  // Control - Grand
   { name: "True Mastery", side: "control", tier: "grand", ident: "gift-true-mastery", cpDelta: 1,
     text: "You have mastered the curse. Unwilling Transformation triggers only from the Planar Tear; you never gain Exhaustion from transforming; you can use Controlled Transformation as a Bonus Action; and your maximum number of Control Points increases by 1." },
-  // Embrace — Minor
+  // Embrace - Minor
   { name: "Animal Rage", side: "embrace", tier: "minor", ident: "gift-animal-rage", cpDelta: -1,
     text: "Your maximum number of Control Points is reduced by 1. Choose one natural weapon from your Hybrid Form; you gain access to it while not transformed." },
   { name: "Savage Hunger", side: "embrace", tier: "minor", ident: "gift-savage-hunger", cpDelta: -1,
@@ -237,7 +239,7 @@ const GIFTS = [
     text: "Your maximum number of Control Points is reduced by 1. Wild Regeneration heals an extra amount equal to half your proficiency bonus (rounded down)." },
   { name: "Press the Hunt", side: "embrace", tier: "minor", ident: "gift-press-the-hunt", cpDelta: -1,
     text: "Your maximum number of Control Points is reduced by 1. The first time each turn that you deal damage with a natural weapon, you gain temporary hit points equal to half your proficiency bonus (rounded down)." },
-  // Embrace — Major (all carry the shared rider)
+  // Embrace - Major (all carry the shared rider)
   { name: "Primal Vigour", side: "embrace", tier: "major", ident: "gift-primal-vigour", cpDelta: -1,
     text: "Your maximum number of Control Points is reduced by 1. You can use Wild Regeneration while not transformed." },
   { name: "Cursed Fury", side: "embrace", tier: "major", ident: "gift-cursed-fury", cpDelta: -1,
@@ -248,7 +250,7 @@ const GIFTS = [
     text: "Your maximum number of Control Points is reduced by 1. Add half your proficiency bonus (rounded down) to your Armor Class." },
   { name: "Swift Hunt", side: "embrace", tier: "major", ident: "gift-swift-hunt", cpDelta: -1,
     text: "Your maximum number of Control Points is reduced by 1. The speed bonus from Feral Speed is doubled." },
-  // Embrace — Grand
+  // Embrace - Grand
   { name: "Beast Within", side: "embrace", tier: "grand", ident: "gift-beast-within", cpDelta: -1,
     text: "Your maximum number of Control Points is reduced by 1. While not transformed, you gain the benefits of your Key Ability Floor, all of your form's natural weapons, Feral Speed, and all Empowered Transformation bonuses. While transformed and below half your hit point maximum but above 0 hit points, you regain 10 hit points at the start of each of your turns." }
 ];
@@ -357,7 +359,7 @@ function callingMilestone(stage, key) {
   const tiers = { 2: ["minor"], 4: ["minor"], 6: ["minor", "major"], 8: ["minor", "major"], 10: ["minor", "major", "grand"] }[stage];
   const label = key === "control" ? "Control" : "Embrace";
   return milestone(`Calling: ${label} (Stage ${stage})`, `calling-${key}-s${stage}`,
-    `Commit yourself to the path of ${label} and claim a gift of the curse. Completing this Calling removes the alternative offered alongside it.`, {
+    `Commit yourself to the path of ${label} and claim a gift of the curse. Completing this Calling removes the alternative offered alongside it. A Grand gift may only be claimed by one who already holds at least two Minor and two Major gifts of the same Calling - full commitment to a single side is rewarded.`, {
       type: "calling",
       folder: F_MS[key],
       sort: stage,
@@ -551,6 +553,7 @@ function formNPC(branchKey, kind) {
     flags: { "advancement-classes": { formAC: spec.ac } },
     prototypeToken: {
       name: `Were${branch.name.toLowerCase()} (${kind === "animal" ? "Animal" : "Hybrid"})`, actorLink: true, sight: { enabled: true },
+      width: TOKEN_SIZE[spec.size] ?? 1, height: TOKEN_SIZE[spec.size] ?? 1,
       disposition: -1, texture: { src: "systems/dnd5e/icons/svg/monster.svg" }
     }
   };
@@ -741,7 +744,7 @@ for ( const b of Object.keys(BRANCHES) ) {
   tf.activation.type = "special";
   tf.consumption.targets = [];
   acts[tf._id] = tf;
-  items.push(feat(`Unwilling Transformation — ${BRANCHES[b].name}`, `unwilling-transformation-${b}`,
+  items.push(feat(`Unwilling Transformation - ${BRANCHES[b].name}`, `unwilling-transformation-${b}`,
     FEATURE_TEXT.unwilling, { activities: acts, img: IMG_UNWILLING, folder: F_PATH_BRANCH[b], sort: 10 }));
 }
 
@@ -750,7 +753,7 @@ for ( const b of Object.keys(BRANCHES) ) {
 for ( const b of Object.keys(BRANCHES) ) {
   const ct = transformActivity("Controlled Transformation",
     [animalProfiles.find(p => p.uuid === ACTOR_UUID(id(`form:${b}:animal`)))]);
-  items.push(feat(`Controlling the Curse — ${BRANCHES[b].name}`, `controlling-the-curse-${b}`,
+  items.push(feat(`Controlling the Curse - ${BRANCHES[b].name}`, `controlling-the-curse-${b}`,
     FEATURE_TEXT.controlling, { activities: { [ct._id]: ct }, img: IMG_CONTROLLING, folder: F_PATH_BRANCH[b], sort: 20 }));
 }
 
@@ -800,7 +803,7 @@ for ( const [name, text] of FLAWS ) {
 
 /* ----- bestial aspects ----- */
 for ( const [key, branch] of Object.entries(BRANCHES) ) {
-  items.push(feat(`Bestial Aspect — ${branch.name}`, `bestial-aspect-${key}`,
+  items.push(feat(`Bestial Aspect - ${branch.name}`, `bestial-aspect-${key}`,
     FEATURE_TEXT.bestialAspect(branch), { folder: F_PATH_BRANCH[key], sort: 30 }));
 }
 
@@ -957,7 +960,7 @@ const GRANT_META = {
   milestones: (s) => ({ tag: "milestones", title: `Stage ${s} Milestones`,
     hint: "Advancement Milestones are goals you must complete before you can advance to the next Stage." }),
   callings: (s) => ({ tag: "callings", title: `Stage ${s} Callings`,
-    hint: "Choose a Calling — Control or Embrace — and complete its milestone to claim a gift. The path not taken is lost." })
+    hint: "Choose a Calling - Control or Embrace - and complete its milestone to claim a gift. The path not taken is lost. Grand gifts are offered only to those holding at least two Minor and two Major gifts of the same side." })
 };
 const grantAt = (stage, { features = [], milestones = [], callings = [] } = {}) => {
   for ( const [tag, uuids] of [["features", features], ["milestones", milestones], ["callings", callings]] ) {
@@ -969,13 +972,13 @@ const grantAt = (stage, { features = [], milestones = [], callings = [] } = {}) 
 const msUUIDs = stage => classMilestoneIds[stage].regular.map(ITEM_UUID);
 const callingUUIDs = stage => classMilestoneIds[stage].calling.map(ITEM_UUID);
 
-// Stage 1 — branch-specific Unwilling Transformation is granted by the Path.
+// Stage 1 - branch-specific Unwilling Transformation is granted by the Path.
 grantAt(1, { milestones: msUUIDs(1) });
 const flawPool = FLAWS.map(([name]) => ITEM_UUID(id(`feat:flaw-${name.toLowerCase().replace(/[^a-z]+/g, "-").replace(/-$/, "")}`)));
 const flawChoice = {
   _id: advId("choice:flaw"), type: "ItemChoice", level: 1,
   title: "Bestial Flaw",
-  hint: "Choose a Bestial Flaw — a roleplaying compulsion the curse imposes on you.",
+  hint: "Choose a Bestial Flaw - a roleplaying compulsion the curse imposes on you.",
   configuration: {
     allowDrops: false,
     choices: { 1: { count: 1 } },
@@ -994,7 +997,7 @@ const pathPick = {
 };
 classAdv[pathPick._id] = pathPick;
 
-// Stage 2+ — branch-specific Controlling the Curse is granted by the Path.
+// Stage 2+ - branch-specific Controlling the Curse is granted by the Path.
 grantAt(2, {
   features: [ITEM_UUID(id("feat:control-points"))],
   milestones: msUUIDs(2), callings: callingUUIDs(2)
@@ -1019,7 +1022,7 @@ grantAt(10, { callings: callingUUIDs(10) });
 
 const svCP = scaleValue("control-points", "number", { 2: { value: 1 }, 4: { value: 2 }, 6: { value: 3 }, 8: { value: 4 }, 10: { value: 5 } }, {
   title: "Control Points",
-  hint: "Your pool of Control Points — spent on Controlled Transformation and Control gifts, and regained when you finish a Long Rest."
+  hint: "Your pool of Control Points - spent on Controlled Transformation and Control gifts, and regained when you finish a Long Rest."
 });
 classAdv[svCP._id] = svCP;
 const svWR = scaleValue("wild-regen", "dice", {
@@ -1041,7 +1044,7 @@ items.push({
   sort: -10,
   system: {
     description: {
-      value: `<p>A Therianthrope is a creature cursed to transform into beast and hybrid forms — a werecreature whose condition spreads through its bite during the light of the Planar Tear. Therianthrope Stages are tracked independently of class level and do not increase character level or proficiency bonus.</p><p>See the @UUID[${journalUuid}]{Therianthrope} journal for the full class write-up.</p>`,
+      value: `<p>A Therianthrope is a creature cursed to transform into beast and hybrid forms - a werecreature whose condition spreads through its bite during the light of the Planar Tear. Therianthrope Stages are tracked independently of class level and do not increase character level or proficiency bonus.</p><p>See the @UUID[${journalUuid}]{Therianthrope} journal for the full class write-up.</p>`,
       chat: ""
     },
     identifier: "therianthrope",
@@ -1062,7 +1065,7 @@ for ( const [key, branch] of Object.entries(BRANCHES) ) {
   const floorSv = scaleValue("key-ability-floor", "number",
     { 1: { value: 14 }, 4: { value: 16 }, 7: { value: 18 }, 10: { value: 20 } }, {
       title: "Key Ability",
-      hint: `The curse enhances your body — while transformed, your ${branch.keyName} score is increased to this value if it is not already higher.`
+      hint: `The curse enhances your body - while transformed, your ${branch.keyName} score is increased to this value if it is not already higher.`
     });
   floorSv._id = advId(`sv:${key}:floor`);
   adv[floorSv._id] = floorSv;
@@ -1127,14 +1130,14 @@ for ( const [key, branch] of Object.entries(BRANCHES) ) {
 
 /* ----- journal ----- */
 const JOURNAL_HTML = `<h1>Therianthrope</h1>
-<p>A Therianthrope carries the curse of the werebeast — a slow transformation of body and instinct that grants power at the price of control. The curse spreads through its bite beneath the light of the Planar Tear.</p>
+<p>A Therianthrope carries the curse of the werebeast - a slow transformation of body and instinct that grants power at the price of control. The curse spreads through its bite beneath the light of the Planar Tear.</p>
 <p><em>Therianthrope DC = 8 + your proficiency bonus + your Constitution modifier.</em></p>
 
 <h2>Advancement Table</h2>
 <table>
 <thead><tr><th>Stage</th><th>Name</th><th>Features</th><th>Control Points</th><th>Wild Regeneration</th><th>Ability Floor</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>Afflicted</td><td>Bestial Flaw, Therianthrope Branch, Unwilling Transformation</td><td>—</td><td>—</td><td>14</td></tr>
+<tr><td>1</td><td>Afflicted</td><td>Bestial Flaw, Therianthrope Branch, Unwilling Transformation</td><td>-</td><td>-</td><td>14</td></tr>
 <tr><td>2</td><td>Savage</td><td>Controlling the Curse, Wild Regeneration</td><td>1</td><td>1d4</td><td>14</td></tr>
 <tr><td>3</td><td>Feral</td><td>Flaw Mitigation I, Bestial Aspect (branch)</td><td>1</td><td>1d4</td><td>14</td></tr>
 <tr><td>4</td><td>Primal</td><td>Flaw Mitigation II, Feral Speed, Empowered Transformation I</td><td>2</td><td>1d6</td><td>16</td></tr>
@@ -1148,22 +1151,22 @@ const JOURNAL_HTML = `<h1>Therianthrope</h1>
 </table>
 
 <h2>Stage Features</h2>
-<h3>Stage 1 — Bestial Flaws</h3>
+<h3>Stage 1 - Bestial Flaws</h3>
 <p>The curse affects both mind and body. Choose one of the following flaws: <em>${FLAWS.map(f => f[0]).join("; ")}</em>.</p>
-<h3>Stage 1 — Therianthrope Branch</h3>
-<p>Choose the branch of your curse — Bear, Fox, Raven, Tiger, Shark, Snake, or Wolf — determined by the Therianthrope that cursed you. Your branch determines your forms, your key ability, your alignment while transformed, and your branch features.</p>
-<h3>Stage 1 — Unwilling Transformation</h3>
+<h3>Stage 1 - Therianthrope Branch</h3>
+<p>Choose the branch of your curse - Bear, Fox, Raven, Tiger, Shark, Snake, or Wolf - determined by the Therianthrope that cursed you. Your branch determines your forms, your key ability, your alignment while transformed, and your branch features.</p>
+<h3>Stage 1 - Unwilling Transformation</h3>
 ${FEATURE_TEXT.unwilling}
-<h3>Stage 2 — Controlling the Curse &amp; Wild Regeneration</h3>
+<h3>Stage 2 - Controlling the Curse &amp; Wild Regeneration</h3>
 ${FEATURE_TEXT.controlling}
 ${FEATURE_TEXT.wildRegen}
-<h3>Stage 3 — Flaw Mitigation &amp; Bestial Aspect</h3>
+<h3>Stage 3 - Flaw Mitigation &amp; Bestial Aspect</h3>
 ${FEATURE_TEXT.flawMitigation}
 <p>Each branch grants a different Bestial Aspect at Stage 3.</p>
-<h3>Stage 4 — Feral Speed &amp; Empowered Transformation</h3>
+<h3>Stage 4 - Feral Speed &amp; Empowered Transformation</h3>
 ${FEATURE_TEXT.feralSpeed}
 ${FEATURE_TEXT.empowered}
-<h3>Stage 8 — Predator's Resurgence</h3>
+<h3>Stage 8 - Predator's Resurgence</h3>
 ${FEATURE_TEXT.resurgence}
 
 <h2>Branches</h2>
@@ -1181,7 +1184,7 @@ ${BRANCH_FEATURES[k].map(f => `<p><strong>${f.name} (S${f.stage}).</strong> ${f.
 ${Object.entries(CLASS_MILESTONES).map(([stage, list]) => `<p><strong>Stage ${stage}:</strong> ${list.map(l => l[2]).join(" ")}${Number(stage) % 2 === 0 ? " <em>Plus the Callings.</em>" : ""}</p>`).join("")}
 
 <h2>Callings &amp; Gifts</h2>
-<p>At Stages 2, 4, 6, 8, and 10 you may commit to a Calling — Control or Embrace — by completing its milestone. Each grants a gift: Minor at S2–4, Minor or Major at S6–8, and any tier at S10. The Grand gift requires all four Minor and Major gifts of that side.</p>
+<p>At Stages 2, 4, 6, 8, and 10 you may commit to a Calling - Control or Embrace - by completing its milestone. Each grants a gift: Minor at S2–4, Minor or Major at S6–8, and any tier at S10. The Grand gift requires all four Minor and Major gifts of that side.</p>
 <h3>Control</h3>
 <ul>${GIFTS.filter(g => g.side === "control").map(g => `<li><strong>${g.name} (${g.tier}).</strong> ${g.text}</li>`).join("")}</ul>
 <h3>Embrace</h3>

@@ -94,7 +94,8 @@
       "GiftTitle": "{choice} Reward",
       "GiftText": "Choose the gift you receive:",
       "GiftConfirm": "Claim Gift",
-      "NoGifts": "No eligible gifts were found for this calling."
+      "NoGifts": "No eligible gifts were found for this calling.",
+      "GrandLocked": "Grand gifts are only offered to those who already hold at least two Minor and two Major gifts of this Calling."
     },
     "Transform": {
       "AbilityFloor": "{ability} Floor"

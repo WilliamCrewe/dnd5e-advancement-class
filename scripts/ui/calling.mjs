@@ -7,10 +7,10 @@ const { DialogV2 } = foundry.applications.api;
  *   flags.advancement-classes.gift = { side: "control", tier: "minor" }
  *
  * Calling milestone fields (system.calling):
- *   choiceSet  — shared key grouping mutually exclusive alternatives
- *   choiceKey  — this alternative's identity (matched to gift side)
- *   giftSource — compendium pack ID, or "world" for world items
- *   giftTiers  — set of tiers offered ("minor", "major", "grand")
+ *   choiceSet  - shared key grouping mutually exclusive alternatives
+ *   choiceKey  - this alternative's identity (matched to gift side)
+ *   giftSource - compendium pack ID, or "world" for world items
+ *   giftTiers  - set of tiers offered ("minor", "major", "grand")
  */
 
 /* -------------------------------------------- */
@@ -51,7 +51,7 @@ export async function commitCalling(item) {
 /* -------------------------------------------- */
 
 /**
- * Display label for the chosen alternative — the milestone's name, e.g.
+ * Display label for the chosen alternative - the milestone's name, e.g.
  * "Calling: Control".
  */
 function callingLabel(item) {
@@ -71,23 +71,32 @@ function callingLabel(item) {
  * completed calling's choiceKey and offered tiers. Grand-tier gifts are
  * excluded unless the actor already holds 2 minor and 2 major gifts of the
  * same side.
- * @returns {Promise<{item: object, gift: object}[]>}
+ * @returns {Promise<{candidates: {item: object, gift: object}[], grandLocked: boolean}>}
  */
 async function giftCandidates(item, actor) {
   const { choiceKey, giftSource, giftTiers } = item.system.calling;
   const docs = await giftDocuments(giftSource);
 
   const counts = { minor: 0, major: 0, grand: 0 };
-  for ( const owned of actor?.items ?? [] ) {
-    const gift = owned.getFlag(MODULE_ID, "gift");
-    if ( gift?.side === choiceKey ) counts[gift.tier] = (counts[gift.tier] ?? 0) + 1;
+  const owned = new Set();
+  for ( const item of actor?.items ?? [] ) {
+    const gift = item.getFlag(MODULE_ID, "gift");
+    if ( !gift ) continue;
+    if ( item.identifier ) owned.add(item.identifier);
+    owned.add(item.name);
+    if ( gift.side === choiceKey ) counts[gift.tier] = (counts[gift.tier] ?? 0) + 1;
   }
   const grandEligible = (counts.minor >= 2) && (counts.major >= 2);
 
-  return docs
+  const tierOrder = { grand: 0, major: 1, minor: 2 };
+  const candidates = docs
     .map(doc => ({ doc, item: doc.toObject(), gift: doc.getFlag(MODULE_ID, "gift") }))
     .filter(({ gift }) => gift?.side === choiceKey && giftTiers.has(gift.tier))
-    .filter(({ gift }) => (gift.tier !== "grand") || grandEligible);
+    .filter(({ gift }) => (gift.tier !== "grand") || grandEligible)
+    .filter(({ item }) => !owned.has(item.system?.identifier) && !owned.has(item.name))
+    .sort((a, b) => (tierOrder[a.gift.tier] ?? 3) - (tierOrder[b.gift.tier] ?? 3)
+      || a.item.name.localeCompare(b.item.name, game.i18n.lang));
+  return { candidates, grandLocked: giftTiers.has("grand") && !grandEligible };
 }
 
 /* -------------------------------------------- */
@@ -108,7 +117,7 @@ async function giftDocuments(giftSource) {
  * Render the gift-picker dialog and create the chosen item on the actor.
  */
 async function presentGifts(actor, item, choiceKey) {
-  const candidates = await giftCandidates(item, actor);
+  const { candidates, grandLocked } = await giftCandidates(item, actor);
   if ( !candidates.length ) {
     ui.notifications.warn("ADVANCEMENT_CLASSES.Calling.NoGifts", { localize: true });
     return;
@@ -124,7 +133,9 @@ async function presentGifts(actor, item, choiceKey) {
 
   const chosen = await DialogV2.prompt({
     window: { title: game.i18n.format("ADVANCEMENT_CLASSES.Calling.GiftTitle", { choice: choiceKey }) },
-    content: `<form><p>${game.i18n.localize("ADVANCEMENT_CLASSES.Calling.GiftText")}</p>${radios}</form>`,
+    content: `<form><p>${game.i18n.localize("ADVANCEMENT_CLASSES.Calling.GiftText")}</p>${radios}`
+      + (grandLocked ? `<p class="notes">${game.i18n.localize("ADVANCEMENT_CLASSES.Calling.GrandLocked")}</p>` : "")
+      + `</form>`,
     actions: {
       viewGift(event, target) {
         candidates[Number(target.dataset.index)]?.doc.sheet?.render(true);

@@ -1,7 +1,7 @@
 {
   "id": "advancement-classes",
   "title": "Advancement Classes",
-  "description": "Adds Advancement Classes — class-like items with their own 10-stage progression that do not increase character level or proficiency bonus. Includes Advancement Paths (subclass-analogues) and Advancement Milestones (per-stage goals that must be completed to advance).",
+  "description": "Adds Advancement Classes - class-like items with their own 10-stage progression that do not increase character level or proficiency bonus. Includes Advancement Paths (subclass-analogues) and Advancement Milestones (per-stage goals that must be completed to advance).",
   "version": "0.1.0",
   "authors": [
     {

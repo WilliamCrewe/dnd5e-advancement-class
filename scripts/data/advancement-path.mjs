@@ -5,7 +5,7 @@ const { AdvancementTemplate, ItemDescriptionTemplate } = dnd5e.dataModels.item;
 const { IdentifierField } = dnd5e.dataModels.fields;
 
 /**
- * Data definition for Advancement Path items — the subclass analogue for
+ * Data definition for Advancement Path items - the subclass analogue for
  * Advancement Classes. Linked to its parent class through
  * `system.classIdentifier`; its advancements resolve at the parent class's
  * Stage rather than character level.

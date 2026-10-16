@@ -19,7 +19,7 @@
         "type": "ScaleValue",
         "level": 0,
         "title": "Key Ability",
-        "hint": "The curse enhances your body — while transformed, your Strength score is increased to this value if it is not already higher.",
+        "hint": "The curse enhances your body - while transformed, your Strength score is increased to this value if it is not already higher.",
         "configuration": {
           "identifier": "key-ability-floor",
           "type": "number",

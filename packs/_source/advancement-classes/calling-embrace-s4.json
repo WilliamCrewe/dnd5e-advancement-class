@@ -8,7 +8,7 @@
   "sort": 4,
   "system": {
     "description": {
-      "value": "<p>Commit yourself to the path of Embrace and claim a gift of the curse. Completing this Calling removes the alternative offered alongside it.</p>",
+      "value": "<p>Commit yourself to the path of Embrace and claim a gift of the curse. Completing this Calling removes the alternative offered alongside it. A Grand gift may only be claimed by one who already holds at least two Minor and two Major gifts of the same Calling - full commitment to a single side is rewarded.</p>",
       "chat": ""
     },
     "identifier": "calling-embrace-s4",

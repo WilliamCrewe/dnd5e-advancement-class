@@ -24,9 +24,9 @@ export const MAX_STAGE_DEFAULT = 10;
 /** Origin group key for milestone items in the features list. */
 export const MILESTONE_GROUP = "advancementMilestone";
 
-/** Localized label shown in stage selectors/managers, e.g. "Stage 3 — Adept". */
+/** Localized label shown in stage selectors/managers, e.g. "Stage 3 - Adept". */
 export function stageLabel(item, stage) {
   const name = item.system.stageNames?.[String(stage)];
   const base = game.i18n.format("ADVANCEMENT_CLASSES.Stage", { stage });
-  return name ? `${base} — ${name}` : base;
+  return name ? `${base} - ${name}` : base;
 }

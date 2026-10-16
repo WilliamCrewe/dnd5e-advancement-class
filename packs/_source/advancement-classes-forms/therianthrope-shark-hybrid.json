@@ -518,6 +518,8 @@
     "sight": {
       "enabled": true
     },
+    "width": 2,
+    "height": 2,
     "disposition": -1,
     "texture": {
       "src": "systems/dnd5e/icons/svg/monster.svg"

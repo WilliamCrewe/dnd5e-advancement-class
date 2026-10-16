@@ -6,7 +6,7 @@ const { ItemDescriptionTemplate } = dnd5e.dataModels.item;
 const { BooleanField, NumberField, SchemaField, SetField, StringField } = foundry.data.fields;
 
 /**
- * Data definition for Advancement Milestone items — per-stage goals granted
+ * Data definition for Advancement Milestone items - per-stage goals granted
  * by an Advancement Class (usually via ItemGrant). A character may not gain
  * the next Stage while any milestone remains.
  *

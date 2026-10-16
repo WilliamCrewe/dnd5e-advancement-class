@@ -95,7 +95,7 @@ export default class AdvancementClassManager extends AdvancementManager {
       const stageNames = this.step?.class?.item?.system?.stageNames ?? item?.system?.stageNames;
       const name = stageNames?.[String(level)];
       const label = game.i18n.format("ADVANCEMENT_CLASSES.Stage", { stage: level });
-      parts.push(name ? `${label} — ${name}` : label);
+      parts.push(name ? `${label} - ${name}` : label);
     }
 
     // Step Count
