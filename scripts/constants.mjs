@@ -24,6 +24,13 @@ export const MAX_STAGE_DEFAULT = 10;
 /** Origin group key for milestone items in the features list. */
 export const MILESTONE_GROUP = "advancementMilestone";
 
+/**
+ * Fallback gift-tier ids used when a milestone's owning Advancement Class
+ * cannot be resolved. The authoritative tier list is
+ * `system.gifts.tiers` on the class.
+ */
+export const DEFAULT_GIFT_TIER_IDS = ["minor", "major", "grand"];
+
 /** Localized label shown in stage selectors/managers, e.g. "Stage 3 - Adept". */
 export function stageLabel(item, stage) {
   const name = item.system.stageNames?.[String(stage)];

@@ -35,7 +35,7 @@ export function registerTracking() {
  * Emit a tracking event for an actor. Counter milestones with a matching
  * `tracking.event` advance their progress.
  * @param {Actor5e} actor
- * @param {string} event        Event key, e.g. "use:control-points".
+ * @param {string} event        Event key, e.g. "use:power-pool".
  * @param {object} [data]
  * @param {number} [data.amount=1]  Progress increment.
  * @param {string[]} [data.targets] Target document UUIDs for unique-target milestones.
@@ -83,18 +83,22 @@ function milestoneOwner(actor) {
 /* -------------------------------------------- */
 
 /**
- * Short-rest gift refunds: items flagged `advancement-classes.srRefund` name
- * an item identifier whose `uses.spent` is reduced by the flag's amount on a
- * short rest (e.g. Careful Control: regain 1 Control Point).
+ * Rest refunds: items flagged `advancement-classes.restRefund` - either a
+ * single `{ target, amount = 1, rest = "short" }` object or an array of
+ * them - reduce the `uses.spent` of the actor item whose identifier matches
+ * `target` when the actor finishes a rest of the matching type. The dnd5e
+ * hook signature is `(actor, result, config)`; `config.type` is the rest
+ * type ("short" or "long" in dnd5e 6.x).
  */
-function onRestCompleted(actor, result) {
-  if ( result?.longRest ) return;
+function onRestCompleted(actor, result, config) {
+  const restType = config?.type ?? result?.type;
   for ( const item of actor.items ) {
-    const refund = item.getFlag(MODULE_ID, "srRefund");
-    if ( !refund?.target ) continue;
-    const target = actor.items.find(i => (i.identifier === refund.target) && i.system.uses?.max);
-    if ( !target ) continue;
-    const spent = Math.max(0, target.system.uses.spent - (refund.amount ?? 1));
-    if ( spent !== target.system.uses.spent ) void target.update({ "system.uses.spent": spent });
+    for ( const refund of [item.getFlag(MODULE_ID, "restRefund") ?? []].flat() ) {
+      if ( !refund?.target || ((refund.rest ?? "short") !== restType) ) continue;
+      for ( const target of actor.items.filter(i => (i.identifier === refund.target) && i.system.uses?.max) ) {
+        const spent = Math.max(0, target.system.uses.spent - (refund.amount ?? 1));
+        if ( spent !== target.system.uses.spent ) void target.update({ "system.uses.spent": spent });
+      }
+    }
   }
 }

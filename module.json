@@ -36,49 +36,6 @@
       }
     }
   },
-  "packs": [
-    {
-      "name": "advancement-classes",
-      "label": "Classes",
-      "type": "Item",
-      "path": "packs/advancement-classes",
-      "flags": {
-        "dnd5e": {
-          "sourceBook": "Advancement Classes",
-          "types": [
-            "advancement-classes.advancement-class",
-            "advancement-classes.advancement-path",
-            "advancement-classes.advancement-milestone",
-            "feat"
-          ]
-        }
-      }
-    },
-    {
-      "name": "advancement-classes-forms",
-      "label": "Actors",
-      "type": "Actor",
-      "path": "packs/advancement-classes-forms"
-    },
-    {
-      "name": "advancement-classes-journals",
-      "label": "Journals",
-      "type": "JournalEntry",
-      "path": "packs/advancement-classes-journals"
-    }
-  ],
-  "packFolders": [
-    {
-      "name": "Advancement Class",
-      "color": "#4a2c6e",
-      "sorting": "m",
-      "packs": [
-        "advancement-classes",
-        "advancement-classes-forms",
-        "advancement-classes-journals"
-      ]
-    }
-  ],
   "relationships": {
     "systems": [
       {
@@ -98,7 +55,7 @@
   "flags": {
     "hotReload": {
       "extensions": ["css", "hbs", "json"],
-      "paths": ["styles", "templates", "lang", "packs"]
+      "paths": ["styles", "templates", "lang"]
     }
   }
 }

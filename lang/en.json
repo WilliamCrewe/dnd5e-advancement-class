@@ -69,23 +69,18 @@
       "GMOnly": "This milestone requires GM confirmation to complete.",
       "Tracking": {
         "Event": "Tracked Event",
-        "EventHint": "Event key that advances this counter (e.g. \"use:control-points\", \"heal:wild-regeneration\", \"transform\", \"saveSuccess:wis\"). See module documentation for the event vocabulary.",
+        "EventHint": "Event key that advances this counter (e.g. \"use:power-pool\", \"heal:mending\", \"transform\", \"saveSuccess:wis\"). See module documentation for the event vocabulary.",
         "Unique": "Unique Targets",
         "UniqueHint": "Only count each distinct target once."
       },
       "Calling": {
         "ChoiceSet": "Choice Set",
-        "ChoiceSetHint": "Key grouping the mutually exclusive alternatives (e.g. \"therianthrope-focus\").",
+        "ChoiceSetHint": "Key grouping the mutually exclusive alternatives (e.g. \"devotion-focus\").",
         "ChoiceKey": "Choice Key",
-        "ChoiceKeyHint": "This alternative's identity (e.g. \"control\", \"embrace\"). Matched against gift flags.",
+        "ChoiceKeyHint": "This alternative's identity (e.g. \"light\", \"shadow\"). Matched against gift flags.",
         "GiftSource": "Gift Source",
         "GiftSourceHint": "Compendium pack ID containing gift items, or \"world\" for world items. Blank searches everything.",
-        "GiftTiers": "Gift Tiers",
-        "Tier": {
-          "Minor": "Minor",
-          "Major": "Major",
-          "Grand": "Grand"
-        }
+        "GiftTiers": "Gift Tiers"
       }
     },
     "Calling": {
@@ -95,7 +90,8 @@
       "GiftText": "Choose the gift you receive:",
       "GiftConfirm": "Claim Gift",
       "NoGifts": "No eligible gifts were found for this calling.",
-      "GrandLocked": "Grand gifts are only offered to those who already hold at least two Minor and two Major gifts of this Calling."
+      "TierLocked": "{tier} gifts require at least {requirements} gifts of this Calling.",
+      "TierRequirement": "{count} {tier}"
     },
     "Transform": {
       "AbilityFloor": "{ability} Floor"
@@ -114,7 +110,15 @@
       "StageNames": "Stage Names",
       "StageNamesHint": "Optional display names for each stage, e.g. \"Initiate\", \"Adept\".",
       "Journal": "Reference Journal",
-      "JournalHint": "Journal entry page describing this Advancement Class."
+      "JournalHint": "Journal entry page describing this Advancement Class.",
+      "GiftTiers": "Gift Tiers",
+      "GiftTiersHint": "Tiers offered by this class's Calling milestones, from lowest to highest Sort. Requirements list the minimum number of gifts of another tier an actor must already hold for this tier to be offered.",
+      "GiftTierLabel": "Label",
+      "GiftTierSort": "Sort",
+      "GiftTierRequires": "Requires {label} Gifts",
+      "GiftTierAdd": "Add Gift Tier",
+      "GiftTierId": "Tier ID",
+      "GiftTierDelete": "Delete Gift Tier"
     },
     "HitPoints": {
       "StagesLabel": "Hit Point Stages",
@@ -139,6 +143,8 @@
     },
     "Warnings": {
       "DuplicateIdentifier": "This character already has an Advancement Class with identifier \"{identifier}\".",
+      "DuplicateTier": "This Advancement Class already has a gift tier with identifier \"{identifier}\".",
+      "LastTier": "An Advancement Class must have at least one gift tier.",
       "StageMinimum": "An Advancement Class cannot be below Stage 1.",
       "StageMaximum": "An Advancement Class cannot exceed Stage {max}.",
       "NotAdvancementClass": "Only Advancement Classes use this advancement."

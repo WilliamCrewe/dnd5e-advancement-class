@@ -20,13 +20,6 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
 
-      - name: Compile compendium packs
-        run: |
-          for dir in packs/_source/*/; do
-            name="$(basename "$dir")"
-            npx -y @foundryvtt/foundryvtt-cli package pack "$name" --in "$dir" --out packs
-          done
-
       - name: Stamp version and download URL into module.json
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
@@ -43,9 +36,7 @@ jobs:
             scripts \
             styles \
             templates \
-            packs \
-            README.md \
-            -x "packs/_source/*"
+            README.md
 
       - name: Create release
         uses: softprops/action-gh-release@v2

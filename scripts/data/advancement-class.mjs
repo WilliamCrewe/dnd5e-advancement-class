@@ -9,7 +9,7 @@ const { DocumentUUIDField, NumberField, SchemaField, StringField, TypedObjectFie
 /**
  * Data definition for Advancement Class items.
  *
- * Mirrors `ClassData` but uses a separate 0–10 Stage progression stored in
+ * Mirrors `ClassData` but uses a separate 0 to 10 Stage progression stored in
  * `system.levels`. Because the type is not "class", it is excluded from
  * `details.level`, proficiency bonus, hit dice, and spell-slot progression.
  */
@@ -45,6 +45,28 @@ export default class AdvancementClassData extends ItemDataModel.mixin(
       }),
       stageNames: new TypedObjectField(new StringField({ required: true }), {
         required: false, label: "ADVANCEMENT_CLASSES.Class.StageNames", hint: "ADVANCEMENT_CLASSES.Class.StageNamesHint"
+      }),
+      gifts: new SchemaField({
+        // Calling gift tiers, keyed by tier id. `sort` orders tiers from
+        // lowest to highest. `requires` maps other tier ids to the minimum
+        // number of gifts of that tier (same Calling side and class) an
+        // actor must already hold for this tier to be offered.
+        tiers: new TypedObjectField(new SchemaField({
+          label: new StringField({ required: true }),
+          sort: new NumberField({ required: true, nullable: false, integer: true, initial: 0 }),
+          requires: new TypedObjectField(
+            new NumberField({ required: false, nullable: true, integer: true, min: 0, initial: null }),
+            { required: false }
+          )
+        }), {
+          required: false,
+          initial: {
+            minor: { label: "Minor", sort: 0, requires: {} },
+            major: { label: "Major", sort: 1, requires: {} },
+            grand: { label: "Grand", sort: 2, requires: {} }
+          },
+          label: "ADVANCEMENT_CLASSES.Class.GiftTiers", hint: "ADVANCEMENT_CLASSES.Class.GiftTiersHint"
+        })
       }),
       journal: new DocumentUUIDField({
         required: false, type: "JournalEntryPage",
@@ -124,6 +146,19 @@ export default class AdvancementClassData extends ItemDataModel.mixin(
       const stage = String(i + 1);
       return { stage, name: this.stageNames?.[stage] ?? "" };
     });
+    const tiers = this.gifts?.tiers ?? {};
+    const tierIds = Object.keys(tiers).sort((a, b) => (tiers[a]?.sort ?? 0) - (tiers[b]?.sort ?? 0));
+    context.canDeleteGiftTier = tierIds.length > 1;
+    context.giftTierRows = tierIds.map(tierId => ({
+      id: tierId,
+      label: tiers[tierId]?.label ?? tierId,
+      sort: tiers[tierId]?.sort ?? 0,
+      requires: tierIds.filter(o => o !== tierId).map(otherId => ({
+        id: otherId,
+        label: tiers[otherId]?.label ?? otherId,
+        value: tiers[tierId]?.requires?.[otherId] ?? 0
+      }))
+    }));
   }
 
   /* -------------------------------------------- */

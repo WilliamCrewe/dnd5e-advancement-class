@@ -1,6 +1,8 @@
 import AdvancementClassManager from "./applications/advancement-class-manager.mjs";
 import { CLASS_TYPE, MILESTONE_TYPE, MODULE_ID, PATH_TYPE, SETTING_MAX_STAGE } from "./constants.mjs";
 
+const { DialogV2 } = foundry.applications.api;
+
 /* -------------------------------------------- */
 /*  Item5e Getters                              */
 /* -------------------------------------------- */
@@ -431,31 +433,95 @@ function patchCharacterSheet() {
 }
 
 /* -------------------------------------------- */
-/*  Gift Modifiers                              */
+/*  Item Sheet                                  */
 /* -------------------------------------------- */
 
 /**
- * Gift items may carry `flags.advancement-classes.cpDelta` to raise or lower
- * the owner's Control Point maximum. The Control Points feature item is any
- * feat with the identifier `control-points` whose uses are driven by a
- * formula; after uses are resolved, apply the summed delta and re-clamp.
+ * Gift-tier editing actions on the Advancement Class sheet: add a new tier
+ * (prompting for its id) or delete one via `ForcedDeletion` data-field
+ * operators on the TypedObjectField, also stripping dangling `requires`
+ * references.
  */
-function patchControlPointMax() {
-  const FeatData = CONFIG.Item.dataModels.feat;
-  if ( !FeatData ) return;
-  const original = FeatData.prototype.prepareFinalData;
-  FeatData.prototype.prepareFinalData = function(rollData) {
-    original.call(this, rollData);
-    const item = this.parent;
-    const actor = item?.actor;
-    if ( !actor || (item.identifier !== "control-points") || (this.uses?.max == null) ) return;
-    const delta = actor.items.reduce(
-      (n, i) => n + (i.getFlag(MODULE_ID, "cpDelta") ?? 0), 0
-    );
-    if ( !delta ) return;
-    this.uses.max = Math.max(0, this.uses.max + delta);
-    this.uses.value = Math.clamp(this.uses.max - this.uses.spent, 0, this.uses.max);
+function patchItemSheet() {
+  const options = dnd5e.applications.item.ItemSheet5e.DEFAULT_OPTIONS;
+  options.actions = {
+    ...options.actions,
+    async addGiftTier() {
+      const item = this.item;
+      if ( item?.type !== CLASS_TYPE ) return;
+      const tierId = await DialogV2.prompt({
+        window: { title: game.i18n.localize("ADVANCEMENT_CLASSES.Class.GiftTierAdd") },
+        content: `<form><div class="form-group">
+          <label>${game.i18n.localize("ADVANCEMENT_CLASSES.Class.GiftTierId")}</label>
+          <div class="form-fields"><input type="text" name="tierId" autofocus></div>
+        </div></form>`,
+        ok: { callback: (event, button) => new FormData(button.form).get("tierId") },
+        rejectClose: false
+      });
+      const clean = String(tierId ?? "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+      if ( !clean ) return;
+      const tiers = item.system.gifts?.tiers ?? {};
+      if ( tiers[clean] ) {
+        ui.notifications.warn("ADVANCEMENT_CLASSES.Warnings.DuplicateTier", {
+          format: { identifier: clean }, localize: true
+        });
+        return;
+      }
+      const maxSort = Math.max(-1, ...Object.values(tiers).map(t => t?.sort ?? 0));
+      await item.update({
+        [`system.gifts.tiers.${clean}`]: { label: clean.capitalize(), sort: maxSort + 1, requires: {} }
+      });
+    },
+    async deleteGiftTier(event, target) {
+      const item = this.item;
+      const tierId = target.dataset.tierId;
+      if ( (item?.type !== CLASS_TYPE) || !tierId ) return;
+      if ( Object.keys(item.system.gifts?.tiers ?? {}).length <= 1 ) {
+        ui.notifications.warn("ADVANCEMENT_CLASSES.Warnings.LastTier", { localize: true });
+        return;
+      }
+      const del = foundry.data.operators.ForcedDeletion.create();
+      const update = { [`system.gifts.tiers.${tierId}`]: del };
+      for ( const otherId of Object.keys(item.system.gifts?.tiers ?? {}) ) {
+        if ( otherId !== tierId ) {
+          update[`system.gifts.tiers.${otherId}.requires.${tierId}`] = del;
+        }
+      }
+      await item.update(update);
+    }
   };
+}
+
+/* -------------------------------------------- */
+/*  Uses Maximum Modifiers                      */
+/* -------------------------------------------- */
+
+/**
+ * Items may carry `flags.advancement-classes.usesMax` - either a single
+ * `{ target, delta }` object or an array of them - to raise or lower another
+ * item's uses maximum. When an item's identifier equals `target`, after its
+ * uses are prepared apply the summed delta and re-clamp.
+ */
+function patchUsesMax() {
+  const seen = new Set();
+  for ( const DataModel of Object.values(CONFIG.Item.dataModels ?? {}) ) {
+    const proto = DataModel?.prototype;
+    if ( !proto || seen.has(proto) || !DataModel.schema?.has("uses") ) continue;
+    seen.add(proto);
+    const original = proto.prepareFinalData;
+    if ( typeof original !== "function" ) continue;
+    proto.prepareFinalData = function(rollData) {
+      original.call(this, rollData);
+      const item = this.parent;
+      const actor = item?.actor;
+      if ( !actor || !item.identifier || (this.uses?.max == null) ) return;
+      const delta = actor.items.reduce((n, i) => n + [i.getFlag(MODULE_ID, "usesMax") ?? []].flat()
+        .reduce((d, entry) => d + ((entry?.target === item.identifier) ? (Number(entry.delta) || 0) : 0), 0), 0);
+      if ( !delta ) return;
+      this.uses.max = Math.max(0, this.uses.max + delta);
+      this.uses.value = Math.clamp(this.uses.max - this.uses.spent, 0, this.uses.max);
+    };
+  }
 }
 
 /* -------------------------------------------- */
@@ -471,5 +537,6 @@ export function applyPatches() {
   patchAbilityScoreImprovement();
   patchHitPoints();
   patchCharacterSheet();
-  patchControlPointMax();
+  patchItemSheet();
+  patchUsesMax();
 }

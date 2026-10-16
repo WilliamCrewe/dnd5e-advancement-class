@@ -64,9 +64,16 @@ function regroupGifts(app, element) {
     groups.get(label).push(item.id);
   }
 
-  // Gift sections go first in the features list, directly beneath the
-  // advancement-classes pill block.
-  let after = null;
+  // Insert gift sections just before the section the gifts came from
+  // (the catch-all "Other Features" category).
+  let insertBefore = null;
+  for ( const ids of groups.values() ) {
+    for ( const id of ids ) {
+      const row = featuresTab.querySelector(`li.item[data-item-id="${id}"]`);
+      if ( row ) { insertBefore = row.closest("div.items-section"); break; }
+    }
+    if ( insertBefore ) break;
+  }
   for ( const [label, ids] of groups ) {
     const section = document.createElement("div");
     section.className = "items-section card advancement-class-gifts";
@@ -74,9 +81,7 @@ function regroupGifts(app, element) {
     section.innerHTML = `
       <div class="items-header header"><h3 class="item-name">${foundry.utils.escapeHTML(label)}</h3></div>
       <ol class="item-list unlist"></ol>`;
-    if ( after ) after.insertAdjacentElement("afterend", section);
-    else list.prepend(section);
-    after = section;
+    list.insertBefore(section, insertBefore ?? null);
     const group = section.querySelector("ol.item-list");
     for ( const id of ids ) {
       const row = featuresTab.querySelector(`li.item[data-item-id="${id}"]`);

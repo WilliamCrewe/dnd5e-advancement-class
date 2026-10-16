@@ -1,4 +1,5 @@
 import { CLASS_TYPE, MODULE_ID, PATH_TYPE } from "./constants.mjs";
+import { owningAdvancementClass } from "./data/advancement-milestone.mjs";
 
 /**
  * Transform-time injection for Advancement Classes. When an actor
@@ -36,10 +37,7 @@ export function registerTransformInjection() {
 /* -------------------------------------------- */
 
 async function onTransform(host, source, data, settings, options) {
-  const stage = Math.max(
-    0, ...host.items.filter(i => i.type === CLASS_TYPE).map(i => i.system.levels)
-  );
-  const configs = collectConfigs(host, stage);
+  const configs = collectConfigs(host);
   if ( !configs ) return;
 
   // Keep-set adjustments from configs (e.g. Gifts keeping languages/feats).
@@ -102,10 +100,12 @@ async function onTransform(host, source, data, settings, options) {
 /**
  * Collect transform configuration from the host's Advancement Class and
  * Path items, and from any other items (e.g. Gift feats) carrying a
- * `flags.advancement-classes.transform` block.
+ * `flags.advancement-classes.transform` block. `minStage` gating and
+ * ability floors resolve against the Stage of the class each config-bearing
+ * item belongs to.
  * @returns {{ keep: Set<string>, floors: Map<string, number>, inject: object[], effects: object[] }|null}
  */
-function collectConfigs(host, stage) {
+function collectConfigs(host) {
   const keep = new Set();
   const floors = new Map();
   const inject = [];
@@ -116,6 +116,7 @@ function collectConfigs(host, stage) {
     const cfg = item.getFlag(MODULE_ID, "transform");
     if ( !cfg ) continue;
     found = true;
+    const stage = configStage(host, item);
 
     for ( const key of cfg.keep ?? [] ) keep.add(key);
     for ( const effect of cfg.effects ?? [] ) effects.push(effect);
@@ -134,6 +135,33 @@ function collectConfigs(host, stage) {
   }
 
   return found ? { keep, floors, inject, effects } : null;
+}
+
+/* -------------------------------------------- */
+
+/**
+ * The Stage a transform configuration is evaluated at, resolved from the
+ * config-bearing item itself: an Advancement Class's own Stage, the class
+ * linked through an Advancement Path's `classIdentifier`, the class named
+ * by a gift flag, or the class at the root of the item's advancement
+ * origin chain. Falls back to the highest Advancement Class Stage on the
+ * actor when nothing resolves.
+ */
+function configStage(host, item) {
+  const fallback = Math.max(
+    0, ...host.items.filter(i => i.type === CLASS_TYPE).map(i => i.system.levels)
+  );
+  const byIdentifier = ident => host.items.find(
+    i => (i.type === CLASS_TYPE) && (i.identifier === ident)
+  );
+  if ( item.type === CLASS_TYPE ) return item.system.levels;
+  if ( item.type === PATH_TYPE ) return byIdentifier(item.system.classIdentifier)?.system.levels ?? fallback;
+  const giftClass = item.getFlag(MODULE_ID, "gift")?.class;
+  if ( giftClass ) {
+    const cls = byIdentifier(giftClass);
+    if ( cls ) return cls.system.levels;
+  }
+  return owningAdvancementClass(item)?.system.levels ?? fallback;
 }
 
 /* -------------------------------------------- */
