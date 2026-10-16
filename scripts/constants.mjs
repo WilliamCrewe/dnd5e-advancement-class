@@ -3,6 +3,7 @@ export const MODULE_ID = "advancement-classes";
 export const CLASS_TYPE = `${MODULE_ID}.advancement-class`;
 export const PATH_TYPE = `${MODULE_ID}.advancement-path`;
 export const MILESTONE_TYPE = `${MODULE_ID}.advancement-milestone`;
+export const GIFT_TYPE = `${MODULE_ID}.advancement-gift`;
 
 /** Key registered in CONFIG.DND5E.advancementTypes for the path-selection advancement. */
 export const PATH_ADVANCEMENT_TYPE = "AdvancementPath";

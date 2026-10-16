@@ -1,10 +1,12 @@
 import AdvancementClassManager from "./applications/advancement-class-manager.mjs";
+import AdvancementClassItemSheet from "./applications/advancement-class-sheet.mjs";
 import AdvancementPathAdvancement from "./advancement-path.mjs";
 import {
-  CLASS_TYPE, MILESTONE_TYPE, MODULE_ID, PATH_ADVANCEMENT_TYPE, PATH_TYPE,
+  CLASS_TYPE, GIFT_TYPE, MILESTONE_TYPE, MODULE_ID, PATH_ADVANCEMENT_TYPE, PATH_TYPE,
   SETTING_ENABLED, SETTING_MAX_STAGE, SETTING_STAGE_CARD
 } from "./constants.mjs";
 import AdvancementClassData from "./data/advancement-class.mjs";
+import AdvancementGiftData from "./data/advancement-gift.mjs";
 import AdvancementMilestoneData from "./data/advancement-milestone.mjs";
 import AdvancementPathData from "./data/advancement-path.mjs";
 import { applyPatches } from "./patches.mjs";
@@ -23,7 +25,8 @@ Hooks.once("init", () => {
   Object.assign(CONFIG.Item.dataModels, {
     [CLASS_TYPE]: AdvancementClassData,
     [PATH_TYPE]: AdvancementPathData,
-    [MILESTONE_TYPE]: AdvancementMilestoneData
+    [MILESTONE_TYPE]: AdvancementMilestoneData,
+    [GIFT_TYPE]: AdvancementGiftData
   });
 
   // Advancement type registration
@@ -45,6 +48,14 @@ Hooks.once("init", () => {
     for ( const t of additions ) entry?.validItemTypes?.add(t);
   }
   dnd5e.documents.advancement.ItemGrantAdvancement.VALID_TYPES.add(MILESTONE_TYPE);
+  dnd5e.documents.advancement.ItemGrantAdvancement.VALID_TYPES.add(GIFT_TYPE);
+
+  // Sheets: Advancement Class items get a dedicated ItemSheet5e subclass so
+  // the Gift Tier actions are scoped to our sheet rather than injected into
+  // every item sheet's shared action map.
+  Items.registerSheet(MODULE_ID, AdvancementClassItemSheet, {
+    types: [CLASS_TYPE], makeDefault: true
+  });
 
   // Settings
   game.settings.register(MODULE_ID, SETTING_ENABLED, {
@@ -95,6 +106,7 @@ Hooks.once("init", () => {
     [`${MODULE_ID}.details-class`]: `modules/${MODULE_ID}/templates/details-class.hbs`,
     [`${MODULE_ID}.details-path`]: `modules/${MODULE_ID}/templates/details-path.hbs`,
     [`${MODULE_ID}.details-milestone`]: `modules/${MODULE_ID}/templates/details-milestone.hbs`,
+    [`${MODULE_ID}.details-gift`]: `modules/${MODULE_ID}/templates/details-gift.hbs`,
     [`${MODULE_ID}.column-milestone`]: `modules/${MODULE_ID}/templates/columns/milestone-progress.hbs`
   });
 });

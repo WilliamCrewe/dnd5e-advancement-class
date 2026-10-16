@@ -18,7 +18,7 @@ Stages are changed with the stage selector on each class pill, which opens the a
 
 ## Item types
 
-The module adds three item types, all of which support the usual item fields plus advancements:
+The module adds four item types:
 
 - **Advancement Class**: a class-like item with `system.levels` as its Stage track. Fields:
   - **Identifier**: referenced by paths, gifts, and scale values.
@@ -28,6 +28,7 @@ The module adds three item types, all of which support the usual item fields plu
   - **Gift Tiers**: the tiers offered by Calling milestones (see below).
 - **Advancement Path**: the subclass analogue. Chosen through an `AdvancementPath` advancement on the class and linked by its **Advancement Class Identifier**; its advancements resolve at the parent class's Stage.
 - **Advancement Milestone**: a goal item that blocks Stage advancement while present (see below).
+- **Advancement Gift**: a reward claimed through Calling milestones. Carries `system.gift = { side, tier, class }`, a `system.usesMax` modifier (see below), and supports activities, uses, and embedded Active Effects like a feat.
 
 ## Milestone types
 
@@ -44,9 +45,9 @@ Progress on counter milestones is manual: players click the +/- controls, or con
 
 A Calling milestone carries `system.calling`: `choiceSet` (the shared key grouping alternatives), `choiceKey` (this alternative's identity), `giftSource` (a compendium pack id, or "world" for world items; blank searches everything), and `giftTiers` (the tier ids this milestone offers).
 
-Gift items declare `flags.advancement-classes.gift = { side, tier, class }`. `side` is matched against the milestone's `choiceKey`; `tier` against `giftTiers`; `class` against the identifier of the milestone's owning Advancement Class.
+Gifts are **Advancement Gift** items declaring `system.gift = { side, tier, class }`. `side` is matched against the milestone's `choiceKey`; `tier` against `giftTiers`; `class` against the identifier of the milestone's owning Advancement Class.
 
-Completing a Calling removes every sibling milestone sharing its `choiceSet`, then opens a picker listing eligible gifts sorted by tier (highest first). Each tier's `requires` map on the class defines how many gifts of lower tiers the actor must already hold for the tier to be offered. Granted gifts appear in a "<Class> Gifts" section on the Features tab.
+Completing a Calling removes every sibling milestone sharing its `choiceSet`, then opens a picker listing eligible gifts sorted by tier (highest first). Each tier's `requires` map on the class defines how many gifts of lower tiers the actor must already hold for the tier to be offered. Granted gifts appear in a "<Class> Gifts" section on the Features tab, and gifts the actor already holds are filtered out of the picker.
 
 ### Gift tiers on the class
 
@@ -54,9 +55,8 @@ Completing a Calling removes every sibling milestone sharing its `choiceSet`, th
 
 ## Flags reference
 
-All content flags live under the `advancement-classes` namespace:
+All content flags live under the `advancement-classes` namespace. Namespaced flags are Foundry's sanctioned extension mechanism - they cannot collide with other modules - so these flags work on any item or actor, including vanilla dnd5e documents:
 
-- **`gift`**: `{ side, tier, class }` on a feat-type item. Marks it as a Calling gift.
 - **`transform`**: transform-time configuration on class, path, or gift items:
   - `keep`: array of keys added to the transformation's keep set (e.g. `["items", "languages", "class", "feats"]`).
   - `abilityFloor`: `{ ability, scale }` raises `ability` to the resolved `scale` value while transformed.
@@ -64,7 +64,7 @@ All content flags live under the `advancement-classes` namespace:
   - `injectSelf`: inject the item carrying the flag itself (honors `minStage` on the same object).
   - `effects`: Active Effect data applied to the transformed actor.
 - **`formAC`**: formula string on a form actor, evaluated against the host's roll data and applied as the transformed actor's flat AC.
-- **`usesMax`**: `{ target, delta }` or an array of them. After uses are prepared on an item whose identifier equals `target`, `uses.max` is adjusted by the summed delta (clamped at 0) and `uses.value` is re-clamped.
+- **`usesMax`**: `{ target, delta }` or an array of them. After uses are prepared on an item whose identifier equals `target`, `uses.max` is adjusted by the summed delta (clamped at 0) and `uses.value` is re-clamped. Advancement Gift items expose the same modifier natively as `system.usesMax` (a single `{ target, delta }` pair, editable on the gift's sheet); the flag remains available for other item types.
 - **`restRefund`**: `{ target, amount = 1, rest = "short" }` or an array. On a rest of the matching type ("short" or "long"), `uses.spent` of the actor's item identified by `target` is reduced by `amount`.
 
 ## Scale values
@@ -108,7 +108,7 @@ Two routes: author the items in Foundry and export them, or generate pack source
 2. Configure its advancements per Stage: ItemGrant for granted features and milestone grants, ItemChoice for pick-one pools, ScaleValue for stage-scaled values, HitPoints, AbilityScoreImprovement, and an **Advancement Path** advancement for the path choice.
 3. Create **Advancement Path** items with the class's identifier in **Advancement Class Identifier**, each with its own stage advancements.
 4. Create **Advancement Milestone** items and grant them via ItemGrant.
-5. For Callings, create calling milestones (choiceSet/choiceKey/giftSource/giftTiers) and gift feats carrying the `gift` flag, then configure the class's **Gift Tiers** on its sheet.
+5. For Callings, create calling milestones (choiceSet/choiceKey/giftSource/giftTiers) and **Advancement Gift** items with `system.gift` set, then configure the class's **Gift Tiers** on its sheet.
 6. Write a JournalEntryPage describing the class and link it in the class's **Reference Journal** field.
 7. Drag everything into a module compendium pack (or right-click > Export to Compendium) to ship it.
 
@@ -119,7 +119,7 @@ For larger content, generate pack `_source` JSON directly:
 1. Create a new repository for your content module.
 2. Add this repository as a git submodule at `vendor/advancement-classes`:
    `git submodule add <repo-url> vendor/advancement-classes`.
-3. Write a generator that imports `tools/lib/content-builder.mjs` from the submodule; it provides deterministic id hashing, compendium folder docs, item/milestone/calling/activity factories, an NPC form factory, `writeOut`, and `packAll`.
+3. Write a generator that imports `tools/lib/content-builder.mjs` from the submodule; it provides deterministic id hashing, compendium folder docs, item/gift/milestone/calling/activity factories, an NPC form factory, `writeOut`, and `packAll`.
 4. Compile with `packAll(rootDir)` or the Foundry CLI (`npx @foundryvtt/foundryvtt-cli package pack <name> --in packs/_source/<name> --out packs`; `--out` is the parent directory).
 
 ### module.json essentials

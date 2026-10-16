@@ -143,9 +143,9 @@ function collectConfigs(host) {
  * The Stage a transform configuration is evaluated at, resolved from the
  * config-bearing item itself: an Advancement Class's own Stage, the class
  * linked through an Advancement Path's `classIdentifier`, the class named
- * by a gift flag, or the class at the root of the item's advancement
- * origin chain. Falls back to the highest Advancement Class Stage on the
- * actor when nothing resolves.
+ * by an Advancement Gift's `system.gift.class`, or the class at the root
+ * of the item's advancement origin chain. Falls back to the highest
+ * Advancement Class Stage on the actor when nothing resolves.
  */
 function configStage(host, item) {
   const fallback = Math.max(
@@ -156,7 +156,7 @@ function configStage(host, item) {
   );
   if ( item.type === CLASS_TYPE ) return item.system.levels;
   if ( item.type === PATH_TYPE ) return byIdentifier(item.system.classIdentifier)?.system.levels ?? fallback;
-  const giftClass = item.getFlag(MODULE_ID, "gift")?.class;
+  const giftClass = item.system?.gift?.class;
   if ( giftClass ) {
     const cls = byIdentifier(giftClass);
     if ( cls ) return cls.system.levels;

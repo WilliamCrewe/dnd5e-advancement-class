@@ -1,7 +1,5 @@
 import AdvancementClassManager from "./applications/advancement-class-manager.mjs";
-import { CLASS_TYPE, MILESTONE_TYPE, MODULE_ID, PATH_TYPE, SETTING_MAX_STAGE } from "./constants.mjs";
-
-const { DialogV2 } = foundry.applications.api;
+import { CLASS_TYPE, GIFT_TYPE, MILESTONE_TYPE, MODULE_ID, PATH_TYPE, SETTING_MAX_STAGE } from "./constants.mjs";
 
 /* -------------------------------------------- */
 /*  Item5e Getters                              */
@@ -281,6 +279,7 @@ function patchCharacterSheet() {
       case CLASS_TYPE: return new Set(["advancementClasses"]);
       case PATH_TYPE: return new Set(["advancementPaths"]);
       case MILESTONE_TYPE: return new Set(["advancementMilestones"]);
+      case GIFT_TYPE: return new Set(["advancementGifts"]);
       default: return assignCategories.call(this, item);
     }
   };
@@ -291,7 +290,7 @@ function patchCharacterSheet() {
   Sheet._addDocumentItemTypes = function(documentType) {
     const types = addDocumentItemTypes.call(this, documentType);
     if ( documentType === "features" ) {
-      for ( const t of [CLASS_TYPE, PATH_TYPE, MILESTONE_TYPE] ) types.push?.(t) ?? types.add?.(t);
+      for ( const t of [CLASS_TYPE, PATH_TYPE, MILESTONE_TYPE, GIFT_TYPE] ) types.push?.(t) ?? types.add?.(t);
     }
     return types;
   };
@@ -363,6 +362,15 @@ function patchCharacterSheet() {
       }
     }
 
+    // Gifts group under a per-class "<Class> Gifts" section keyed on
+    // `gift-<class identifier>` (or bare "gift-" for unclassed gifts).
+    if ( item.type === GIFT_TYPE ) {
+      ctx.groups.origin = `gift-${item.system.gift?.class ?? ""}`;
+      const Inventory = customElements.get(this.options.elements.inventory);
+      ctx.columns = Inventory.mapColumns([{ id: "uses", order: 200 }, "recovery", "controls"]);
+      return;
+    }
+
     // Grouping: features granted by an Advancement Class or Path land under
     // that class's section; milestones land in their own section.
     const [originId] = (item.getFlag("dnd5e", "advancementRoot") ?? item.getFlag("dnd5e", "advancementOrigin"))
@@ -397,15 +405,35 @@ function patchCharacterSheet() {
     // Additional sections: "{Class} Features" for each Advancement Class and
     // an Advancement Milestones section below them.
     const milestones = context.itemCategories.advancementMilestones ?? [];
+    const gifts = context.itemCategories.advancementGifts ?? [];
     const Inventory = customElements.get(this.options.elements.inventory);
-    if ( context.advancementClasses.length || milestones.length ) {
+    if ( context.advancementClasses.length || milestones.length || gifts.length ) {
       const columns = [{ id: "uses", order: 200 }, "recovery", "controls"];
+
+      // One "{Class} Gifts" section per class identifier present on held
+      // gifts, in actor class order; unclassed gifts share a generic section.
+      const classNames = new Map(context.advancementClasses.map(c => [c.identifier, c.name]));
+      const giftIdents = [...new Set([
+        ...context.advancementClasses.map(c => c.identifier),
+        ...gifts.map(g => g.system.gift?.class ?? "")
+      ])].filter(ident => gifts.some(g => (g.system.gift?.class ?? "") === ident));
+      const giftSections = giftIdents.map((ident, i) => ({
+        columns, id: `ac-gifts-${ident || "other"}`, order: 550 + (i * 100),
+        groups: { origin: `gift-${ident}` },
+        label: classNames.get(ident)
+          ? game.i18n.format("ADVANCEMENT_CLASSES.Sheet.ClassGifts", { class: classNames.get(ident) })
+          : (ident
+            ? game.i18n.format("ADVANCEMENT_CLASSES.Sheet.ClassGifts", { class: ident.capitalize() })
+            : game.i18n.localize("ADVANCEMENT_CLASSES.Sheet.Gifts"))
+      }));
+
       const extra = [
         ...context.advancementClasses.map((cls, i) => ({
           columns, id: `ac-${cls.id}`, order: 500 + (i * 100),
           groups: { origin: cls.identifier },
           label: game.i18n.format("ADVANCEMENT_CLASSES.Sheet.Features", { name: cls.name })
         })),
+        ...giftSections,
         milestones.length ? {
           columns: [
             { id: "milestoneProgress", label: "ADVANCEMENT_CLASSES.Sheet.MilestoneProgress",
@@ -421,6 +449,7 @@ function patchCharacterSheet() {
       context.sections.push(...Inventory.prepareSections(extra));
       context.sections.sort((a, b) => a.order - b.order);
       context.sections[0].items.push(...milestones);
+      context.sections[0].items.push(...gifts);
       context.sections[0].items.push(
         ...context.advancementPaths.filter(p =>
           !context.advancementClasses.some(c => c.identifier === p.system.classIdentifier)
@@ -433,74 +462,15 @@ function patchCharacterSheet() {
 }
 
 /* -------------------------------------------- */
-/*  Item Sheet                                  */
-/* -------------------------------------------- */
-
-/**
- * Gift-tier editing actions on the Advancement Class sheet: add a new tier
- * (prompting for its id) or delete one via `ForcedDeletion` data-field
- * operators on the TypedObjectField, also stripping dangling `requires`
- * references.
- */
-function patchItemSheet() {
-  const options = dnd5e.applications.item.ItemSheet5e.DEFAULT_OPTIONS;
-  options.actions = {
-    ...options.actions,
-    async addGiftTier() {
-      const item = this.item;
-      if ( item?.type !== CLASS_TYPE ) return;
-      const tierId = await DialogV2.prompt({
-        window: { title: game.i18n.localize("ADVANCEMENT_CLASSES.Class.GiftTierAdd") },
-        content: `<form><div class="form-group">
-          <label>${game.i18n.localize("ADVANCEMENT_CLASSES.Class.GiftTierId")}</label>
-          <div class="form-fields"><input type="text" name="tierId" autofocus></div>
-        </div></form>`,
-        ok: { callback: (event, button) => new FormData(button.form).get("tierId") },
-        rejectClose: false
-      });
-      const clean = String(tierId ?? "").trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-      if ( !clean ) return;
-      const tiers = item.system.gifts?.tiers ?? {};
-      if ( tiers[clean] ) {
-        ui.notifications.warn("ADVANCEMENT_CLASSES.Warnings.DuplicateTier", {
-          format: { identifier: clean }, localize: true
-        });
-        return;
-      }
-      const maxSort = Math.max(-1, ...Object.values(tiers).map(t => t?.sort ?? 0));
-      await item.update({
-        [`system.gifts.tiers.${clean}`]: { label: clean.capitalize(), sort: maxSort + 1, requires: {} }
-      });
-    },
-    async deleteGiftTier(event, target) {
-      const item = this.item;
-      const tierId = target.dataset.tierId;
-      if ( (item?.type !== CLASS_TYPE) || !tierId ) return;
-      if ( Object.keys(item.system.gifts?.tiers ?? {}).length <= 1 ) {
-        ui.notifications.warn("ADVANCEMENT_CLASSES.Warnings.LastTier", { localize: true });
-        return;
-      }
-      const del = foundry.data.operators.ForcedDeletion.create();
-      const update = { [`system.gifts.tiers.${tierId}`]: del };
-      for ( const otherId of Object.keys(item.system.gifts?.tiers ?? {}) ) {
-        if ( otherId !== tierId ) {
-          update[`system.gifts.tiers.${otherId}.requires.${tierId}`] = del;
-        }
-      }
-      await item.update(update);
-    }
-  };
-}
-
-/* -------------------------------------------- */
 /*  Uses Maximum Modifiers                      */
 /* -------------------------------------------- */
 
 /**
- * Items may carry `flags.advancement-classes.usesMax` - either a single
- * `{ target, delta }` object or an array of them - to raise or lower another
- * item's uses maximum. When an item's identifier equals `target`, after its
- * uses are prepared apply the summed delta and re-clamp.
+ * Advancement Gifts carry `system.usesMax = { target, delta }` natively; any
+ * other item may instead carry `flags.advancement-classes.usesMax` (a single
+ * object or an array) - to raise or lower another item's uses maximum. When
+ * an item's identifier equals `target`, after its uses are prepared apply
+ * the summed delta and re-clamp.
  */
 function patchUsesMax() {
   const seen = new Set();
@@ -515,7 +485,7 @@ function patchUsesMax() {
       const item = this.parent;
       const actor = item?.actor;
       if ( !actor || !item.identifier || (this.uses?.max == null) ) return;
-      const delta = actor.items.reduce((n, i) => n + [i.getFlag(MODULE_ID, "usesMax") ?? []].flat()
+      const delta = actor.items.reduce((n, i) => n + [i.system?.usesMax, i.getFlag(MODULE_ID, "usesMax")].flat()
         .reduce((d, entry) => d + ((entry?.target === item.identifier) ? (Number(entry.delta) || 0) : 0), 0), 0);
       if ( !delta ) return;
       this.uses.max = Math.max(0, this.uses.max + delta);
@@ -537,6 +507,5 @@ export function applyPatches() {
   patchAbilityScoreImprovement();
   patchHitPoints();
   patchCharacterSheet();
-  patchItemSheet();
   patchUsesMax();
 }

@@ -3,7 +3,8 @@
     "Item": {
       "advancement-classes.advancement-class": "Advancement Class",
       "advancement-classes.advancement-path": "Advancement Path",
-      "advancement-classes.advancement-milestone": "Advancement Milestone"
+      "advancement-classes.advancement-milestone": "Advancement Milestone",
+      "advancement-classes.advancement-gift": "Advancement Gift"
     },
     "Advancement": {
       "AdvancementPath": "Advancement Path"
@@ -15,7 +16,9 @@
     "Details": {
       "ClassDetails": "Advancement Class Details",
       "PathDetails": "Advancement Path Details",
-      "MilestoneDetails": "Advancement Milestone Details"
+      "MilestoneDetails": "Advancement Milestone Details",
+      "GiftDetails": "Advancement Gift Details",
+      "UsesMax": "Uses Maximum Modifier"
     },
     "Settings": {
       "Enabled": {
@@ -148,6 +151,18 @@
       "StageMinimum": "An Advancement Class cannot be below Stage 1.",
       "StageMaximum": "An Advancement Class cannot exceed Stage {max}.",
       "NotAdvancementClass": "Only Advancement Classes use this advancement."
+    },
+    "Gift": {
+      "Side": "Calling Side",
+      "SideHint": "The Calling side this gift belongs to (e.g. \"control\"). Matched against the completed milestone's Choice Key.",
+      "Tier": "Gift Tier",
+      "TierHint": "Tier id defined by the owning Advancement Class's Gift Tiers (e.g. \"minor\").",
+      "ClassIdentifier": "Advancement Class Identifier",
+      "ClassIdentifierHint": "Identifier of the Advancement Class this gift belongs to. Stamped automatically when claimed through a Calling.",
+      "UsesMaxTarget": "Target Identifier",
+      "UsesMaxTargetHint": "Identifier of the item whose uses maximum this gift modifies (e.g. \"control-points\"). Blank applies no modifier.",
+      "UsesMaxDelta": "Maximum Modifier",
+      "UsesMaxDeltaHint": "Amount added to the target item's uses maximum while this gift is held (may be negative)."
     }
   }
 }

@@ -1,0 +1,54 @@
+<fieldset>
+    <legend>{{ localize "ADVANCEMENT_CLASSES.Details.GiftDetails" }}</legend>
+
+    {{!-- Calling Side --}}
+    <div class="form-group">
+        <label>{{ localize "ADVANCEMENT_CLASSES.Gift.Side" }}</label>
+        <div class="form-fields">
+            {{ formInput fields.gift.fields.side value=source.gift.side rootId=partId }}
+        </div>
+        <p class="hint">{{ localize "ADVANCEMENT_CLASSES.Gift.SideHint" }}</p>
+    </div>
+
+    {{!-- Tier --}}
+    <div class="form-group">
+        <label>{{ localize "ADVANCEMENT_CLASSES.Gift.Tier" }}</label>
+        <div class="form-fields">
+            <select name="system.gift.tier">
+                {{ selectOptions giftTiers selected=source.gift.tier blank="" }}
+            </select>
+        </div>
+        <p class="hint">{{ localize "ADVANCEMENT_CLASSES.Gift.TierHint" }}</p>
+    </div>
+
+    {{!-- Owning Class Identifier --}}
+    <div class="form-group">
+        <label>{{ localize "ADVANCEMENT_CLASSES.Gift.ClassIdentifier" }}</label>
+        <div class="form-fields">
+            {{ formInput fields.gift.fields.class value=source.gift.class rootId=partId }}
+        </div>
+        <p class="hint">{{ localize "ADVANCEMENT_CLASSES.Gift.ClassIdentifierHint" }}</p>
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>{{ localize "ADVANCEMENT_CLASSES.Details.UsesMax" }}</legend>
+
+    {{!-- Target Identifier --}}
+    <div class="form-group">
+        <label>{{ localize "ADVANCEMENT_CLASSES.Gift.UsesMaxTarget" }}</label>
+        <div class="form-fields">
+            {{ formInput fields.usesMax.fields.target value=source.usesMax.target rootId=partId }}
+        </div>
+        <p class="hint">{{ localize "ADVANCEMENT_CLASSES.Gift.UsesMaxTargetHint" }}</p>
+    </div>
+
+    {{!-- Delta --}}
+    <div class="form-group">
+        <label>{{ localize "ADVANCEMENT_CLASSES.Gift.UsesMaxDelta" }}</label>
+        <div class="form-fields">
+            {{ formInput fields.usesMax.fields.delta value=source.usesMax.delta rootId=partId }}
+        </div>
+        <p class="hint">{{ localize "ADVANCEMENT_CLASSES.Gift.UsesMaxDeltaHint" }}</p>
+    </div>
+</fieldset>

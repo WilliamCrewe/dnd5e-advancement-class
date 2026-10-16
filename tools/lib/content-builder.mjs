@@ -184,6 +184,36 @@ export function feat(name, ident, description, extra = {}) {
 }
 
 /**
+ * Build an Advancement Gift item document (`advancement-classes.advancement-gift`).
+ * Gifts are claimed through Calling milestones and group under a
+ * "{Class} Gifts" section on the character sheet.
+ * @param {string} name
+ * @param {string} ident                `system.identifier`.
+ * @param {string} description          HTML description.
+ * @param {object} [extra]
+ * @param {string} extra.side           Calling side matched against the milestone's Choice Key.
+ * @param {string} [extra.tier]         Tier id from the class's `system.gifts.tiers`.
+ * @param {string} [extra.classIdent]   Owning Advancement Class identifier.
+ * @param {object} [extra.usesMax]      `{ target, delta }` uses-maximum modifier.
+ * @param {string} [extra.img]          Icon path.
+ * @param {string} [extra.folder]       Folder id within the pack.
+ * @param {number} [extra.sort=0]       Manual sort value.
+ * @param {object} [extra.uses]         `system.uses` payload.
+ * @param {object} [extra.activities]   `system.activities` map.
+ * @param {object[]} [extra.effects]    Embedded Active Effects.
+ * @param {object} [extra.flags]        Document flags.
+ * @returns {object}
+ */
+export function gift(name, ident, description, extra = {}) {
+  const doc = feat(name, ident, description, extra);
+  doc.type = "advancement-classes.advancement-gift";
+  delete doc.system.type;
+  doc.system.gift = { side: extra.side ?? "", tier: extra.tier ?? "", class: extra.classIdent ?? "" };
+  doc.system.usesMax = extra.usesMax ?? { target: "", delta: 0 };
+  return doc;
+}
+
+/**
  * Build an Advancement Milestone item document.
  * @param {string} name
  * @param {string} ident                `system.identifier`.

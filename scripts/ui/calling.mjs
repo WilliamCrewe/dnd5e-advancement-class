@@ -1,11 +1,11 @@
-import { CLASS_TYPE, MODULE_ID } from "../constants.mjs";
+import { CLASS_TYPE, GIFT_TYPE, MODULE_ID } from "../constants.mjs";
 import { giftTierDefinitions, owningAdvancementClass } from "../data/advancement-milestone.mjs";
 
 const { DialogV2 } = foundry.applications.api;
 
 /**
- * Gift metadata flag shape on candidate items:
- *   flags.advancement-classes.gift = { side: "light", tier: "minor", class: "luminant" }
+ * Gifts are Advancement Gift items (`advancement-classes.advancement-gift`)
+ * with `system.gift = { side, tier, class }`.
  *
  * Calling milestone fields (system.calling):
  *   choiceSet  - shared key grouping mutually exclusive alternatives
@@ -94,7 +94,8 @@ async function giftCandidates(item, actor, owningClass) {
   const counts = {};
   const owned = new Set();
   for ( const ownedItem of actor?.items ?? [] ) {
-    const gift = ownedItem.getFlag(MODULE_ID, "gift");
+    if ( ownedItem.type !== GIFT_TYPE ) continue;
+    const gift = ownedItem.system.gift;
     if ( !gift ) continue;
     if ( ownedItem.identifier ) owned.add(ownedItem.identifier);
     owned.add(ownedItem.name);
@@ -108,7 +109,8 @@ async function giftCandidates(item, actor, owningClass) {
   const locked = [...giftTiers].filter(tierId => unmet(tierId).length);
 
   const candidates = docs
-    .map(doc => ({ doc, item: doc.toObject(), gift: doc.getFlag(MODULE_ID, "gift") }))
+    .filter(doc => doc.type === GIFT_TYPE)
+    .map(doc => ({ doc, item: doc.toObject(), gift: doc.system.gift }))
     .filter(({ gift }) => gift?.side === choiceKey && giftTiers.has(gift.tier))
     .filter(({ gift }) => !classIdent || !gift.class || (gift.class === classIdent))
     .filter(({ gift }) => !unmet(gift.tier).length)
@@ -192,13 +194,13 @@ async function presentGifts(actor, item, choiceKey, owningClass) {
   // Gifts group on the character sheet by their advancement class. Stamp the
   // owning class's identifier; absent one, inherit when the actor has
   // exactly one Advancement Class.
-  if ( !data.flags?.[MODULE_ID]?.gift?.class ) {
+  if ( !data.system?.gift?.class ) {
     const identifier = owningClass?.identifier ?? (() => {
       const classes = actor.items.filter(i => i.type === CLASS_TYPE);
       return (classes.length === 1) ? classes[0].identifier : null;
     })();
     if ( identifier ) {
-      foundry.utils.setProperty(data, `flags.${MODULE_ID}.gift.class`, identifier);
+      foundry.utils.setProperty(data, "system.gift.class", identifier);
     }
   }
   await actor.createEmbeddedDocuments("Item", [data]);
