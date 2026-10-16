@@ -5,6 +5,7 @@
   "type": "advancement-classes.advancement-path",
   "img": "systems/dnd5e/icons/svg/subclass.svg",
   "folder": "h2utwiZVux4ulLiK",
+  "sort": 0,
   "system": {
     "description": {
       "value": "<p>The Shark branch of the Therianthrope curse. Your key ability is Strength; while transformed your alignment becomes Neutral Evil.</p>",

@@ -4,7 +4,8 @@
   "name": "Raven: Herald of Ends",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
-  "folder": "uWZc0OJSHamkswGc",
+  "folder": "9CBLRrRLMBlEhYYE",
+  "sort": 95,
   "system": {
     "description": {
       "value": "<p>Affect 10 different enemy creatures with Death's Witness.</p>",

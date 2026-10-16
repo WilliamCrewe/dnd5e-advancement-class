@@ -4,7 +4,8 @@
   "name": "Bestial Aspect — Fox",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "RAWzbpun6gUryFOD",
+  "folder": "zfqMjB6gDL6D9Uc3",
+  "sort": 30,
   "system": {
     "description": {
       "value": "<p>While transformed, you manifest your animal's keen hearing and smell. While transformed, you have advantage on Wisdom (Perception) checks that rely on hearing or smell.</p>",

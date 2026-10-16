@@ -5,6 +5,7 @@
   "type": "advancement-classes.advancement-class",
   "img": "systems/dnd5e/icons/svg/items/class.svg",
   "folder": "Wm5KlcBrCO8shUiN",
+  "sort": -10,
   "system": {
     "description": {
       "value": "<p>A Therianthrope is a creature cursed to transform into beast and hybrid forms — a werecreature whose condition spreads through its bite during the light of the Planar Tear. Therianthrope Stages are tracked independently of class level and do not increase character level or proficiency bonus.</p><p>See the @UUID[Compendium.advancement-classes.advancement-classes-journals.JournalEntry.On3AKlmYmTXKaq8h]{Therianthrope} journal for the full class write-up.</p>",

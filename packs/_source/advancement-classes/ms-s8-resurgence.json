@@ -4,7 +4,8 @@
   "name": "Death Defied",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
-  "folder": "Al1fI0mFwQXETnoW",
+  "folder": "9CBLRrRLMBlEhYYE",
+  "sort": 81,
   "system": {
     "description": {
       "value": "<p>Trigger Predator's Resurgence once.</p>",

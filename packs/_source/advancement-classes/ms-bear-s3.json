@@ -4,7 +4,8 @@
   "name": "Bear: Ursine Instincts",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
-  "folder": "f4JMRdVIAmXDmyso",
+  "folder": "9CBLRrRLMBlEhYYE",
+  "sort": 35,
   "system": {
     "description": {
       "value": "<p>Succeed on 10 Perception or Survival checks.</p>",

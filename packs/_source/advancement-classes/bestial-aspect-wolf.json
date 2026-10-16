@@ -4,7 +4,8 @@
   "name": "Bestial Aspect — Wolf",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "E58qeE4L8rBARkHo",
+  "folder": "ayEPP4ZC8KSgqmbF",
+  "sort": 30,
   "system": {
     "description": {
       "value": "<p>While transformed, you manifest your animal's keen hearing and smell. While transformed, you have advantage on Wisdom (Perception) checks that rely on hearing or smell.</p>",

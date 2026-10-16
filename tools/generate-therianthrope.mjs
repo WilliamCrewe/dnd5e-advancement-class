@@ -260,53 +260,40 @@ const EMBRACE_MAJOR_RIDER = " In addition, when you would make a saving throw ag
 /* -------------------------------------------- */
 
 /* ----- pack folders ----- */
+// Compendium packs only support folder nesting up to depth 3, so leaves are
+// flat under their depth-2 groups and items inside them are sorted manually.
 const folderDocs = [];
-function folder(slug, name, parent = null) {
+function folder(slug, name, parent = null, { sort = 0, sorting = "a" } = {}) {
   const fid = id(`folder:${slug}`);
   folderDocs.push({
     _id: fid, _key: `!folders!${fid}`, name, type: "Item",
-    folder: parent, color: null, sort: 0, sorting: "a", flags: {}
+    folder: parent, color: null, sort: sort * 10, sorting, flags: {}
   });
   return fid;
 }
 
-const F_ROOT = folder("therianthrope", "Therianthrope");
-const F_FEATURES = folder("features", "Features", F_ROOT);
+const F_ROOT = folder("therianthrope", "Therianthrope", null, { sorting: "m" });
+const F_FEATURES = folder("features", "Features", F_ROOT, { sort: 0, sorting: "m" });
 const F_STAGE = {}; // stage -> folder id
-for ( let s = 1; s <= 10; s++ ) F_STAGE[s] = folder(`features-s${s}`, `Stage ${s}`, F_FEATURES);
-const F_PATHS = folder("paths", "Paths", F_ROOT);
+for ( let s = 1; s <= 10; s++ ) {
+  F_STAGE[s] = folder(`features-s${s}`, `Stage ${s}`, F_FEATURES, { sort: s });
+}
+const F_PATHS = folder("paths", "Paths", F_ROOT, { sort: 1, sorting: "m" });
 const F_PATH_BRANCH = {}; // branch -> folder id
-const F_PATH_STAGE = {}; // "branch:stage" -> folder id
-for ( const b of Object.keys(BRANCHES) ) {
-  F_PATH_BRANCH[b] = folder(`paths-${b}`, BRANCHES[b].name, F_PATHS);
-  for ( const s of [1, 2, 3, 5, 7, 9] ) {
-    F_PATH_STAGE[`${b}:${s}`] = folder(`paths-${b}-s${s}`, `Stage ${s}`, F_PATH_BRANCH[b]);
-  }
-}
-const F_GIFTS = folder("gifts", "Gifts", F_ROOT);
-const F_GIFT_SIDE = { control: {}, embrace: {} };
-for ( const side of ["control", "embrace"] ) {
-  const sideFid = folder(`gifts-${side}`, side === "control" ? "Control" : "Embrace", F_GIFTS);
-  for ( const tier of ["minor", "major", "grand"] ) {
-    F_GIFT_SIDE[side][tier] = folder(
-      `gifts-${side}-${tier}`, tier[0].toUpperCase() + tier.slice(1), sideFid);
-  }
-}
-const F_MILESTONES = folder("milestones", "Milestones", F_ROOT);
-const F_MS_STANDARD = {}; // stage -> "Stage N -> N+1" folder id
-{
-  const stdFid = folder("ms-standard", "Standard", F_MILESTONES);
-  for ( let s = 1; s <= 9; s++ ) {
-    F_MS_STANDARD[s] = folder(`ms-standard-s${s}`, `Stage ${s} -> ${s + 1}`, stdFid);
-  }
-}
-const F_MS_CALLING = { control: {}, embrace: {} }; // side -> stage -> folder id
-for ( const side of ["control", "embrace"] ) {
-  const sideFid = folder(`ms-${side}`, side === "control" ? "Control" : "Embrace", F_MILESTONES);
-  for ( const s of [2, 4, 6, 8, 10] ) {
-    F_MS_CALLING[side][s] = folder(`ms-${side}-s${s}`, `Stage ${s}`, sideFid);
-  }
-}
+Object.keys(BRANCHES).forEach((b, bi) => {
+  F_PATH_BRANCH[b] = folder(`paths-${b}`, BRANCHES[b].name, F_PATHS, { sort: bi, sorting: "m" });
+});
+const F_GIFTS = folder("gifts", "Gifts", F_ROOT, { sort: 2, sorting: "m" });
+const F_GIFT_SIDE = {}; // side -> folder id
+[["control", "Control", 0], ["embrace", "Embrace", 1]].forEach(([side, label, si]) => {
+  F_GIFT_SIDE[side] = folder(`gifts-${side}`, label, F_GIFTS, { sort: si, sorting: "m" });
+});
+const F_MILESTONES = folder("milestones", "Milestones", F_ROOT, { sort: 3, sorting: "m" });
+const F_MS = {
+  standard: folder("ms-standard", "Standard", F_MILESTONES, { sort: 0, sorting: "m" }),
+  control: folder("ms-control", "Control", F_MILESTONES, { sort: 1, sorting: "m" }),
+  embrace: folder("ms-embrace", "Embrace", F_MILESTONES, { sort: 2, sorting: "m" })
+};
 
 /** Stage at which each class-level feature is granted. */
 const FEATURE_STAGE = {
@@ -325,6 +312,7 @@ function feat(name, ident, description, extra = {}) {
     name, type: "feat",
     img: extra.img ?? "systems/dnd5e/icons/svg/items/feature.svg",
     folder: extra.folder ?? null,
+    sort: extra.sort ?? 0,
     system: {
       description: { value: description, chat: "" },
       identifier: ident,
@@ -346,7 +334,8 @@ function milestone(name, ident, description, opts = {}) {
     _key: `!items!${id(`ms:${ident}`)}`,
     name, type: "advancement-classes.advancement-milestone",
     img: opts.img ?? "icons/magic/symbols/star-rising-purple.webp",
-    folder: opts.folder ?? F_MS_STANDARD[opts.stage ?? 1] ?? null,
+    folder: opts.folder ?? F_MS.standard,
+    sort: opts.sort ?? 0,
     system: {
       description: { value: `<p>${description}</p>`, chat: "" },
       identifier: ident,
@@ -367,10 +356,11 @@ function milestone(name, ident, description, opts = {}) {
 function callingMilestone(stage, key) {
   const tiers = { 2: ["minor"], 4: ["minor"], 6: ["minor", "major"], 8: ["minor", "major"], 10: ["minor", "major", "grand"] }[stage];
   const label = key === "control" ? "Control" : "Embrace";
-  return milestone(`Calling: ${label}`, `calling-${key}-s${stage}`,
+  return milestone(`Calling: ${label} (Stage ${stage})`, `calling-${key}-s${stage}`,
     `Commit yourself to the path of ${label} and claim a gift of the curse. Completing this Calling removes the alternative offered alongside it.`, {
       type: "calling",
-      folder: F_MS_CALLING[key][stage],
+      folder: F_MS[key],
+      sort: stage,
       img: key === "control"
         ? "icons/magic/symbols/rune-sigil-rough-white-teal.webp"
         : "icons/magic/symbols/rune-sigil-red-orange.webp",
@@ -753,7 +743,7 @@ for ( const b of Object.keys(BRANCHES) ) {
   tf.consumption.targets = [];
   acts[tf._id] = tf;
   items.push(feat(`Unwilling Transformation — ${BRANCHES[b].name}`, `unwilling-transformation-${b}`,
-    FEATURE_TEXT.unwilling, { activities: acts, img: IMG_UNWILLING, folder: F_PATH_STAGE[`${b}:1`] }));
+    FEATURE_TEXT.unwilling, { activities: acts, img: IMG_UNWILLING, folder: F_PATH_BRANCH[b], sort: 10 }));
 }
 
 // Per-branch Controlling the Curse: the Controlled Transformation only
@@ -762,7 +752,7 @@ for ( const b of Object.keys(BRANCHES) ) {
   const ct = transformActivity("Controlled Transformation",
     [animalProfiles.find(p => p.name.startsWith(BRANCHES[b].name))]);
   items.push(feat(`Controlling the Curse — ${BRANCHES[b].name}`, `controlling-the-curse-${b}`,
-    FEATURE_TEXT.controlling, { activities: { [ct._id]: ct }, img: IMG_CONTROLLING, folder: F_PATH_STAGE[`${b}:2`] }));
+    FEATURE_TEXT.controlling, { activities: { [ct._id]: ct }, img: IMG_CONTROLLING, folder: F_PATH_BRANCH[b], sort: 20 }));
 }
 
 items.push(feat("Control Points", "control-points",
@@ -812,7 +802,7 @@ for ( const [name, text] of FLAWS ) {
 /* ----- bestial aspects ----- */
 for ( const [key, branch] of Object.entries(BRANCHES) ) {
   items.push(feat(`Bestial Aspect — ${branch.name}`, `bestial-aspect-${key}`,
-    FEATURE_TEXT.bestialAspect(branch), { folder: F_PATH_STAGE[`${key}:3`] }));
+    FEATURE_TEXT.bestialAspect(branch), { folder: F_PATH_BRANCH[key], sort: 30 }));
 }
 
 /* ----- branch features ----- */
@@ -844,13 +834,16 @@ for ( const [key, feats] of Object.entries(BRANCH_FEATURES) ) {
       const act = BRANCH_ACTIVITY_BUILDERS[f.activity](f);
       activities[act._id] = act;
     }
-    items.push(feat(f.name, f.ident, `<p>${f.text}</p>`, { activities, folder: F_PATH_STAGE[`${key}:${f.stage}`] }));
+    items.push(feat(f.name, f.ident, `<p>${f.text}</p>`, { activities, folder: F_PATH_BRANCH[key], sort: f.stage * 10 }));
     branchFeatIds[key][f.stage] = id(`feat:${f.ident}`);
   }
 }
 
 /* ----- gifts ----- */
+const giftSortSeq = {}; // "side:tier" -> running index
 for ( const g of GIFTS ) {
+  const gk = `${g.side}:${g.tier}`;
+  giftSortSeq[gk] = (giftSortSeq[gk] ?? 0) + 1;
   const text = g.side === "embrace" && g.tier === "major"
     ? `<p>${g.text}</p><p><em>${EMBRACE_MAJOR_RIDER.trim()}</em></p>`
     : `<p>${g.text}</p>`;
@@ -873,15 +866,15 @@ for ( const g of GIFTS ) {
     changes: [{ key: c.key, mode: c.mode, value: c.value }], type: "base", transfer: true,
     disabled: false, duration: {}, origin: null, tint: "#ffffff", description: g.text, statuses: [], flags: {}
   }));
-  items.push(feat(g.name, g.ident, text, { activities, effects: effs.length ? effs : undefined, flags, featType: "supernaturalGift", subtype: "blessing", folder: F_GIFT_SIDE[g.side][g.tier] }));
+  items.push(feat(g.name, g.ident, text, { activities, effects: effs.length ? effs : undefined, flags, featType: "supernaturalGift", subtype: "blessing", folder: F_GIFT_SIDE[g.side], sort: { minor: 100, major: 200, grand: 300 }[g.tier] + giftSortSeq[gk] }));
 }
 
 /* ----- milestones ----- */
 const classMilestoneIds = {}; // stage -> { regular: [ids], calling: [ids] }
 for ( const [stage, list] of Object.entries(CLASS_MILESTONES) ) {
   classMilestoneIds[stage] = { regular: [], calling: [] };
-  for ( const [name, ident, text, opts] of list ) {
-    items.push(milestone(name, ident, text, { ...opts, stage: Number(stage) }));
+  for ( const [idx, [name, ident, text, opts]] of list.entries() ) {
+    items.push(milestone(name, ident, text, { ...opts, sort: Number(stage) * 10 + idx }));
     classMilestoneIds[stage].regular.push(id(`ms:${ident}`));
   }
   if ( Number(stage) % 2 === 0 ) {
@@ -898,7 +891,7 @@ for ( const [key, stages] of Object.entries(BRANCH_MILESTONES) ) {
   branchMilestoneIds[key] = {};
   for ( const [stage, [name, text, opts]] of Object.entries(stages) ) {
     const ident = `ms-${key}-s${stage}`;
-    items.push(milestone(`${BRANCHES[key].name}: ${name}`, ident, text, { ...opts, stage: Number(stage) }));
+    items.push(milestone(`${BRANCHES[key].name}: ${name}`, ident, text, { ...opts, sort: Number(stage) * 10 + 5 }));
     branchMilestoneIds[key][stage] = id(`ms:${ident}`);
   }
 }
@@ -1017,6 +1010,7 @@ items.push({
   type: "advancement-classes.advancement-class",
   img: "systems/dnd5e/icons/svg/items/class.svg",
   folder: F_ROOT,
+  sort: -10,
   system: {
     description: {
       value: `<p>A Therianthrope is a creature cursed to transform into beast and hybrid forms — a werecreature whose condition spreads through its bite during the light of the Planar Tear. Therianthrope Stages are tracked independently of class level and do not increase character level or proficiency bonus.</p><p>See the @UUID[${journalUuid}]{Therianthrope} journal for the full class write-up.</p>`,
@@ -1072,6 +1066,7 @@ for ( const [key, branch] of Object.entries(BRANCHES) ) {
     type: "advancement-classes.advancement-path",
     img: "systems/dnd5e/icons/svg/subclass.svg",
     folder: F_PATH_BRANCH[key],
+    sort: 0,
     system: {
       description: { value: `<p>The ${branch.name} branch of the Therianthrope curse. Your key ability is ${branch.keyName}; while transformed your alignment becomes ${branch.alignment}.</p>`, chat: "" },
       identifier: `therianthrope-${key}`,

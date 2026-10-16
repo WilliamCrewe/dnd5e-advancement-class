@@ -4,7 +4,8 @@
   "name": "Trip",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "G7YZ48zCwB1ehW03",
+  "folder": "ayEPP4ZC8KSgqmbF",
+  "sort": 50,
   "system": {
     "description": {
       "value": "<p>While transformed, when you hit a creature with your Bite, it must succeed on a Strength saving throw against your Therianthrope DC or have the Prone condition.</p>",

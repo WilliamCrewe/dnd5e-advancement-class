@@ -4,7 +4,8 @@
   "name": "Slippery",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "SCC8E2ah3r81dtqu",
+  "folder": "zfqMjB6gDL6D9Uc3",
+  "sort": 70,
   "system": {
     "description": {
       "value": "<p>While transformed, opportunity attacks made against you have disadvantage.</p>",

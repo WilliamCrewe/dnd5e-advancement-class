@@ -4,7 +4,8 @@
   "name": "Maul",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "a148thKfAEi4bEM1",
+  "folder": "BAKjq2iuC89ZetpB",
+  "sort": 90,
   "system": {
     "description": {
       "value": "<p>Once per turn while transformed, when you hit the same creature with a second natural weapon attack in the same turn, the attack deals an extra 2d8 damage and the target must succeed on a Strength saving throw against your Therianthrope DC or have the Prone condition.</p>",

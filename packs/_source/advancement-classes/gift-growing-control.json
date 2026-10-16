@@ -4,7 +4,8 @@
   "name": "Growing Control",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "1HZmskPhdBfM509n",
+  "folder": "nhvQDoLlqNGgDuZ5",
+  "sort": 101,
   "system": {
     "description": {
       "value": "<p>Your maximum number of Control Points increases by 1.</p>",

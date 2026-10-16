@@ -1,10 +1,11 @@
 {
   "_id": "cMiJ0bTt9g2I3BES",
   "_key": "!items!cMiJ0bTt9g2I3BES",
-  "name": "Calling: Embrace",
+  "name": "Calling: Embrace (Stage 8)",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/rune-sigil-red-orange.webp",
-  "folder": "odwH72uDeu6mrQkK",
+  "folder": "chA9Ll1yzlxTFH7S",
+  "sort": 8,
   "system": {
     "description": {
       "value": "<p>Commit yourself to the path of Embrace and claim a gift of the curse. Completing this Calling removes the alternative offered alongside it.</p>",

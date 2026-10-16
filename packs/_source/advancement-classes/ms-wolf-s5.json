@@ -4,7 +4,8 @@
   "name": "Wolf: Hamstring",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
-  "folder": "fgtuw9HXdpwX4BKC",
+  "folder": "9CBLRrRLMBlEhYYE",
+  "sort": 55,
   "system": {
     "description": {
       "value": "<p>Trip 5 different enemy creatures.</p>",

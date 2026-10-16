@@ -4,7 +4,8 @@
   "name": "Transformation: Wounded",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
-  "folder": "fmRA248EW75x7I6k",
+  "folder": "9CBLRrRLMBlEhYYE",
+  "sort": 10,
   "system": {
     "description": {
       "value": "<p>Transform once after being reduced below half your hit point maximum.</p>",

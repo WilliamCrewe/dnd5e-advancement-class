@@ -5,6 +5,7 @@
   "type": "advancement-classes.advancement-path",
   "img": "systems/dnd5e/icons/svg/subclass.svg",
   "folder": "erKQCyewXcn0pta3",
+  "sort": 0,
   "system": {
     "description": {
       "value": "<p>The Snake branch of the Therianthrope curse. Your key ability is Dexterity; while transformed your alignment becomes Lawful Evil.</p>",

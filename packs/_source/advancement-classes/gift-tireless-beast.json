@@ -4,7 +4,8 @@
   "name": "Tireless Beast",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "ObunyjIkZ3NLIB3X",
+  "folder": "nhvQDoLlqNGgDuZ5",
+  "sort": 201,
   "system": {
     "description": {
       "value": "<p>You no longer gain a level of Exhaustion when a Controlled Transformation ends.</p>",

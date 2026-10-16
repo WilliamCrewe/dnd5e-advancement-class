@@ -4,7 +4,8 @@
   "name": "Ravenous Regeneration",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "ccIBb27xn8ofOFN1",
+  "folder": "SPaAhDRAbGB6v4o4",
+  "sort": 103,
   "system": {
     "description": {
       "value": "<p>Your maximum number of Control Points is reduced by 1. Wild Regeneration heals an extra amount equal to half your proficiency bonus (rounded down).</p>",

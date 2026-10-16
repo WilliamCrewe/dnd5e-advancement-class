@@ -5,6 +5,7 @@
   "type": "advancement-classes.advancement-path",
   "img": "systems/dnd5e/icons/svg/subclass.svg",
   "folder": "BAKjq2iuC89ZetpB",
+  "sort": 0,
   "system": {
     "description": {
       "value": "<p>The Bear branch of the Therianthrope curse. Your key ability is Strength; while transformed your alignment becomes Chaotic Good.</p>",

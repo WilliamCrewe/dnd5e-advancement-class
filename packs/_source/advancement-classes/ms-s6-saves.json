@@ -4,7 +4,8 @@
   "name": "Iron Will",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
-  "folder": "fxICQzh4XQMW5UUQ",
+  "folder": "9CBLRrRLMBlEhYYE",
+  "sort": 61,
   "system": {
     "description": {
       "value": "<p>Succeed on 5 saving throws to resist Unwilling Transformation (any trigger).</p>",

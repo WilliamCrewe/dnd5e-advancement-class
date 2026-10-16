@@ -4,7 +4,8 @@
   "name": "Bear: Bear's Maul",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
-  "folder": "uWZc0OJSHamkswGc",
+  "folder": "9CBLRrRLMBlEhYYE",
+  "sort": 95,
   "system": {
     "description": {
       "value": "<p>Deal an extra 30 damage to enemies with Maul.</p>",

@@ -4,7 +4,8 @@
   "name": "Cursed Fury",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "xf2hCVaJN8gtdu4P",
+  "folder": "SPaAhDRAbGB6v4o4",
+  "sort": 202,
   "system": {
     "description": {
       "value": "<p>Your maximum number of Control Points is reduced by 1. Add half your proficiency bonus (rounded down) to attack rolls with Natural Weapons.</p><p><em>In addition, when you would make a saving throw against your Unwilling Transformation feature, you can choose to roll with Disadvantage. If this is the second Major Embrace gift you have taken, you can instead choose to fail the save.</em></p>",

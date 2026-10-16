@@ -5,6 +5,7 @@
   "type": "advancement-classes.advancement-path",
   "img": "systems/dnd5e/icons/svg/subclass.svg",
   "folder": "zfqMjB6gDL6D9Uc3",
+  "sort": 0,
   "system": {
     "description": {
       "value": "<p>The Fox branch of the Therianthrope curse. Your key ability is Dexterity; while transformed your alignment becomes Chaotic Neutral.</p>",

@@ -4,7 +4,8 @@
   "name": "Seized Reins",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
-  "folder": "f4JMRdVIAmXDmyso",
+  "folder": "9CBLRrRLMBlEhYYE",
+  "sort": 30,
   "system": {
     "description": {
       "value": "<p>Take control of an Unwilling Transformation 3 times.</p>",

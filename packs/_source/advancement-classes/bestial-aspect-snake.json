@@ -4,7 +4,8 @@
   "name": "Bestial Aspect — Snake",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "Q0memUQCMeGGmBkb",
+  "folder": "erKQCyewXcn0pta3",
+  "sort": 30,
   "system": {
     "description": {
       "value": "<p>While transformed, you manifest your animal's heat-sensing pits. While transformed, you gain blindsight out to 10 feet.</p>",

@@ -4,7 +4,8 @@
   "name": "Bestial Aspect — Tiger",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "xO4GhT4s28Fs0jHy",
+  "folder": "rBFOCZJETVGPeDw0",
+  "sort": 30,
   "system": {
     "description": {
       "value": "<p>While transformed, you manifest your animal's keen smell. While transformed, you have advantage on Wisdom (Perception) checks that rely on smell and on Dexterity (Stealth) checks made in natural terrain.</p>",

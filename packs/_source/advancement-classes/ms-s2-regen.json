@@ -4,7 +4,8 @@
   "name": "Flesh That Knits",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
-  "folder": "TIZoLB6Lsot2nfJ9",
+  "folder": "9CBLRrRLMBlEhYYE",
+  "sort": 21,
   "system": {
     "description": {
       "value": "<p>Mitigate a total of 30 damage using Wild Regeneration.</p>",

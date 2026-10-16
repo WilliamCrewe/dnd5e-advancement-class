@@ -5,6 +5,7 @@
   "type": "advancement-classes.advancement-path",
   "img": "systems/dnd5e/icons/svg/subclass.svg",
   "folder": "nPph3qfDewflyeE5",
+  "sort": 0,
   "system": {
     "description": {
       "value": "<p>The Raven branch of the Therianthrope curse. Your key ability is Dexterity; while transformed your alignment becomes Lawful Good.</p>",

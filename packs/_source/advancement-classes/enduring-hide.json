@@ -4,7 +4,8 @@
   "name": "Enduring Hide",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "GqmgrtCGbbBE5MAT",
+  "folder": "BAKjq2iuC89ZetpB",
+  "sort": 70,
   "system": {
     "description": {
       "value": "<p>When you transform, you gain temporary hit points equal to your Stage plus your Constitution modifier.</p>",

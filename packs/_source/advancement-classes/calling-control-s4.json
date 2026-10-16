@@ -1,10 +1,11 @@
 {
   "_id": "DefzhVi8jpX9fb7C",
   "_key": "!items!DefzhVi8jpX9fb7C",
-  "name": "Calling: Control",
+  "name": "Calling: Control (Stage 4)",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/rune-sigil-rough-white-teal.webp",
-  "folder": "36n8V1VcEsOybz9k",
+  "folder": "XmHRnbhjBLga26MR",
+  "sort": 4,
   "system": {
     "description": {
       "value": "<p>Commit yourself to the path of Control and claim a gift of the curse. Completing this Calling removes the alternative offered alongside it.</p>",

@@ -4,7 +4,8 @@
   "name": "Anchored Mind",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "ObunyjIkZ3NLIB3X",
+  "folder": "nhvQDoLlqNGgDuZ5",
+  "sort": 202,
   "system": {
     "description": {
       "value": "<p>You retain your languages, proficiencies, and class features during Controlled Transformation. You still cannot cast spells that require Somatic components.</p>",

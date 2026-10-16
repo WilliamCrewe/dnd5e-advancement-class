@@ -4,7 +4,8 @@
   "name": "Shark: Open Wounds",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
-  "folder": "AYT9DAkSFvj4fMc3",
+  "folder": "9CBLRrRLMBlEhYYE",
+  "sort": 75,
   "system": {
     "description": {
       "value": "<p>Affect 10 different enemies with Rending Bite.</p>",

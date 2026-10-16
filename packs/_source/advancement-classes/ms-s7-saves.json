@@ -4,7 +4,8 @@
   "name": "Iron Will II",
   "type": "advancement-classes.advancement-milestone",
   "img": "icons/magic/symbols/star-rising-purple.webp",
-  "folder": "AYT9DAkSFvj4fMc3",
+  "folder": "9CBLRrRLMBlEhYYE",
+  "sort": 70,
   "system": {
     "description": {
       "value": "<p>Succeed on 10 saving throws to resist Unwilling Transformation (any trigger).</p>",

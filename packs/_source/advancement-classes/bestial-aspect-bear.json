@@ -4,7 +4,8 @@
   "name": "Bestial Aspect — Bear",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "9noyi6S6t6F8xLTw",
+  "folder": "BAKjq2iuC89ZetpB",
+  "sort": 30,
   "system": {
     "description": {
       "value": "<p>While transformed, you manifest your animal's keen smell. While transformed, you have advantage on Wisdom (Perception) checks that rely on smell and on Wisdom (Survival) checks to track creatures.</p>",

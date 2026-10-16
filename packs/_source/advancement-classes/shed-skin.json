@@ -4,7 +4,8 @@
   "name": "Shed Skin",
   "type": "feat",
   "img": "systems/dnd5e/icons/svg/items/feature.svg",
-  "folder": "ht52qlq0Gvrc212W",
+  "folder": "erKQCyewXcn0pta3",
+  "sort": 70,
   "system": {
     "description": {
       "value": "<p>While transformed, you can use a Bonus Action to end one effect on yourself that is grappling or restraining you or reducing your speed. Once you use this feature, you cannot do so again until that transformation ends.</p>",
