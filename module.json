@@ -33,6 +33,10 @@
       "advancement-milestone": {
         "htmlFields": ["description.value"],
         "imageFields": ["img"]
+      },
+      "advancement-gift": {
+        "htmlFields": ["description.value"],
+        "imageFields": ["img"]
       }
     }
   },
